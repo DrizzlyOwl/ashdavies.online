@@ -39,10 +39,20 @@ if (!empty($autoload)) {
  */
 function searchreplaceinfile(string $file, string $before, string $after)
 {
-    $seperator = "~";
+    $seperator = "/";
     $before = str_replace($seperator, "\\" . $seperator, $before);
     $after = str_replace($seperator, "\\" . $seperator, $after);
-    $cmd = "sed -i '' 's" . $seperator . $before . $seperator . $after . $seperator . "g' \"$file\"";
+
+    /**
+     * The syntax for 'sed' differs between OS X + Ubuntu
+     */
+    $which_sed = run('sed --version | head -n 1');
+    if (strstr($which_sed, "GNU sed")) {
+        $cmd = "sed -i 's" . $seperator . $before . $seperator . $after . $seperator . "g' \"$file\"";
+    } else {
+        $cmd = "sed -i '' 's" . $seperator . $before . $seperator . $after . $seperator . "g' \"$file\"";
+    }
+
     $stage = get('stage', 'local');
     if ($stage == "local") {
         return runLocally($cmd);
