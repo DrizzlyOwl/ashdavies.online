@@ -1,0 +1,31 @@
+# Misc
+*.log
+.DS_Store
+
+# Never include database backups
+/db_backups
+
+# Never retain root-level vendor packages
+/vendor
+/wordpress
+/node_modules
+
+# Never retain uploaded media
+content/uploads
+
+# Never retain uploaded media
+content/uploads
+
+# Always retain themes and language packs
+!content/themes
+!content/languages
+
+# Never include plugins
+content/plugins/*
+
+# Never include wp-config
+wp-config.php
+
+# Don't include auth.json
+auth.json
+
