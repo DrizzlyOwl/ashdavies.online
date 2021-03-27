@@ -21,11 +21,19 @@ jobs:
         with:
           php-version: '7.4'
           tools: phpcs, phpcbf
+
       - uses: actions/checkout@v2
+
+      - name: Scan for PSR-12 compliance
+        id: phpcs
+        run: phpcs --standard=PSR12 -v $GITHUB_WORKSPACE/content/themes/**/*.php
+
       - name: Fix any PHP formatting if possible
         id: phpcbf
         run: phpcbf --standard=PSR12 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 -w -v $GITHUB_WORKSPACE/content/themes/**/*.php
         continue-on-error: true
+        if: ${{ failure() }}
+
       - name: Merge corrected code
         run: |
           git config user.name "DrizzlyBot"
@@ -37,8 +45,8 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run phpcs final check
-        run: phpcs --standard=PSR12 -v $GITHUB_WORKSPACE/content/themes/**/*.php
+        if: ${{ failure() }}
+
   setup:
     needs: phpcs
     runs-on: ubuntu-20.04
@@ -48,9 +56,12 @@ jobs:
         with:
           php-version: '7.4'
           tools: deployer
+
       - uses: actions/checkout@v2
+
       - name: Decrypt env
         env:
           GPG_KEY: ${{ secrets.ENV_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
+
       - run: cat config/.env
