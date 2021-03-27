@@ -27,10 +27,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Install PHP 7.4 & phpcs
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: '7.4'
-            tools: wp, deployer, composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: wp, deployer, composer
       - uses: actions/checkout@v2
       - run: composer install --prefer-dist --no-progress
       - name: WP installation check
