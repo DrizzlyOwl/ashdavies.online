@@ -30,8 +30,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install wp-cli
-        run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-        run: chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+        run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
       - name: Composer install
         run: composer install --prefer-dist --no-progress
       - name: WP installation check
