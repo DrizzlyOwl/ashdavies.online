@@ -17,5 +17,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: composer install -d $GITHUB_WORKSPACE/.phpcs/ --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-suggest
+      - run: composer update -d $GITHUB_WORKSPACE/.phpcs/ --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader
       - run: $GITHUB_WORKSPACE/.phpcs/vendor/bin/phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
