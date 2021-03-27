@@ -20,9 +20,25 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          tools: phpcs
+          tools: phpcs, phpcbf
       - uses: actions/checkout@v2
-      - run: phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
+      - name: Run phpcs
+        run: phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
+      - name: Fix any issues if possible
+        id: phpcbf
+        run: phpcbf --standard=PSR12 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 -w -v $GITHUB_WORKSPACE/content/themes/**/*.php
+        continue-on-error: true
+      - name: Merge corrected code
+        run: |
+          git config user.name "DrizzlyOwl"
+          git config user.email "drizzlyowl@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout "${GITHUB_REF:11}"
+          git pull
+          git commit -am "Automated phpcs fix"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   setup:
     needs: phpcs
     runs-on: ubuntu-20.04
