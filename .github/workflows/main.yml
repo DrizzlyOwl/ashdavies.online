@@ -28,7 +28,7 @@ jobs:
         continue-on-error: true
       - name: Merge corrected code
         run: |
-          git config user.name "DrizzlyOwl"
+          git config user.name "DrizzlyBot"
           git config user.email "drizzlyowl@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git checkout "${GITHUB_REF:11}"
@@ -52,5 +52,5 @@ jobs:
       - name: Decrypt env
         env:
           GPG_KEY: ${{ secrets.ENV_KEY }}
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output .env .env.gpg
-      - run: cat .env
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
+      - run: cat config/.env
