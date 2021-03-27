@@ -14,8 +14,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   phpcs:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    working-directory: /tmp/
     steps:
       - uses: actions/checkout@v2
       - run: composer install -d ./.phpcs/ --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-suggest
-      - run: ./.phpcs/vendor/bin/phpcs --standard=PSR12 ./content/themes/**/*.php
+      - run: pwd -P && ls -lah
+      # - run: ./.phpcs/vendor/bin/phpcs --standard=PSR12 ./content/themes/**/*.php
