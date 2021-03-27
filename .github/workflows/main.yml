@@ -16,15 +16,22 @@ jobs:
   phpcs:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - run: composer validate -d $GITHUB_WORKSPACE/.phpcs/ --strict
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
         with:
-          path: $GITHUB_WORKSPACE/.phpcs/vendor
+          path: .phpcs/vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-      - run: composer install -d $GITHUB_WORKSPACE/.phpcs/ --prefer-dist --no-progress
-      - run: $GITHUB_WORKSPACE/.phpcs/vendor/bin/phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
+      - name: Composer install
+        run: composer install --prefer-dist --no-progress
+        working-directory: .phpcs/
+      - name: Debug paths
+        run: ls -la && pwd
+        working-directory: .phpcs/
+      - name: PSR-12 Compliance Check
+        run: ./vendor/bin/phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
+        working-directory: .phpcs/
