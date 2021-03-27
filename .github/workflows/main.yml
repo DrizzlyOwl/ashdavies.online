@@ -16,22 +16,22 @@ jobs:
   phpcs:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Composer install
-        run: composer install --prefer-dist --no-progress
-        working-directory: .phpcs/
-      - name: PSR-12 Compliance Check
-        run: ./vendor/bin/phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
-        working-directory: .phpcs/
+      - name: Install PHP 7.4 & phpcs
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: phpcs
+      - uses: actions/checkout@v2
+      - run: phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
   setup:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install wp-cli
-        run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-      - name: Composer install
-        run: composer install --prefer-dist --no-progress
+      - name: Install PHP 7.4 & phpcs
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '7.4'
+            tools: wp, deployer, composer
+      - uses: actions/checkout@v2
+      - run: composer install --prefer-dist --no-progress
       - name: WP installation check
-        run: php wp-cli.phar --info && rm wp-cli.phar
+        run: wp --info
