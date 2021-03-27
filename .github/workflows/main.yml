@@ -18,20 +18,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v2
-        with:
-          path: .phpcs/vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
       - name: Composer install
         run: composer install --prefer-dist --no-progress
-        working-directory: .phpcs/
-      - name: Debug paths
-        run: ls -la && pwd
         working-directory: .phpcs/
       - name: PSR-12 Compliance Check
         run: ./vendor/bin/phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
         working-directory: .phpcs/
+  setup:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install wp-cli
+        run: curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+        working-directory: /tmp
+      - name: Composer install
+        run: composer install --prefer-dist --no-progress
+      - name: WP installation check
+        run: /tmp/wp-cli.phar core is-installed
