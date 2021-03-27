@@ -68,17 +68,6 @@ function searchreplaceinfile(string $file, string $before, string $after)
 $env_path = realpath(__DIR__) . "/config/";
 $dotenv = Dotenv::createImmutable($env_path, ".env");
 $dotenv->load();
-$dotenv->required([
-    'WP_USER',
-    'WP_EMAIL',
-    'WP_SITENAME',
-    'WP_LOCALURL',
-    'REPOSITORY',
-    'LOCAL_DB_HOST',
-    'LOCAL_DB_NAME',
-    'LOCAL_DB_USER',
-    'LOCAL_DB_PASS',
-])->notEmpty();
 
 $hosts = [
     "STAGING",
