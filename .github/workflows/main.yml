@@ -66,5 +66,6 @@ jobs:
           GPG_KEY: ${{ secrets.ENV_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
 
+      - name: composer global
       - name: Debug deploy task
-        run: $HOME/.composer/vendor/bin/dep debug:task deploy
+        run: /usr/local/bin/dep debug:task deploy
