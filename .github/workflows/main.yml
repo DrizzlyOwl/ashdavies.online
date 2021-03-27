@@ -21,6 +21,7 @@ jobs:
         with:
           php-version: '7.4'
           tools: phpcs, phpcbf
+          coverage: none
 
       - uses: actions/checkout@v2
 
@@ -56,6 +57,7 @@ jobs:
         with:
           php-version: '7.4'
           tools: deployer
+          coverage: none
 
       - uses: actions/checkout@v2
 
@@ -65,4 +67,4 @@ jobs:
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
 
       - name: Debug deploy task
-        run: dep debug:task deploy
+        run: $HOME/.composer/vendor/bin/dep debug:task deploy
