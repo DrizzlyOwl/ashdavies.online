@@ -63,4 +63,6 @@ jobs:
         env:
           GPG_KEY: ${{ secrets.ENV_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
-      - run: cat config/.env
+
+      - name: Debug deploy task
+        run: dep debug:task deploy
