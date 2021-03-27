@@ -30,5 +30,4 @@ wp-config.php
 auth.json
 
 # Don't include phpcs vendor folder
-/.phpcs/
-!/.phpcs/composer.json
+/.phpcs/vendor/
