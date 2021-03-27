@@ -16,7 +16,7 @@ jobs:
   phpcs:
     runs-on: ubuntu-20.04
     steps:
-      - name: Install PHP 7.4 & phpcs
+      - name: Install phpcs
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
@@ -26,12 +26,14 @@ jobs:
   setup:
     runs-on: ubuntu-20.04
     steps:
-      - name: Install PHP 7.4 & phpcs
+      - name: Install Deployer
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          tools: wp, deployer, composer
+          tools: deployer
       - uses: actions/checkout@v2
       - run: composer install --prefer-dist --no-progress
-      - name: WP installation check
-        run: wp --info
+      - name: Decrypt env
+        env:
+          KEY: ${{ secrets.ENV_KEY }}
+        run: echo "$KEY"
