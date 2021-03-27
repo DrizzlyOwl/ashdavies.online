@@ -15,9 +15,7 @@ on:
 jobs:
   phpcs:
     runs-on: ubuntu-20.04
-    working-directory: /tmp/
     steps:
       - uses: actions/checkout@v2
-      - run: composer install -d ./.phpcs/ --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-suggest
-      - run: pwd -P && ls -lah
-      # - run: ./.phpcs/vendor/bin/phpcs --standard=PSR12 ./content/themes/**/*.php
+      - run: composer install -d $GITHUB_WORKSPACE/.phpcs/ --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader --no-suggest
+      - run: $GITHUB_WORKSPACE/.phpcs/vendor/bin/phpcs --standard=PSR12 $GITHUB_WORKSPACE/content/themes/**/*.php
