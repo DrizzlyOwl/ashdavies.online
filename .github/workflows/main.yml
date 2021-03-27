@@ -34,4 +34,4 @@ jobs:
       - name: Composer install
         run: composer install --prefer-dist --no-progress
       - name: WP installation check
-        run: wp-cli.phar core is-installed && rm wp-cli.phar
+        run: php wp-cli.phar --info && rm wp-cli.phar
