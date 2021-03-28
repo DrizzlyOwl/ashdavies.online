@@ -52,13 +52,6 @@ jobs:
     needs: phpcs
     runs-on: ubuntu-20.04
     steps:
-      - name: Install Deployer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-          tools: deployer
-          coverage: none
-
       - uses: actions/checkout@v2
 
       - name: Decrypt env
@@ -68,3 +61,9 @@ jobs:
 
       - name: Debug deploy task
         run: /usr/local/bin/dep debug:task deploy
+
+      - name: Deploy
+        uses: deployphp/action@master
+        with:
+          private-key: ${{ secrets.PRIVATE_KEY }}
+          dep: config:dump production
