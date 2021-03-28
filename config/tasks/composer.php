@@ -6,9 +6,9 @@ namespace Deployer;
 //// Composer related tasks
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-task('composer-install', function () {
+task('composer:install', function () {
     if (!commandExist('unzip')) {
         warning('To speed up composer installation setup "unzip" command with PHP zip extension.');
     }
-    run('cd {{release_path}} && {{bin/composer}} {{composer_options}}', ['tty' => true]);
+    run('cd {{release_path}} && {{bin/composer}} {{composer_options}}');
 })->setPrivate();
