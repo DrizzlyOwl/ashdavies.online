@@ -83,6 +83,7 @@ foreach ($hosts as $env) {
             ->user($_ENV[$env . "_DEPLOY_USER"])
             ->stage($stage)
             ->forwardAgent(true)
+            ->addSshOption('StrictHostKeyChecking', 'no')
             ->set('branch', $_ENV[$env . "_BRANCH"])
             ->set('stage_url', $_ENV[$env . "_STAGE_URL"])
             ->set('deploy_path', $_ENV[$env . "_DEPLOY_PATH"]);
