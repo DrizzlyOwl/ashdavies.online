@@ -74,4 +74,6 @@ jobs:
           ssh-private-key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Deploy to production
-        run: vendor/bin/dep deploy production
+        run: vendor/bin/dep deploy:unlock production && \
+          vendor/bin/dep deploy production && \
+          vendor/bin/dep deploy:lock production
