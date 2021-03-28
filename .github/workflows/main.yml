@@ -5,8 +5,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -59,7 +57,10 @@ jobs:
           GPG_KEY: ${{ secrets.ENV_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
 
-      - name: Deploy
+      - name: Install Deployer binary
+        run: curl -LO https://deployer.org/deployer.phar && mkdir bin && mv deployer.phar bin/dep && sudo chmod +x bin/dep
+
+      - name: Deploy to production
         uses: deployphp/action@master
         with:
           private-key: ${{ secrets.PRIVATE_KEY }}
