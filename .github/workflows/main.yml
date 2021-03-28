@@ -61,7 +61,6 @@ jobs:
       - uses: php-actions/composer@v5
         with:
           php_version: 7.4
-          quiet: yes
           dev: no
 
       - name: Decrypt env
@@ -69,11 +68,8 @@ jobs:
           GPG_KEY: ${{ secrets.ENV_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
 
-      - name: Install Deployer binary
-        run: curl -LO https://deployer.org/deployer.phar && mkdir bin && mv deployer.phar bin/dep && sudo chmod +x bin/dep
-
       - name: Deploy to production
         uses: deployphp/action@master
         with:
           private-key: ${{ secrets.PRIVATE_KEY }}
-          dep: deploy production
+          dep: deploy production -v
