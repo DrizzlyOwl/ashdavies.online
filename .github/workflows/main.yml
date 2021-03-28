@@ -68,8 +68,10 @@ jobs:
           GPG_KEY: ${{ secrets.ENV_KEY }}
         run: gpg --quiet --batch --yes --decrypt --passphrase="$GPG_KEY" --output config/.env config/.env.gpg
 
-      - name: Deploy to production
-        uses: deployphp/action@master
+      - name: Initialise SSH Agent
+        uses: webfactory/ssh-agent@v0.5.1
         with:
-          private-key: ${{ secrets.PRIVATE_KEY }}
-          dep: deploy production -v
+          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Deploy to production
+        run: vendor/bin/dep deploy production
