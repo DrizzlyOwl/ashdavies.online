@@ -108,7 +108,7 @@ set('shared_files', [
 ]);
 
 // Allow interaction for Git clone
-set('git_tty', true);
+set('git_tty', false);
 
 // Define a directory that is shared between deployments
 set('shared_dirs', [
