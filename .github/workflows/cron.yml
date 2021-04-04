@@ -21,8 +21,8 @@ jobs:
 
   update-deps:
     needs: check-for-depen
-      if: ${{ failure() }}
-      steps:
+    if: ${{ failure() }}
+    steps:
       - uses: actions/checkout@v2
       - uses: php-actions/composer@v5
         with:
