@@ -12,7 +12,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+    - name: Cache Composer dependencies
+      uses: actions/cache@v2
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
     - uses: php-actions/composer@v5
+      with:
+        php_version: 7.4
+        dev: no
     - uses: php-actions/composer@v5
       with:
         php_version: 7.4
