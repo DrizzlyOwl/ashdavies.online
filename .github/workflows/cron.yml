@@ -21,6 +21,7 @@ jobs:
 
   update-deps:
     needs: check-for-depen
+    runs-on: ubuntu-20.04
     if: ${{ failure() }}
     steps:
       - uses: actions/checkout@v2
