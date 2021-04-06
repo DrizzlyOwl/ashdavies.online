@@ -1,8 +1,6 @@
 name: dependency-check
 
 on:
-  schedule:
-    # - cron: '0 * * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,19 +23,6 @@ jobs:
       with:
         php_version: 7.4
         dev: no
-        command: outdated
-        args: --strict
-
-  update-deps:
-    needs: check-for-depen
-    runs-on: ubuntu-20.04
-    if: ${{ failure() }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: php-actions/composer@v5
-        with:
-          php_version: 7.4
-          dev: no
-          command: update
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        command: update
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
