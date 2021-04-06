@@ -4,6 +4,8 @@
  * Theme functions
  */
 
+namespace Ash;
+
 add_action('init', function () {
     add_post_type_support('page', 'excerpt');
     unregister_block_pattern_category('buttons');
@@ -27,3 +29,13 @@ add_action('init', function () {
         unregister_block_pattern($pattern);
     }
 });
+
+function theme_dir()
+{
+    echo get_theme_dir();
+}
+
+function get_theme_dir()
+{
+    return get_stylesheet_directory_uri();
+}

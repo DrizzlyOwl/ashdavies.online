@@ -1,3 +1,8 @@
+<?php
+
+use function Ash\theme_dir;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Ubuntu+Mono&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/style.css">
+    <link rel="stylesheet" href="<?php theme_dir(); ?>/style.css">
     <?php wp_head(); ?>
 </head>
 <body>
+<div id="app">

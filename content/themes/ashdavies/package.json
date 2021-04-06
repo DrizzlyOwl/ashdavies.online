@@ -1,0 +1,20 @@
+{
+  "name": "ashdavies",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "webpack-cli": "^4.6.0"
+  },
+  "scripts": {
+    "build-scss": "sass --no-source-map --style=compressed ./src/global.scss ./style.css",
+    "build-js": "webpack",
+    "build": "npm run build-scss && npm run build-js",
+    "watch": "webpack --watch & sass --no-source-map --watch ./src/global.scss ./style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.32.8",
+    "webpack": "^5.30.0"
+  },
+  "author": "Ash Davies",
+  "private": true
+}
