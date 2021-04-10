@@ -1,5 +1,7 @@
 <?php
 
+namespace Ash;
+
 /**
  * Index template
  */
@@ -8,14 +10,9 @@ get_header();
 ?>
 <div class="wrapper" id="wrapper">
     <aside class="sidebar">
-        <img class="sidebar__avatar" src="<?php echo get_home_url(); ?>/content/uploads/2020/11/3853061.jpeg" alt="">
-        <ul class="sidebar__list">
-            <li class="sidebar__list-item"><a href="https://github.com/DrizzlyOwl">Github</a></li>
-            <li class="sidebar__list-item"><a href="https://twitter.com/DrizzlyOwl">Twitter</a></li>
-            <li class="sidebar__list-item"><a href="https://keybase.io/DrizzlyOwl">Keybase</a></li>
-        </ul>
+        <img class="sidebar__avatar" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies">
     </aside>
-    <main class="contentarea">
+    <main class="contentarea" id="contentarea">
         <?php if (have_posts()) : ?>
             <?php while (have_posts()) : ?>
                 <?php the_post(); ?>
@@ -29,7 +26,6 @@ get_header();
                 </article>
             <?php endwhile; ?>
         <?php endif; ?>
-        <footer>&copy; Ash Davies</footer>
     </main>
 </div>
 <?php

@@ -8,7 +8,7 @@
 # Never retain root-level vendor packages
 /vendor
 /wordpress
-/node_modules
+node_modules
 
 # Never retain uploaded media
 content/uploads

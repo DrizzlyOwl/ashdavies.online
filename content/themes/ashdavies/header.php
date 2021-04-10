@@ -1,10 +1,5 @@
-<?php
-
-use function Ash\theme_dir;
-
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +8,10 @@ use function Ash\theme_dir;
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Ubuntu+Mono&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="<?php theme_dir(); ?>/style.css">
     <?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
+<a class="screen-reader-text ~ skiplink" href="#contentarea">
+    Skip to start of content
+</a>
 <div id="app">

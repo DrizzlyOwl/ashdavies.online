@@ -5,29 +5,84 @@ Author:         Ash Davies
 Author URI:     https://ashdavies.online/
 Version:        1.0.0
 */
+@import "./colours";
+$radii: 12px;
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.skiplink:focus {
+    background-color: #eee;
+    clip: auto !important;
+    clip-path: none;
+    color: #444;
+    display: block;
+    font-size: 1em;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000; /* Above WP toolbar. */
+}
+
 body {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     line-height: 1.45;
-    color: #333;
+    color: $clr-text;
 }
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
 }
 
 @import "./wrapper";
 @import "./sidebar";
+@import "./masthead";
+@import "./skillbox";
+@import "./footer";
 
-main {
-    padding: 10vh 0;
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 5px solid $clr-grey;
+    display: block;
+    margin: -100px auto 0 auto;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-180px);
+
+    &--alt {
+        z-index: 1;
+        transform: translateX(-20px);
+    }
 }
 
-footer {
-    text-align: center;
-}
-
-article {
+.contentarea {
     margin: 0 auto;
     max-width: 680px;
 }
@@ -48,6 +103,7 @@ p {
 .wp-block-code {
     border-top: 1px dashed #ccc;
     border-bottom: 1px dashed #ccc;
+    margin: 1em 0;
     padding: 1em 0;
     overflow: auto;
     max-width: 100%;
@@ -55,6 +111,11 @@ p {
 
 .wp-block-code code {
     font-size: 1.1em;
+}
+
+.divider {
+    height: 2px;
+    background: $clr-grey;
 }
 
 code {
@@ -87,7 +148,7 @@ h3 {
 a,
 a:hover,
 a:focus {
-    color: #0D3CFB;
+    color: $clr-blue;
 }
 
 header p {
