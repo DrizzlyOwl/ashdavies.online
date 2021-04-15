@@ -19,6 +19,16 @@
 
 // .masthead__blurb p {}
 
+.masthead__back {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.masthead__back a,
+.masthead__back a:hover,
+.masthead__back a:focus {
+    color: white;
+}
+
 .masthead__connect {
     display: inline-block;
     font-size: 1rem;
