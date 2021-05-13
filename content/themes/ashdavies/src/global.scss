@@ -85,6 +85,7 @@ img {
 .contentarea {
     margin: 0 auto;
     max-width: 680px;
+    padding-bottom: 2em;
 }
 
 html {
@@ -101,16 +102,32 @@ p {
 }
 
 .wp-block-code {
-    border-top: 1px dashed #ccc;
-    border-bottom: 1px dashed #ccc;
-    margin: 1em 0;
-    padding: 1em 0;
-    overflow: auto;
+    margin: 1.3em 0;
+    font-size: 1.414em;
+    display: block;
+    background: none;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
     max-width: 100%;
+    min-width: 100px;
+    padding: 0;
 }
 
-.wp-block-code code {
-    font-size: 1.1em;
+.contentarea code {
+    color: white;
+    background: black;
+    word-wrap: break-word;
+    box-decoration-break: clone;
+    padding: .1rem .3rem .2rem;
+    border-radius: .2rem;
+    a {
+        color: inherit;
+    }
+
+    a:focus, a:hover {
+        color: yellow;
+    }
 }
 
 .divider {
@@ -120,6 +137,7 @@ p {
 
 code {
     font-family: 'Ubuntu Mono', monospace;
+    font-size: inherit;
 }
 
 p code {
@@ -153,4 +171,9 @@ a:focus {
 
 header p {
     font-size: 1.66em;
+}
+
+ul, ol {
+    padding-left: 1em;
+    margin-left: 1em;
 }

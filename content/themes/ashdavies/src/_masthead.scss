@@ -4,15 +4,23 @@
 }
 
 .masthead__inner {
-    padding: 100px 0 180px 0;
+    padding: 100px 1em 180px 1em;
     max-width: 680px;
     position: relative;
     margin: 0 auto;
     color: white;
+    @media only screen and (min-width: 740px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 .masthead--slim .masthead__inner {
-    padding: 60px 0 20px 0;
+    padding: 60px 1em 20px 1em;
+    @media only screen and (min-width: 740px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 // .masthead__heading {}
