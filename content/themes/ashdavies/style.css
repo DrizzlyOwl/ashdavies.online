@@ -257,7 +257,7 @@ img {
 .contentarea {
   margin: 0 auto;
   max-width: 680px;
-  padding-bottom: 2em;
+  padding: 2em 0;
 }
 
 html {
