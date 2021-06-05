@@ -8,35 +8,14 @@ Version:        1.0.0
 @import "./colours";
 $radii: 12px;
 
-/* Text meant only for screen readers. */
-.screen-reader-text {
-    border: 0;
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
+* {
+    box-sizing: border-box;
+    margin: 0;
     padding: 0;
-    position: absolute;
-    width: 1px;
-    word-wrap: normal !important;
 }
 
-.skiplink:focus {
-    background-color: #eee;
-    clip: auto !important;
-    clip-path: none;
-    color: #444;
-    display: block;
+html {
     font-size: 1em;
-    height: auto;
-    left: 5px;
-    line-height: normal;
-    padding: 15px 23px 14px;
-    text-decoration: none;
-    top: 5px;
-    width: auto;
-    z-index: 100000; /* Above WP toolbar. */
 }
 
 body {
@@ -46,88 +25,9 @@ body {
     color: $clr-text;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 img {
     max-width: 100%;
     vertical-align: middle;
-}
-
-@import "./wrapper";
-@import "./sidebar";
-@import "./masthead";
-@import "./skillbox";
-@import "./footer";
-
-.avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    overflow: hidden;
-    border: 5px solid $clr-grey;
-    display: block;
-    margin: -100px auto 0 auto;
-    position: absolute;
-    z-index: 2;
-    left: 50%;
-    transform: translateX(-180px);
-
-    &--alt {
-        z-index: 1;
-        transform: translateX(-20px);
-    }
-}
-
-.contentarea {
-    margin: 0 auto;
-    max-width: 680px;
-    padding: 2em 0;
-}
-
-html {
-    font-size: 1em;
-}
-
-p {
-    margin-bottom: 1.3em;
-    font-size: 1.414em;
-}
-
-.date {
-    font-size: 1.1em;
-}
-
-.wp-block-code {
-    margin: 1.3em 0;
-    font-size: 1.414em;
-    display: block;
-    background: none;
-    white-space: pre;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    max-width: 100%;
-    min-width: 100px;
-    padding: 0;
-}
-
-.contentarea code {
-    color: white;
-    background: $clr-black;
-    word-wrap: break-word;
-    box-decoration-break: clone;
-    padding: .1rem .3rem .2rem;
-    border-radius: .2rem;
-    a {
-        color: inherit;
-    }
-
-    a:focus, a:hover {
-        color: yellow;
-    }
 }
 
 .divider {
@@ -135,45 +35,13 @@ p {
     background: $clr-grey;
 }
 
-code {
-    font-family: 'Ubuntu Mono', monospace;
-    font-size: inherit;
-}
-
-p code {
-    font-size: 1em;
-}
-
-h1, h2, h3, h4 {
-    margin: 1.414em 0 0.5em;
-    font-weight: inherit;
-    line-height: 1.2;
-}
-
-h1 {
-    margin-top: 0;
-    font-size: 3.998em;
-}
-
-h2 {
-    font-size: 2.827em;
-}
-
-h3 {
-    font-size: 1.999em
-}
-
-a,
-a:hover,
-a:focus {
-    color: $clr-blue;
-}
-
-header p {
-    font-size: 1.66em;
-}
-
-ul, ol {
-    padding-left: 1em;
-    margin-left: 1em;
-}
+@import "./accessibility";
+@import "./wrapper";
+@import "./typography";
+@import "./contentarea";
+@import "./sidebar";
+@import "./masthead";
+@import "./avatar";
+@import "./skillbox";
+@import "./tables";
+@import "./footer";

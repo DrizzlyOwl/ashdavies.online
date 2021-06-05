@@ -5,6 +5,33 @@ Author:         Ash Davies
 Author URI:     https://ashdavies.online/
 Version:        1.0.0
 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 1em;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #141414;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.divider {
+  height: 2px;
+  background: #EEF0F2;
+}
+
 /* Text meant only for screen readers. */
 .screen-reader-text {
   border: 0;
@@ -37,24 +64,6 @@ Version:        1.0.0
   /* Above WP toolbar. */
 }
 
-body {
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
-  line-height: 1.45;
-  color: #141414;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-img {
-  max-width: 100%;
-  vertical-align: middle;
-}
-
 .wrapper {
   width: 95%;
   margin: 0 auto;
@@ -63,6 +72,120 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+p,
+ul, ol, textarea, input {
+  margin-bottom: 1.3em;
+  font-size: 1.414rem;
+}
+
+.date {
+  font-size: 1.1em;
+}
+
+.wp-block-code {
+  margin: 1.3em 0;
+  font-size: 1.414em;
+  display: block;
+  background: none;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 100px;
+  padding: 0 0 0 36px;
+  position: relative;
+}
+.wp-block-code:before {
+  text-align: center;
+  content: "$";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  line-height: 1;
+  padding-top: 10px;
+  font-size: 1.2rem;
+  width: 36px;
+  background: linear-gradient(45deg, #DB5A42 0%, #EEC643 100%);
+  color: black;
+  font-weight: bold;
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+}
+.wp-block-code code {
+  padding: 2px 12px 4px 12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+  border-bottom-left-radius: 0;
+}
+
+.contentarea code {
+  color: white;
+  background: black;
+  word-wrap: break-word;
+  box-decoration-break: clone;
+}
+.contentarea code a {
+  color: inherit;
+}
+.contentarea code a:focus, .contentarea code a:hover {
+  color: yellow;
+}
+
+code {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: inherit;
+  border-radius: 0.2rem;
+  padding: 2px 6px;
+}
+
+p code {
+  font-size: 1em;
+}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.998em;
+}
+
+h2 {
+  font-size: 2.827em;
+}
+
+h3 {
+  font-size: 1.999em;
+}
+
+a,
+a:hover,
+a:focus {
+  color: #0D3CFB;
+}
+
+header p {
+  font-size: 1.66em;
+}
+
+ul, ol {
+  padding-left: 1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.contentarea {
+  margin: 0 auto;
+  max-width: 960px;
+  width: 95%;
+  padding: 2em 0;
 }
 
 .sidebar {
@@ -97,7 +220,8 @@ img {
 
 .masthead__inner {
   padding: 100px 1em 180px 1em;
-  max-width: 680px;
+  max-width: 960px;
+  width: 95%;
   position: relative;
   margin: 0 auto;
   color: white;
@@ -144,6 +268,24 @@ img {
 }
 .masthead__connect a {
   margin-left: 6px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 5px solid #EEF0F2;
+  display: block;
+  margin: -100px auto 0 auto;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-180px);
+}
+.avatar--alt {
+  z-index: 1;
+  transform: translateX(-20px);
 }
 
 .skillbox {
@@ -209,9 +351,23 @@ img {
   margin-bottom: 0;
 }
 
+table {
+  border-spacing: 0;
+  max-width: 100%;
+  border: 0;
+  color: #141414;
+  position: relative;
+}
+
+td, th {
+  padding: 0.5em;
+  font-size: 1.11rem;
+  border: 1px solid #eee;
+}
+
 .footer {
   font-size: 16px;
-  max-width: 680px;
+  max-width: 960px;
   margin: 2vh auto;
   width: 95%;
 }
@@ -236,115 +392,6 @@ img {
   padding: 0;
 }
 
-.avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  overflow: hidden;
-  border: 5px solid #EEF0F2;
-  display: block;
-  margin: -100px auto 0 auto;
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  transform: translateX(-180px);
-}
-.avatar--alt {
-  z-index: 1;
-  transform: translateX(-20px);
-}
-
-.contentarea {
-  margin: 0 auto;
-  max-width: 680px;
-  padding: 2em 0;
-}
-
-html {
-  font-size: 1em;
-}
-
-p {
-  margin-bottom: 1.3em;
-  font-size: 1.414em;
-}
-
-.date {
-  font-size: 1.1em;
-}
-
-.wp-block-code {
-  margin: 1.3em 0;
-  font-size: 1.414em;
-  display: block;
-  background: none;
-  white-space: pre;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
-  max-width: 100%;
-  min-width: 100px;
-  padding: 0;
-}
-
-.contentarea code {
-  color: white;
-  background: #141414;
-  word-wrap: break-word;
-  box-decoration-break: clone;
-  padding: 0.1rem 0.3rem 0.2rem;
-  border-radius: 0.2rem;
-}
-.contentarea code a {
-  color: inherit;
-}
-.contentarea code a:focus, .contentarea code a:hover {
-  color: yellow;
-}
-
-.divider {
-  height: 2px;
-  background: #EEF0F2;
-}
-
-code {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: inherit;
-}
-
-p code {
-  font-size: 1em;
-}
-
-h1, h2, h3, h4 {
-  margin: 1.414em 0 0.5em;
-  font-weight: inherit;
-  line-height: 1.2;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 3.998em;
-}
-
-h2 {
-  font-size: 2.827em;
-}
-
-h3 {
-  font-size: 1.999em;
-}
-
-a,
-a:hover,
-a:focus {
-  color: #0D3CFB;
-}
-
-header p {
-  font-size: 1.66em;
-}
-
-ul, ol {
-  padding-left: 1em;
-  margin-left: 1em;
+.footer__list-item {
+  font-size: 16px;
 }
