@@ -2,7 +2,7 @@
 
 namespace Ash;
 
-$recent_posts = wp_get_recent_posts([], OBJECT);
+$recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
 ?>
 </div>
 <div class="divider"></div>
