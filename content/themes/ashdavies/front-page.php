@@ -30,7 +30,8 @@ the_post();
         </header>
     </div>
     <img class="avatar" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies">
-    <img class="avatar avatar--alt" src="<?php echo get_home_url(); ?>/content/uploads/2020/11/3853061.jpeg" alt="Drizzly Owl Logo">
+    <img class="avatar avatar--alt" src="<?php echo get_home_url(); ?>/content/uploads/2020/11/3853061.jpeg"
+        alt="Drizzly Owl Logo">
     <div class="skillbox">
         <h2 id="coreskills" class="skillbox__title"><?php _e("My core skills", 'ashdavies'); ?></h2>
         <div class="skillbox__wrap">
@@ -41,14 +42,18 @@ the_post();
                 </figure>
                 <h3 class="skill__heading"><?php _e("WordPress", 'ashdavies'); ?></h3>
                 <p class="skill__text">
-                    <?php _e("I continue to build and maintain bespoke themes and plugins for the NHS, Police, local councils
-                    and other public sector entities. It's my bread and butter.", 'ashdavies'); ?>
+                    <?php _e("I continue to build and maintain bespoke themes and plugins for the NHS, Police, local
+                    councils and other public sector entities. It's my bread and butter.", 'ashdavies'); ?>
                 </p>
             </article>
             <article class="skill">
                 <figure class="skill__icon skill__icon--php">
                     <img src="<?php theme_dir(); ?>/dist/php.svg" alt="PHP icon">
-                    <figcaption class="screen-reader-text"><?php _e("PHP: Hypertext Preprocessor", 'ashdavies'); ?></figcaption>
+                    <figcaption class="screen-reader-text">
+                        <abbr title="<?php _e("PHP Hypertext Preprocessor", 'ashdavies'); ?>">
+                            <?php _e("PHP", 'ashdavies'); ?>
+                        </abbr>
+                    </figcaption>
                 </figure>
                 <h3 class="skill__heading"><?php _e("PHP", 'ashdavies'); ?></h3>
                 <p class="skill__text">
@@ -65,7 +70,8 @@ the_post();
                         "https://symfony.com/",
                         __("Symfony", 'ashdavies')
                     );
-                    _e(" and love to get stuck in to some Object-oriented Programming (OOP) once in a while.", 'ashdavies');
+                    _e(" and love to get stuck in to some <abbr title='Object-oriented Programming'>OOP</abbr> once in
+                    a while.", 'ashdavies');
                     ?>
                 </p>
             </article>
@@ -77,8 +83,8 @@ the_post();
                 <h3 class="skill__heading"><?php _e("Ubuntu", 'ashdavies'); ?></h3>
                 <p class="skill__text">
                     <?php
-                    _e("I'm adept at using the command line interface. I'm responsible for the upkeep, configuration, and
-                    reliable operation of Cloud Hosting within Mixd.", 'ashdavies');
+                    _e("I'm adept at using <abbr title='Command Line Interface'>CLI</abbr> . I'm responsible for the
+                    upkeep, configuration, and reliable operation of Cloud Hosting within Mixd.", 'ashdavies');
                     ?>
                 </p>
             </article>
