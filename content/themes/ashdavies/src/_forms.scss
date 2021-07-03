@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 label {
     font-family: 'Ubuntu Mono';
     font-size: 20px;
@@ -11,7 +13,7 @@ textarea {
     width: 100%;
     padding: 0.8rem;
     border: 2px solid $clr-grey;
-    border-radius: $radii/2;
+    border-radius: math.div($radii, 2);
 
     &:focus {
         outline: none;

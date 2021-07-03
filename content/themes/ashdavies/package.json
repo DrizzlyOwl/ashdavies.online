@@ -9,7 +9,7 @@
     "build-scss": "sass --no-source-map --style=compressed ./src/global.scss ./style.css",
     "build-js": "webpack",
     "build": "npm run build-scss && npm run build-js",
-    "watch": "webpack --watch & sass --no-source-map --watch ./src/global.scss ./style.css"
+    "watch": "webpack --watch & sass --no-source-map --watch ./src/global.scss ./style.css & sass --no-source-map --watch ./src/gutenberg.scss ./gutenberg.css"
   },
   "devDependencies": {
     "sass": "^1.35.1",

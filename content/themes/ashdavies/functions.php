@@ -53,6 +53,30 @@ add_action('init', function () {
     foreach ($block_patterns as $pattern) {
         unregister_block_pattern($pattern);
     }
+
+    wp_register_style(
+        '@ash/main',
+        get_theme_dir() . '/style.css',
+        [],
+        filemtime(get_template_directory() . '/style.css'),
+        'screen'
+    );
+
+    wp_register_style(
+        '@ash/gutenberg',
+        get_theme_dir() . '/gutenberg.css',
+        [],
+        filemtime(get_template_directory() . '/gutenberg.css'),
+        'screen'
+    );
+
+    wp_register_script(
+        '@ash/main',
+        get_theme_dir() . '/dist/scripts.min.js',
+        [],
+        filemtime(get_template_directory() . '/dist/scripts.min.js'),
+        true
+    );
 });
 
 function theme_dir()
@@ -69,19 +93,13 @@ function get_theme_dir()
  * Enqueue the stylesheet & JS
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style(
-        '@ash/main',
-        get_theme_dir() . '/style.css',
-        [],
-        filemtime(get_template_directory() . '/style.css'),
-        'screen'
-    );
+    wp_enqueue_style('@ash/main');
+    wp_enqueue_script('@ash/main');
+});
 
-    wp_enqueue_script(
-        '@ash/main',
-        get_theme_dir() . '/dist/scripts.min.js',
-        [],
-        filemtime(get_template_directory() . '/dist/scripts.min.js'),
-        true
-    );
+/**
+ * Enqueue assets for the Gutenberg editor
+ */
+add_action('enqueue_block_editor_assets', function () {
+    wp_enqueue_style('@ash/gutenberg');
 });
