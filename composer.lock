@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c907948ba3b582083efc49da67be32a",
+    "content-hash": "0b033ab4ce0de350cddb33c8073ef661",
     "packages": [
         {
             "name": "composer/installers",
@@ -815,6 +815,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/cloudflare/"
+        },
+        {
+            "name": "wpackagist-plugin/theme-check",
+            "version": 20210617,
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/theme-check/",
+                "reference": "tags/20210617"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/theme-check.20210617.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/theme-check/"
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
