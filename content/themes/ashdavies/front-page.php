@@ -53,19 +53,19 @@ the_post();
                 <h3 class="skill__heading"><?php _e("PHP", 'ashdavies'); ?></h3>
                 <p class="skill__text">
                     <?php
-                    _e("I'm no stranger to frameworks like", 'ashdavies');
+                    _e("I'm no stranger to frameworks like ", 'ashdavies');
                     echo wp_sprintf(
                         "<a href='%s' rel='nofollow'>%s</a>",
                         "https://laravel.com/",
                         __("Laravel", 'ashdavies')
                     );
-                    _e("and", 'ashdavies');
+                    _e(" and ", 'ashdavies');
                     echo wp_sprintf(
                         "<a href='%s' rel='nofollow'>%s</a>",
                         "https://symfony.com/",
                         __("Symfony", 'ashdavies')
                     );
-                    _e("and love to get stuck in to some Object-oriented Programming (OOP) once in a while.", 'ashdavies');
+                    _e(" and love to get stuck in to some Object-oriented Programming (OOP) once in a while.", 'ashdavies');
                     ?>
                 </p>
             </article>
