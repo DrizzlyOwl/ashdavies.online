@@ -1,0 +1,58 @@
+.masthead {
+    background-color: $clr-blue;
+    position: relative;
+}
+
+.masthead__inner {
+    padding: 100px 1em 180px 1em;
+    max-width: 960px;
+    width: 95%;
+    position: relative;
+    margin: 0 auto;
+    color: white;
+    @media only screen and (min-width: 740px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.masthead--slim .masthead__inner {
+    padding: 60px 1em 20px 1em;
+    @media only screen and (min-width: 740px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+// .masthead__heading {}
+
+// .masthead__blurb p {}
+
+.masthead__back {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.masthead__back a,
+.masthead__back a:hover,
+.masthead__back a:focus {
+    color: white;
+}
+
+.masthead__connect {
+    display: inline-block;
+    font-size: 1rem;
+    padding-right: 1rem;
+
+    a, a:hover, a:focus {
+        text-decoration: underline;
+        color: inherit;
+    }
+
+    img {
+        width: 20px;
+    }
+
+    a {
+        margin-left: 6px;
+    }
+}

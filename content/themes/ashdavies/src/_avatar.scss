@@ -1,0 +1,18 @@
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 5px solid $clr-grey;
+    display: block;
+    margin: -100px auto 0 auto;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-180px);
+
+    &--alt {
+        z-index: 1;
+        transform: translateX(-20px);
+    }
+}

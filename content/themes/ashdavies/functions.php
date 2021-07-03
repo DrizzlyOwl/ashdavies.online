@@ -39,3 +39,24 @@ function get_theme_dir()
 {
     return get_stylesheet_directory_uri();
 }
+
+/**
+ * Enqueue the stylesheet & JS
+ */
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_style(
+        '@ash/main',
+        get_theme_dir() . '/style.css',
+        [],
+        filemtime(get_template_directory() . '/style.css'),
+        'screen'
+    );
+
+    wp_enqueue_script(
+        '@ash/main',
+        get_theme_dir() . '/dist/scripts.min.js',
+        [],
+        filemtime(get_template_directory() . '/dist/scripts.min.js'),
+        true
+    );
+});

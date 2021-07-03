@@ -1,0 +1,141 @@
+/* playfair-display-regular - latin */
+@font-face {
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Playfair Display'),
+        url('./fonts/playfair-display-v22-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/playfair-display-v22-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* playfair-display-italic - latin */
+@font-face {
+    font-family: 'Playfair Display';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Playfair Display'),
+        url('./fonts/playfair-display-v22-latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/playfair-display-v22-latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* ubuntu-mono-regular - latin */
+@font-face {
+    font-family: 'Ubuntu Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Ubuntu Mono'),
+        url('./fonts/ubuntu-mono-v10-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/ubuntu-mono-v10-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+p,
+ul, ol, textarea, input {
+    margin-bottom: 1.3em;
+    font-size: 1.414rem;
+}
+
+.date {
+    font-size: 1.1em;
+}
+
+.wp-block-code {
+    margin: 1.3em 0;
+    font-size: 1.414em;
+    display: block;
+    background: none;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 0 0 0 36px;
+    position: relative;
+
+    &:before {
+        text-align: center;
+        content: "$";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        line-height: 1;
+        padding-top: 10px;
+        font-size: 1.2rem;
+        width: 36px;
+        background: $clr-fire-gradient;
+        color: black;
+        font-weight: bold;
+        border-top-left-radius: .2rem;
+        border-bottom-left-radius: .2rem;
+    }
+
+    code {
+        padding: 2px 12px 4px 12px;
+        border-top-left-radius: 0;
+        border-top-right-radius: .2rem;
+        border-bottom-right-radius: .2rem;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.contentarea code {
+    color: white;
+    background: black;
+    word-wrap: break-word;
+    box-decoration-break: clone;
+
+    a {
+        color: inherit;
+    }
+
+    a:focus, a:hover {
+        color: yellow;
+    }
+}
+
+code {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: inherit;
+    border-radius: .2rem;
+    padding: 2px 6px;
+}
+
+p code {
+    font-size: 1em;
+}
+
+h1, h2, h3, h4 {
+    margin: 1.414em 0 0.5em;
+    font-weight: inherit;
+    line-height: 1.2;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 3.998em;
+}
+
+h2 {
+    font-size: 2.827em;
+}
+
+h3 {
+    font-size: 1.999em
+}
+
+a,
+a:hover,
+a:focus {
+    color: $clr-blue;
+}
+
+header p {
+    font-size: 1.66em;
+}
+
+ul, ol {
+    padding-left: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}

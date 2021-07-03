@@ -1,12 +1,15 @@
 .sidebar {
-    padding-right: 1em;
+    padding: 2vh;
+    color: white;
+    flex: 1 1 0;
 }
 
 .sidebar__avatar {
     width: 200px;
     height: 200px;
-    vertical-align: middle;
-    border-radius: 50%;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 5px solid $clr-grey;
 }
 
 .sidebar__list {

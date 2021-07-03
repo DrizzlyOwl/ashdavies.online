@@ -10,7 +10,6 @@ module.exports = {
     output: {
         filename: 'scripts.min.js',
         path: path.resolve(__dirname, 'dist'),
-        clean: true,
     },
     module: {},
     plugins: []
