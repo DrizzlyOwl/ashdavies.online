@@ -7,12 +7,37 @@
 namespace Ash;
 
 add_action('init', function () {
-    add_post_type_support('page', 'excerpt');
+    // Define the global content width
+    if (!isset($content_width)) {
+        $content_width = 960;
+    }
+
+    // Theme support registrations
+    add_theme_support('admin-bar');
+    add_theme_support('title-tag');
+    add_theme_support('automatic-feed-links');
+    add_theme_support('html5', [
+        'comment-list',
+        'comment-form',
+        // 'search-form',
+        // 'gallery',
+        // 'caption',
+        // 'style',
+        // 'script'
+    ]);
+    add_theme_support('post-thumbnails');
+    add_theme_support('disable-custom-colors');
+    add_theme_support('disable-custom-font-sizes');
+
+    // Add missing features to Post Types
+    add_post_type_support('page', ['excerpt', 'thumbnail']);
+
     unregister_block_pattern_category('buttons');
     unregister_block_pattern_category('columns');
     unregister_block_pattern_category('gallery');
     unregister_block_pattern_category('header');
     unregister_block_pattern_category('text');
+
     $block_patterns = [
         'core/text-two-columns',
         'core/two-buttons',

@@ -1,0 +1,52 @@
+label {
+    font-family: 'Ubuntu Mono';
+    font-size: 20px;
+}
+
+input,
+textarea {
+    color: $clr-black;
+    font-size: 18px;
+    margin: 0;
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid $clr-grey;
+    border-radius: $radii/2;
+
+    &:focus {
+        outline: none;
+        border-color: $clr-blue;
+    }
+}
+
+button,
+[type="submit"] {
+    padding: 0.4rem 1.6rem;
+    background: $clr-grey;
+    border: 2px solid $clr-grey;
+    font-family: 'Ubuntu Mono';
+    font-size: 20px;
+    width: 100%;
+    @media only screen and (min-width: 420px) {
+        width: auto;
+    }
+    @media only screen and (min-width: 740px) {
+        font-size: 24px;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $clr-blue;
+        background: $clr-blue;
+        color: white;
+    }
+
+    &:hover {
+        cursor: pointer;
+        border-color: $clr-blue;
+    }
+}
+
+textarea {
+    resize: vertical;
+}

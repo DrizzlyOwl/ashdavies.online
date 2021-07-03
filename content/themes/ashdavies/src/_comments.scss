@@ -1,0 +1,23 @@
+.comment-form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1rem;
+
+    // form row
+    p {
+        padding-left: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .logged-in-as {
+        width: 100%;
+    }
+}
+
+.comment-form-comment textarea {
+    height: 6rem;
+}
+
+.form-submit {
+    width: 100%;
+}

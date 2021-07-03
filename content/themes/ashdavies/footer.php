@@ -9,7 +9,7 @@ $recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
 <footer class="footer">
     <?php if (!empty($recent_posts)) : ?>
         <nav class="footer__nav">
-            <h2 class="footer__heading">My recent blog posts</h2>
+            <h2 class="footer__heading"><?php _e("My recent blog posts", 'ashdavies'); ?></h2>
             <ul class="footer__list">
             <?php foreach ($recent_posts as $post) : ?>
                 <?php setup_postdata($post); ?>
@@ -23,7 +23,7 @@ $recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
             </ul>
         </nav>
     <?php endif; ?>
-    <p class="footer__sign">&copy; Ash Davies</p>
+    <p class="footer__sign">&copy; <?php _e("Ash Davies", 'ashdavies'); ?></p>
 </footer>
 <!-- #app -->
 <?php
