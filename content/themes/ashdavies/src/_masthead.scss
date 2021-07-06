@@ -56,3 +56,13 @@
         margin-left: 6px;
     }
 }
+
+.masthead__meta {
+    display: flex;
+    margin-bottom: 1em;
+    margin-left: -1em;
+
+    p {
+        padding-left: 1em;
+    }
+}

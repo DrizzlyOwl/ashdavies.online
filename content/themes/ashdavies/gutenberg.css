@@ -38,7 +38,9 @@
   margin-bottom: 1.3em;
   font-size: 1.414rem;
 }
-.editor-styles-wrapper .wp-block .date {
+.editor-styles-wrapper .wp-block .date,
+.editor-styles-wrapper .wp-block .comment-count {
+  margin-bottom: 0;
   font-size: 1.1em;
 }
 .editor-styles-wrapper .wp-block .wp-block-code {

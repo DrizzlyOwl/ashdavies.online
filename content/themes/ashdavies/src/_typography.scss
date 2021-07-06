@@ -4,7 +4,9 @@ ul, ol, textarea, input {
     font-size: 1.414rem;
 }
 
-.date {
+.date,
+.comment-count {
+    margin-bottom: 0;
     font-size: 1.1em;
 }
 
