@@ -28,6 +28,7 @@ add_action('init', function () {
     add_theme_support('post-thumbnails');
     add_theme_support('disable-custom-colors');
     add_theme_support('disable-custom-font-sizes');
+    add_theme_support('yoast-seo-breadcrumbs');
 
     // Add missing features to Post Types
     add_post_type_support('page', ['excerpt', 'thumbnail']);
