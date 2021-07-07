@@ -24,7 +24,6 @@ get_header();
             <?php the_content(); ?>
             <footer>
                 <?php comment_form(); ?>
-
                 <?php wp_list_comments(); ?>
             </footer>
         </article>
@@ -32,7 +31,11 @@ get_header();
     <div class="crumbs">
         <div class="crumbs__inner">
             <p class="screen-reader-text">Breadcrumbs</p>
-            <?php yoast_breadcrumb(); ?>
+            <?php yoast_breadcrumb("&larr; "); ?>
+            <div class="post-navigation">
+                <p><?php previous_post_link("&larr; Previous post<br>%link", "%title", true); ?></p>
+                <p><?php next_post_link("Next post &rarr;<br>%link", "%title", true); ?></p>
+            </div>
         </div>
     </div>
 </main>

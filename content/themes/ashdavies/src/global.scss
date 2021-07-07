@@ -44,6 +44,33 @@ img {
     background: $clr-grey;
 }
 
+.post-navigation {
+
+    p {
+        font-size: 1em;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 740px) {
+        display: flex;
+        margin-left: -1em;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        > p {
+            padding-left: 1em;
+            margin-bottom: 0;
+        }
+
+        > p:last-child {
+            text-align: right;
+        }
+    }
+}
+
 @import "./accessibility";
 @import "./wrapper";
 @import "./typography";
