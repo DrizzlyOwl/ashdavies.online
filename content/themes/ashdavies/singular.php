@@ -31,7 +31,7 @@ get_header();
     <div class="crumbs">
         <div class="crumbs__inner">
             <p class="screen-reader-text">Breadcrumbs</p>
-            <?php yoast_breadcrumb("&larr; "); ?>
+            <?php yoast_breadcrumb("&#8647; "); ?>
             <div class="post-navigation">
                 <p><?php previous_post_link("&larr; Previous post<br>%link", "%title", true); ?></p>
                 <p><?php next_post_link("Next post &rarr;<br>%link", "%title", true); ?></p>
