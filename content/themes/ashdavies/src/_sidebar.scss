@@ -9,7 +9,7 @@
     height: 200px;
     border-radius: 100%;
     overflow: hidden;
-    border: 5px solid $clr-grey;
+    border: 5px solid var(--clr-grey);
 }
 
 .sidebar__list {

@@ -7,26 +7,26 @@ label {
 
 input,
 textarea {
-    color: $clr-black;
+    color: var(--clr-black);
     font-family: 'Playfair Display', serif;
     font-size: 18px;
     margin: 0;
     width: 100%;
     padding: 0.8rem;
-    border: 2px solid $clr-grey;
-    border-radius: math.div($radii, 2);
+    border: 2px solid var(--clr-grey);
+    border-radius: math.div(var(--radii), 2);
 
     &:focus {
         outline: none;
-        border-color: $clr-blue;
+        border-color: var(--clr-blue);
     }
 }
 
 button,
 [type="submit"] {
     padding: 0.4rem 1.6rem;
-    background: $clr-grey;
-    border: 2px solid $clr-grey;
+    background: var(--clr-grey);
+    border: 2px solid var(--clr-grey);
     font-family: 'Ubuntu Mono';
     font-size: 20px;
     width: 100%;
@@ -39,14 +39,14 @@ button,
 
     &:focus {
         outline: none;
-        border-color: $clr-blue;
-        background: $clr-blue;
+        border-color: var(--clr-blue);
+        background: var(--clr-blue);
         color: white;
     }
 
     &:hover {
         cursor: pointer;
-        border-color: $clr-blue;
+        border-color: var(--clr-blue);
     }
 }
 

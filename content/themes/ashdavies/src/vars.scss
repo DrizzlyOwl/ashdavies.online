@@ -1,0 +1,27 @@
+$content_width: rem(768) !default;
+$radii: rem(12) !default;
+
+$s: rem(360);
+$m: rem(768);
+$l: rem(1366);
+$xl: rem(1920);
+
+$gutter: rem(16);
+
+:root {
+    // Colours
+    --clr-blue: #0D3CFB;
+    --clr-yellow: #EEC643;
+    --clr-black: #141414;
+    --clr-grey: #EEF0F2;
+    --clr-green: #33f078;
+    --clr-fire: #DB5A42;
+    --clr-text: var(--clr-black);
+
+    // Gradients
+    --clr-fire-gradient: linear-gradient(45deg, var(--clr-fire) 0%, var(--clr-yellow) 100%);
+
+    // Variables
+    --content_width: #{$content_width};
+    --radii: #{$radii};
+}

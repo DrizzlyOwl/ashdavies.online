@@ -1,13 +1,13 @@
 @import "./font";
-@import "./colours";
+@import "./tools";
+@import "./vars";
 
 .editor-styles-wrapper .wp-block {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     line-height: 1.45;
-    color: $clr-text;
-    max-width: 960px;
-    color: $clr-text;
+    color: var(--clr-text);
+    max-width: var(--content_width);
 
     // Inherit typographic styling
     @import "./typography";

@@ -4,7 +4,7 @@ Theme URI:          http://github.com/drizzlyowl/ashdavies.online
 Author:             Ash Davies
 Author URI:         https://ashdavies.online/
 Description:        A simple but compliant theme for my personal site
-Version:            1.2.0
+Version:            1.2.1
 Requires at least:  5.0
 Tested up to:       5.7.2
 Requires PHP:       7.3
@@ -14,8 +14,8 @@ License:            GPLv2 or later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 */
 @import "./font";
-@import "./colours";
-$radii: 12px;
+@import "./tools";
+@import "./vars";
 
 * {
     box-sizing: border-box;
@@ -24,14 +24,14 @@ $radii: 12px;
 }
 
 html {
-    font-size: 1em;
+    font-size: 100%;
 }
 
 body {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
-    line-height: 1.45;
-    color: $clr-text;
+    line-height: 1.6;
+    color: var(--clr-text);
 }
 
 img {
@@ -41,13 +41,13 @@ img {
 
 .divider {
     height: 2px;
-    background: $clr-grey;
+    background: var(--clr-grey);
 }
 
 .post-navigation {
 
     p {
-        font-size: 1em;
+        font-size: rem(16);
     }
 
     p:last-child {
@@ -56,13 +56,14 @@ img {
 
     @media only screen and (min-width: 740px) {
         display: flex;
-        margin-left: -1em;
+        margin-left: -$gutter;
         flex-wrap: wrap;
         justify-content: space-between;
 
         > p {
-            padding-left: 1em;
+            padding-left: $gutter;
             margin-bottom: 0;
+            width: 50%;
         }
 
         > p:last-child {

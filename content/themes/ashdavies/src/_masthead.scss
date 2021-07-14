@@ -1,36 +1,31 @@
 .masthead {
-    background-color: $clr-blue;
+    background-color: var(--clr-blue);
     position: relative;
+    padding: 0 $gutter;
 }
 
 .masthead__inner {
-    padding: 100px 1em 180px 1em;
-    max-width: 960px;
-    width: 95%;
+    padding: rem(100) 0 rem(180) 0;
+    max-width: var(--content_width);
+    width: 100%;
     position: relative;
     margin: 0 auto;
     color: white;
-    @media only screen and (min-width: 740px) {
-        padding-left: 0;
-        padding-right: 0;
-    }
 }
 
 .masthead--slim .masthead__inner {
-    padding: 60px 1em 20px 1em;
-    @media only screen and (min-width: 740px) {
-        padding-left: 0;
-        padding-right: 0;
-    }
+    padding: rem(60) 0;
 }
 
 // .masthead__heading {}
 
-// .masthead__blurb p {}
+.masthead__blurb p {
+    margin-bottom: 0;
+}
 
 .masthead__back {
     font-size: 1rem;
-    margin-bottom: 0;
+    margin-bottom: $gutter;
 }
 .masthead__back a,
 .masthead__back a:hover,
@@ -40,8 +35,9 @@
 
 .masthead__connect {
     display: inline-block;
-    font-size: 1rem;
-    padding-right: 1rem;
+    font-size: rem(16);
+    padding-right: $gutter;
+    margin: $gutter 0 0 0;
 
     a, a:hover, a:focus {
         text-decoration: underline;
@@ -49,20 +45,20 @@
     }
 
     img {
-        width: 20px;
+        width: rem(20);
     }
 
     a {
-        margin-left: 6px;
+        margin-left: rem(6);
     }
 }
 
 .masthead__meta {
     display: flex;
-    margin-bottom: 1em;
-    margin-left: -1em;
+    margin-bottom: $gutter;
+    margin-left: -$gutter;
 
     p {
-        padding-left: 1em;
+        padding-left: $gutter;
     }
 }

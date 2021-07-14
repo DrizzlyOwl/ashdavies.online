@@ -1,11 +1,15 @@
+.avatar-group {
+    margin: rem(-100) auto 0 auto;
+    padding-bottom: rem(100);
+}
+
 .avatar {
-    width: 200px;
-    height: 200px;
+    width: rem(200);
+    height: rem(200);
     border-radius: 100%;
     overflow: hidden;
-    border: 5px solid $clr-grey;
+    border: 5px solid var(--clr-grey);
     display: block;
-    margin: -100px auto 0 auto;
     position: absolute;
     z-index: 2;
     left: 50%;

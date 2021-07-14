@@ -1,6 +1,10 @@
 .contentarea {
+    padding: rem(80) $gutter;
     margin: 0 auto;
-    max-width: 960px;
-    width: 95%;
-    padding: 2em 0;
+    display: block;
+
+    p + h2,
+    p + h3 {
+        padding-top: rem(32);
+    }
 }

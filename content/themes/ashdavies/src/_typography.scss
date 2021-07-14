@@ -1,7 +1,84 @@
+@use "sass:math";
+
 p,
-ul, ol, textarea, input {
-    margin-bottom: 1.3em;
-    font-size: 1.414rem;
+ul,
+ol,
+textarea,
+code,
+input {
+    margin-bottom: $gutter;
+    font-size: rem(18);
+
+    @include bp($m) {
+        font-size: rem(20);
+    }
+
+    @include bp($xl) {
+        font-size: rem(22);
+    }
+}
+
+code {
+    font-family: 'Ubuntu Mono', monospace;
+    border-radius: .2rem;
+    padding: rem(2) rem(6);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 0 $gutter 0;
+    font-weight: inherit;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: rem(40);
+
+    @include bp($m) {
+        font-size: rem(44);
+    }
+
+    @include bp($xl) {
+        font-size: rem(48);
+    }
+}
+
+h2 {
+    font-size: rem(30);
+
+    @include bp($m) {
+        font-size: rem(34);
+    }
+
+    @include bp($xl) {
+        font-size: rem(38);
+    }
+}
+
+h3 {
+    font-size: rem(22);
+
+    @include bp($m) {
+        font-size: rem(24);
+    }
+
+    @include bp($xl) {
+        font-size: rem(26);
+    }
+}
+
+a,
+a:hover,
+a:focus {
+    color: var(--clr-blue);
+}
+
+ul, ol {
+    padding-left: $gutter;
+    margin-left: $gutter;
+    margin-bottom: $gutter;
 }
 
 .date,
@@ -11,8 +88,7 @@ ul, ol, textarea, input {
 }
 
 .wp-block-code {
-    margin: 1.3em 0;
-    font-size: 1.414em;
+    margin: $gutter 0;
     display: block;
     background: black;
     border-radius: .2em;
@@ -21,8 +97,16 @@ ul, ol, textarea, input {
     overflow-x: scroll;
     max-width: 100%;
     min-width: 100px;
-    padding: .1em 0 .1em 36px;
+    padding: rem(6) 0 rem(2) rem(36);
     position: relative;
+
+    @include bp($m) {
+        padding-top: rem(4);
+    }
+
+    @include bp($xl) {
+        padding-top: rem(2);
+    }
 
     &:before {
         text-align: center;
@@ -34,8 +118,8 @@ ul, ol, textarea, input {
         line-height: 1;
         padding-top: 10px;
         font-size: 1.2rem;
-        width: 36px;
-        background: $clr-fire-gradient;
+        width: rem(36);
+        background: var(--clr-fire-gradient);
         color: black;
         font-weight: bold;
         border-top-left-radius: .2rem;
@@ -43,6 +127,7 @@ ul, ol, textarea, input {
     }
 
     code {
+        width: 100%;
         padding: 2px 12px 4px 12px;
         border-top-left-radius: 0;
         border-top-right-radius: .2rem;
@@ -64,52 +149,6 @@ ul, ol, textarea, input {
     a:focus, a:hover {
         color: yellow;
     }
-}
-
-code {
-    font-family: 'Ubuntu Mono', monospace;
-    font-size: inherit;
-    border-radius: .2rem;
-    padding: 2px 6px;
-}
-
-p code {
-    font-size: 1em;
-}
-
-h1, h2, h3, h4 {
-    margin: 1.414em 0 0.5em;
-    font-weight: inherit;
-    line-height: 1.2;
-}
-
-h1 {
-    margin-top: 0;
-    font-size: 3.998em;
-}
-
-h2 {
-    font-size: 2.827em;
-}
-
-h3 {
-    font-size: 1.999em
-}
-
-a,
-a:hover,
-a:focus {
-    color: $clr-blue;
-}
-
-header p {
-    font-size: 1.66em;
-}
-
-ul, ol {
-    padding-left: 1em;
-    margin-left: 1em;
-    margin-bottom: 1em;
 }
 
 .unset-list {

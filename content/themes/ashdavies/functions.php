@@ -90,13 +90,13 @@ add_action('init', function () {
         'screen'
     );
 
-    wp_register_script(
-        '@ash/main',
-        get_theme_dir() . '/dist/scripts.min.js',
-        [],
-        filemtime(get_template_directory() . '/dist/scripts.min.js'),
-        true
-    );
+    // wp_register_script(
+    //     '@ash/main',
+    //     get_theme_dir() . '/dist/scripts.min.js',
+    //     [],
+    //     filemtime(get_template_directory() . '/dist/scripts.min.js'),
+    //     true
+    // );
 
     wp_deregister_script('wp-embed');
     wp_deregister_style('wp-block-library');
@@ -116,7 +116,8 @@ function get_theme_dir()
  * Enqueue the stylesheet & JS
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('@ash/main');
+    wp_enqueue_style('@ash/main');
+    // wp_enqueue_script('@ash/main');
 });
 
 /**

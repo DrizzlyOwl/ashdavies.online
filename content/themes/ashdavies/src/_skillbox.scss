@@ -1,5 +1,5 @@
 .skillbox {
-    background-color: $clr-grey;
+    background-color: var(--clr-grey);
     text-align: center;
     padding: 160px 0 4vh 0;
 }
@@ -10,7 +10,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    max-width: 960px;
+    max-width: var(--content_width);
     margin: 0 auto;
 }
 
