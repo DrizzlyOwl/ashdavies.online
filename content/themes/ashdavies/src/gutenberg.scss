@@ -3,9 +3,16 @@
 @import "./vars";
 
 .editor-styles-wrapper .wp-block {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
     font-family: 'Playfair Display', serif;
     font-weight: 400;
-    line-height: 1.45;
+    line-height: 1.6;
+    font-size: 100%;
     color: var(--clr-text);
     max-width: var(--content_width);
 

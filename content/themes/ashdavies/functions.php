@@ -98,8 +98,10 @@ add_action('init', function () {
     //     true
     // );
 
-    wp_deregister_script('wp-embed');
-    wp_deregister_style('wp-block-library');
+    if (is_admin() == false) {
+        wp_deregister_script('wp-embed');
+        wp_deregister_style('wp-block-library');
+    }
 });
 
 function theme_dir()
