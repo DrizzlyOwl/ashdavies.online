@@ -19,7 +19,7 @@ get_header();
                     <p class="comment-count"><?php comments_number(); ?></p>
                 <?php endif; ?>
             </div>
-            <?php if (wp_get_post_categories()) : ?>
+            <?php if (wp_get_post_categories(get_the_ID())) : ?>
                 <p class="masthead__tags">Category: <?php the_category(','); ?></p>
             <?php endif; ?>
             <div class="masthead__blurb"><?php the_excerpt(); ?></div>
