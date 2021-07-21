@@ -15,8 +15,13 @@ get_header();
             <h1 class="masthead__heading"><?php the_title(); ?></h1>
             <div class="masthead__meta">
                 <p class="date"><?php echo get_post_datetime()->format(get_option('date_format')); ?></p>
-                <p class="comment-count"><?php comments_number(); ?></p>
+                <?php if (get_comments('status=approve')) : ?>
+                    <p class="comment-count"><?php comments_number(); ?></p>
+                <?php endif; ?>
             </div>
+            <?php if (wp_get_post_categories()) : ?>
+                <p class="masthead__tags">Category: <?php the_category(','); ?></p>
+            <?php endif; ?>
             <div class="masthead__blurb"><?php the_excerpt(); ?></div>
         </header>
     </div>

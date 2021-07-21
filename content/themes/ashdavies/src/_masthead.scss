@@ -62,3 +62,12 @@
         padding-left: $gutter;
     }
 }
+
+.masthead__tags {
+    font-size: 1.1em;
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}

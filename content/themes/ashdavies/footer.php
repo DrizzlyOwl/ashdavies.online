@@ -24,7 +24,10 @@ $recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
                 </ul>
             </nav>
         <?php endif; ?>
-        <p class="footer__sign">&copy; <?php _e("Ash Davies", 'ashdavies'); ?></p>
+        <p class="footer__sign">
+            &copy; <?php _e("Ash Davies", 'ashdavies'); ?>
+            - <a href="/privacy/">Privacy</a>
+        </p>
     </div>
 </footer>
 <!-- #app -->

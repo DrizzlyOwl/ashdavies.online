@@ -58,22 +58,6 @@ add_action('init', function () {
     unregister_block_pattern_category('header');
     unregister_block_pattern_category('text');
 
-    $block_patterns = [
-        'core/text-two-columns',
-        'core/two-buttons',
-        'core/two-images',
-        'core/text-two-columns-with-images',
-        'core/text-three-columns-buttons',
-        'core/large-header',
-        'core/large-header-button',
-        'core/three-buttons',
-        'core/heading-paragraph',
-        'core/quote',
-    ];
-    foreach ($block_patterns as $pattern) {
-        unregister_block_pattern($pattern);
-    }
-
     wp_register_style(
         '@ash/main',
         get_theme_dir() . '/style.css',
