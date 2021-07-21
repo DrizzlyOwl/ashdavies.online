@@ -96,7 +96,7 @@ the_post();
         <div class="wrapper">
             <?php the_content(); ?>
         </div>
-    </section>
+    </article>
 </main>
 <?php
 get_footer();
