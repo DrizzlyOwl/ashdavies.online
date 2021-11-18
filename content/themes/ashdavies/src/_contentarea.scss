@@ -7,6 +7,15 @@
     p + h3 {
         padding-top: rem(32);
     }
+
+    img {
+        height: auto;
+        margin-bottom: $gutter;
+    }
+
+    .attachment-post-thumbnail {
+        position: absolute;
+    }
 }
 
 .contentarea--list-item {

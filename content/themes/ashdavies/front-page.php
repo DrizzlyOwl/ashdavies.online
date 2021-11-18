@@ -13,26 +13,34 @@ the_post();
 <main id="contentarea">
     <div class="masthead">
         <header class="masthead__inner">
-            <h1 class="masthead__heading"><?php the_title(); ?></h1>
-            <div class="masthead__blurb"><?php the_excerpt(); ?></div>
-            <p class="masthead__connect">
-                <img src="<?php theme_dir(); ?>/dist/twitter.svg" alt="Twitter icon" width="20" height="20">
-                <a href="https://twitter.com/DrizzlyOwl" aria-label="Connect with me on Twitter @DrizzlyOwl">
-                    <?php _e("DrizzlyOwl", 'ashdavies'); ?>
-                </a>
-            </p>
-            <p class="masthead__connect">
-                <img src="<?php theme_dir(); ?>/dist/keybase.svg" alt="Keybase icon" width="20" height="20">
-                <a href="https://keybase.io/DrizzlyOwl" aria-label="Talk to me securely using Keybase @DrizzlyOwl">
-                    <?php _e("Keybase", 'ashdavies'); ?>
-                </a>
-            </p>
+            <div class="avatar-group">
+                <div class="avatar-group__inner">
+                    <div class="avatar-group__front">
+                        <img class="avatar" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies" width="200" height="200">
+                    </div>
+                    <div class="avatar-group__back">
+                        <img class="avatar avatar--alt" src="<?php echo get_home_url(); ?>/content/uploads/2020/11/3853061.jpeg"
+                            alt="Drizzly Owl Logo" width="200" height="200">
+                    </div>
+                </div>
+            </div>
+            <div class="masthead__copy">
+                <h1 class="masthead__heading"><?php the_title(); ?></h1>
+                <div class="masthead__blurb"><?php the_excerpt(); ?></div>
+                <p class="masthead__connect">
+                    <img src="<?php theme_dir(); ?>/dist/twitter.svg" alt="Twitter icon" width="20" height="20">
+                    <a href="https://twitter.com/DrizzlyOwl" aria-label="Connect with me on Twitter @DrizzlyOwl">
+                        <?php _e("DrizzlyOwl", 'ashdavies'); ?>
+                    </a>
+                </p>
+                <p class="masthead__connect">
+                    <img src="<?php theme_dir(); ?>/dist/keybase.svg" alt="Keybase icon" width="20" height="20">
+                    <a href="https://keybase.io/DrizzlyOwl" aria-label="Talk to me securely using Keybase @DrizzlyOwl">
+                        <?php _e("Keybase", 'ashdavies'); ?>
+                    </a>
+                </p>
+            </div>
         </header>
-    </div>
-    <div class="avatar-group">
-        <img class="avatar" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies" width="200" height="200">
-        <img class="avatar avatar--alt" src="<?php echo get_home_url(); ?>/content/uploads/2020/11/3853061.jpeg"
-            alt="Drizzly Owl Logo" width="200" height="200">
     </div>
     <div class="skillbox">
         <h2 id="coreskills" class="skillbox__title"><?php _e("My core skills", 'ashdavies'); ?></h2>

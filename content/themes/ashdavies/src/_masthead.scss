@@ -5,16 +5,37 @@
 }
 
 .masthead__inner {
-    padding: rem(100) 0 rem(180) 0;
+    padding: rem(32) 0;
     max-width: var(--content_width);
     width: 100%;
     position: relative;
     margin: 0 auto;
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include bp($m) {
+        padding: rem(100) 0;
+        flex-direction: row;
+    }
+
+    .avatar-group {
+        flex: 1 0 rem(200);
+    }
 }
 
 .masthead--slim .masthead__inner {
     padding: rem(60) 0;
+}
+
+.masthead__copy {
+    text-align: center;
+
+    @include bp($m) {
+        padding-left: rem(32);
+        text-align: left;
+    }
 }
 
 // .masthead__heading {}
