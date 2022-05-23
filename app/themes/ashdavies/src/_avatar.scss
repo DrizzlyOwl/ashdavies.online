@@ -1,0 +1,27 @@
+.avatar--centered {
+    text-align: center;
+
+    .avatar__wrap {
+        margin: 0 auto;
+    }
+}
+
+.avatar__wrap {
+    margin-bottom: rem(32);
+    overflow: hidden;
+    width: rem(204);
+    height: rem(204);
+    border-radius: 100%;
+    padding: rem(2);
+    background: white;
+
+    @include bp($m) {
+        margin-bottom: 0;
+    }
+}
+
+.avatar__image {
+    width: rem(200);
+    height: rem(200);
+    border-radius: 100%;
+}

@@ -1,0 +1,28 @@
+.content-sidebar-group {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include bp($m) {
+        flex-direction: row;
+        margin-left: -$gutter;
+
+        > div {
+            padding-left: $gutter;
+        }
+    }
+}
+
+.content-sidebar-group__content {
+    @include bp($m) {
+        padding-right: $gutter;
+        width: 70%;
+    }
+}
+
+.content-sidebar-group__sidebar {
+    margin-bottom: 4vh;
+    @include bp($m) {
+        width: 30%;
+    }
+}

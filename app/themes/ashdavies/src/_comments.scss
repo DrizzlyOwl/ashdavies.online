@@ -1,0 +1,31 @@
+.comment-respond{
+    padding: 5vh $gutter;
+    background-color: var(--clr-papyrus);
+}
+
+.comment-form {
+    @extend .wrapper;
+
+    // form row
+    p {
+        margin-bottom: $gutter;
+    }
+
+    .logged-in-as {
+        width: 100%;
+    }
+}
+
+.comment-form-comment textarea {
+    height: rem(60);
+}
+
+.form-submit,
+.comment-notes,
+.comment-form-comment {
+    width: 100%;
+}
+
+.comment-reply-title {
+    text-align: center;
+}

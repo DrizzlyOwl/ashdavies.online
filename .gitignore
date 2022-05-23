@@ -11,23 +11,17 @@
 node_modules
 
 # Never retain uploaded media
-content/uploads
-
-# Never retain uploaded media
-content/uploads
+app/uploads
 
 # Always retain themes and language packs
-!content/themes
-!content/languages
+!app/themes
+!app/languages
+
+# Never retain WP themes
+app/themes/twenty*
 
 # Never include plugins
-content/plugins/*
+app/plugins/*
 
-# Never include wp-config
-wp-config.php
-
-# Don't include auth.json
-auth.json
-
-# Don't include phpcs vendor folder
-/.phpcs/vendor/
+# Never retain config files
+.env

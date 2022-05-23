@@ -1,0 +1,13 @@
+table {
+    border-spacing: 0;
+    max-width: 100%;
+    border: 0;
+    color: var(--clr-text);
+    position: relative;
+}
+
+td, th {
+    padding: rem(8);
+    font-size: 1.11rem;
+    border: 1px solid #eee;
+}
