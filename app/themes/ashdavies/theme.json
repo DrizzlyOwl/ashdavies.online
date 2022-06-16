@@ -1,0 +1,77 @@
+{
+    "version": 2,
+    "settings": {
+        "layout": {
+            "contentSize": "960px"
+        },
+        "typography": {
+            "dropCap": false,
+            "customFontSize": false,
+            "textDecoration": false,
+            "letterSpacing": false,
+            "fontWeight": false,
+            "fontStyle": false,
+            "fontSizes": [],
+            "fontFamilies": [
+                {
+                    "name": "Default",
+                    "slug": "default",
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif"
+                }
+            ]
+        },
+        "spacing": {
+            "blockGap": "1rem",
+            "units": ["rem"]
+        },
+        "color": {
+            "custom": false,
+            "defaultPalette": false,
+            "customDuotone": false,
+            "customGradient": false,
+            "palette": [
+                {
+                    "name": "Blue",
+                    "slug": "blue",
+                    "color": "#175073"
+                },
+                {
+                    "name": "Yellow",
+                    "slug": "yellow",
+                    "color": "#F2EA79"
+                },
+                {
+                    "name": "Orange",
+                    "slug": "orange",
+                    "color": "#F2C12E"
+                },
+                {
+                    "name": "Peach",
+                    "slug": "peach",
+                    "color": "#F2C063"
+                },
+                {
+                    "name": "Black",
+                    "slug": "black",
+                    "color": "#1d2327"
+                },
+                {
+                    "name": "Green",
+                    "slug": "green",
+                    "color": "#3F8C7E"
+                },
+                {
+                    "name": "Papyrus",
+                    "slug": "papyrus",
+                    "color": "#f1edd9"
+                },
+                {
+                    "name": "Grey",
+                    "slug": "grey",
+                    "color": "#ebebeb"
+                }
+            ]
+        },
+        "blocks": {}
+    }
+}

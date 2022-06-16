@@ -15,7 +15,7 @@ $recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
                 <?php foreach ($recent_posts as $post) : ?>
                     <?php setup_postdata($post); ?>
                     <li class="footer__list-item">
-                        <?php echo get_post_datetime()->format(get_option('date_format')); ?> -
+                        <span class="footer-list-label"><?php echo get_post_datetime()->format(get_option('date_format')); ?></span>
                         <a class="footer__list-link" href="<?php echo add_query_arg('ref', '_footer', get_permalink()); ?>">
                             <?php the_title(); ?>
                         </a>
@@ -26,7 +26,8 @@ $recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
         <?php endif; ?>
         <p class="footer__sign">
             &copy; <?php _e("Ash Davies", 'ashdavies'); ?>
-            - <a href="/privacy/">Privacy</a>
+            • <a href="/privacy/">Privacy</a>
+            • <a href="mailto:<?php echo antispambot("hello@ashdavies.online"); ?>">Get in touch</a></p>
         </p>
     </div>
 </footer>

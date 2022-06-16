@@ -1,38 +1,32 @@
 .page-anchors {
-    padding: $gutter;
-    background: var(--clr-grey);
-    border-radius: var(--radii);
+  padding: $gutter;
+  background: var(--clr-grey);
+  border-radius: var(--radii);
 
-    @include bp($m) {
-        padding: rem(24);
-    }
+  @include bp($m) {
+    padding: rem(24);
+  }
 }
 
-.page-anchors__title {}
+.page-anchors__title {
+}
 
 .page-anchors__list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .page-anchors__item {
-    position: relative;
-    margin-bottom: rem(10);
-    line-height: 1.1;
-    padding-left: rem(18);
+  position: relative;
+  margin-bottom: rem(10);
+  line-height: 1.1;
 
-    &:last-child {
-        margin-bottom: 0;
-    }
-
-    &:before {
-        content: "–";
-        position: absolute;
-        left: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .page-anchors__link {
-    font-size: rem(18);
+  font-size: rem(16);
 }

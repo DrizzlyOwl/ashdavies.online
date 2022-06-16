@@ -1,33 +1,33 @@
-@import "./font";
-@import "./tools";
-@import "./vars";
+// @import "./font";
+// @import "./tools";
+// @import "./vars";
 
-.editor-styles-wrapper .wp-block {
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+// .editor-styles-wrapper .wp-block {
+//     * {
+//         box-sizing: border-box;
+//         margin: 0;
+//         padding: 0;
+//     }
 
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    line-height: 1.6;
-    font-size: 100%;
-    color: var(--clr-text);
-    max-width: var(--content_width);
+//     // font-family: 'Playfair Display', serif;
+//     // font-weight: 400;
+//     // line-height: 1.6;
+//     // font-size: 100%;
+//     // color: var(--clr-text);
+//     // max-width: var(--content_width);
 
-    // Inherit typographic styling
-    @import "./typography";
+//     // Inherit typographic styling
+//     @import "./typography";
 
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+//     * {
+//         box-sizing: border-box;
+//         margin: 0;
+//         padding: 0;
+//     }
 
-    img {
-        max-width: 100%;
-        vertical-align: middle;
-    }
+//     img {
+//         max-width: 100%;
+//         vertical-align: middle;
+//     }
 
-}
+// }

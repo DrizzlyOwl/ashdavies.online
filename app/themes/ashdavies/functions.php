@@ -10,24 +10,11 @@ use DOMDocument;
 
 $env = "production";
 
-if (strpos(get_bloginfo('url'), ".local")) {
+if (strpos(home_url(), ".local")) {
     $env = "development";
 }
 
 define('WP_ENVIRONMENT_TYPE', $env);
-
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_head', 'rest_output_link_wp_head');
-remove_action('wp_head', 'wp_oembed_add_discovery_links');
-remove_action('wp_head', 'feed_links', 2);
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wlwmanifest_link');
-remove_action('wp_head', 'index_rel_link');
-remove_action('wp_head', 'wp_generator');
-remove_action('template_redirect', 'rest_output_link_header', 11, 0);
-remove_action('wp_print_styles', 'print_emoji_styles');
-remove_action('admin_print_scripts', 'print_emoji_detection_script');
-remove_action('admin_print_styles', 'print_emoji_styles');
 
 add_action('init', function () {
     // Define the global content width
@@ -36,7 +23,7 @@ add_action('init', function () {
     }
 
     // Theme support registrations
-    add_theme_support('admin-bar');
+    // add_theme_support('admin-bar');
     add_theme_support('title-tag');
     add_theme_support('automatic-feed-links');
     add_theme_support('html5', [
@@ -49,7 +36,7 @@ add_action('init', function () {
         // 'script'
     ]);
     add_theme_support('post-thumbnails');
-    add_theme_support('disable-custom-colors');
+    // add_theme_support('disable-custom-colors');
     add_theme_support('disable-custom-font-sizes');
     add_theme_support('yoast-seo-breadcrumbs');
 
@@ -85,11 +72,6 @@ add_action('init', function () {
     //     filemtime(get_template_directory() . '/dist/scripts.min.js'),
     //     true
     // );
-
-    if (is_admin() == false) {
-        wp_deregister_script('wp-embed');
-        wp_deregister_style('wp-block-library');
-    }
 });
 
 function theme_dir()
@@ -107,7 +89,9 @@ function get_theme_dir()
  */
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('@ash/main');
-    // wp_enqueue_script('@ash/main');
+    wp_dequeue_style('global-styles');
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
 });
 
 /**

@@ -8,19 +8,26 @@ $xl: rem(1920);
 
 $gutter: rem(16);
 
-:root {
-    // Colours
-    --clr-blue: #175073;
-    --clr-yellow: #F2EA79;
-    --clr-orange: #F2C12E;
-    --clr-peach: #F2C063;
-    --clr-black: #262001;
-    --clr-green: #3F8C7E;
-    --clr-papyrus: #f1edd9;
-    --clr-grey: #ebebeb;
-    --clr-text: var(--clr-black);
+$ff-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+  helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+$ff-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
+  Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji,
+  Segoe UI Symbol;
+$ff-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
-    // Variables
-    --content_width: #{$content_width};
-    --radii: #{$radii};
+:root {
+  // Colours
+  --clr-blue: #175073;
+  --clr-yellow: #f2ea79;
+  --clr-orange: #f2c12e;
+  --clr-peach: #f2c063;
+  --clr-black: #1d2327;
+  --clr-green: #3f8c7e;
+  --clr-papyrus: #f1edd9;
+  --clr-grey: #ebebeb;
+  --clr-text: var(--clr-black);
+
+  // Variables
+  --content_width: #{$content_width};
+  --radii: #{$radii};
 }

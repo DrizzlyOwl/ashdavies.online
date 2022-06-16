@@ -13,63 +13,61 @@ Text domain:        ashdavies
 License:            GPLv2 or later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 */
-@import "./font";
 @import "./tools";
 @import "./vars";
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    font-size: 100%;
+  font-size: 100%;
 }
 
 body {
-    font-family: system-ui, serif;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--clr-text);
+  font-family: $ff-sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--clr-text);
 }
 
 img {
-    max-width: 100%;
-    vertical-align: middle;
+  max-width: 100%;
+  vertical-align: middle;
 }
 
 .divider {
-    height: 2px;
-    background: var(--clr-grey);
+  height: 2px;
+  background: var(--clr-grey);
 }
 
 .post-navigation {
+  p {
+    font-size: rem(16);
+  }
 
-    p {
-        font-size: rem(16);
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: 740px) {
+    display: flex;
+    margin-left: -$gutter;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > p {
+      padding-left: $gutter;
+      margin-bottom: 0;
+      width: 50%;
     }
 
-    p:last-child {
-        margin-bottom: 0;
+    > p:last-child {
+      text-align: right;
     }
-
-    @media only screen and (min-width: 740px) {
-        display: flex;
-        margin-left: -$gutter;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        > p {
-            padding-left: $gutter;
-            margin-bottom: 0;
-            width: 50%;
-        }
-
-        > p:last-child {
-            text-align: right;
-        }
-    }
+  }
 }
 
 @import "./accessibility";

@@ -9,157 +9,152 @@ ol,
 textarea,
 code,
 input {
-    margin-bottom: $gutter;
-    font-size: rem(18);
-
-    @include bp($m) {
-        font-size: rem(20);
-    }
-
-    @include bp($xl) {
-        font-size: rem(22);
-    }
+  margin-bottom: $gutter;
+  font-size: rem(18);
 }
 
 ul li,
 ol li {
-    font-size: inherit;
-    margin-bottom: rem(8);
+  font-size: inherit;
+  margin-bottom: rem(8);
 }
 
 code {
-    border-radius: .2rem;
-    padding: rem(2) rem(6);
+  font-family: $ff-mono;
+  border-radius: 0.2rem;
+  padding: rem(2) rem(6);
 }
 
 h1,
 h2,
 h3,
 h4 {
-    margin: 0 0 $gutter 0;
-    font-weight: inherit;
-    line-height: 1.2;
+  margin: 0 0 $gutter 0;
+  font-weight: inherit;
+  line-height: 1.2;
 }
 
 h1 {
-    font-size: rem(40);
+  font-size: rem(28);
 
-    @include bp($m) {
-        font-size: rem(44);
-    }
+  @include bp($m) {
+    font-size: rem(32);
+  }
 
-    @include bp($xl) {
-        font-size: rem(48);
-    }
+  @include bp($xl) {
+    font-size: rem(36);
+  }
 }
 
 h2 {
-    font-size: rem(30);
+  font-size: rem(24);
 
-    @include bp($m) {
-        font-size: rem(34);
-    }
+  @include bp($m) {
+    font-size: rem(28);
+  }
 
-    @include bp($xl) {
-        font-size: rem(38);
-    }
+  @include bp($xl) {
+    font-size: rem(32);
+  }
 }
 
 h3 {
-    font-size: rem(22);
+  font-size: rem(20);
 
-    @include bp($m) {
-        font-size: rem(24);
-    }
+  @include bp($m) {
+    font-size: rem(24);
+  }
 
-    @include bp($xl) {
-        font-size: rem(26);
-    }
+  @include bp($xl) {
+    font-size: rem(28);
+  }
 }
 
 a {
-    color: $anchor-color;
+  color: $anchor-color;
 }
 
 a:hover,
 a:focus {
-    background-color: $anchor-color-focus-bg;
-    color: white;
+  background-color: $anchor-color-focus-bg;
+  color: white;
 }
 
-ul, ol {
-    padding-left: $gutter;
-    margin-left: $gutter;
-    margin-bottom: $gutter;
+ul,
+ol {
+  padding-left: $gutter;
+  margin-left: $gutter;
+  margin-bottom: $gutter;
 }
 
 .date,
 .comment-count {
-    margin-bottom: 0;
-    font-size: 1.1em;
+  margin-bottom: 0;
+  font-size: 1.1em;
 }
 
 .wp-block-code {
-    margin: $gutter 0;
-    display: block;
-    background: var(--clr-black);
-    border-radius: .2em;
-    white-space: pre;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    max-width: 100%;
-    min-width: 100px;
-    padding: rem(8) rem(8) rem(8) rem(36);
-    position: relative;
+  margin: $gutter 0;
+  display: block;
+  background: var(--clr-black);
+  border-radius: 0.2em;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 100px;
+  padding: rem(8) rem(8) rem(8) rem(36);
+  position: relative;
 
-    &:before {
-        content: "$";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        padding: rem(8);
-        text-align: center;
-        background: var(--clr-blue);
-        color: white;
-        font-size: rem(18);
+  &:before {
+    content: "$";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: rem(8);
+    text-align: center;
+    background: var(--clr-blue);
+    color: white;
+    font-size: rem(18);
 
-        @include bp($m) {
-            font-size: rem(20);
-        }
-
-        @include bp($xl) {
-            font-size: rem(22);
-        }
+    @include bp($m) {
+      font-size: rem(20);
     }
 
-    code {
-        width: 100%;
-        padding: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: .2rem;
-        border-bottom-right-radius: .2rem;
-        border-bottom-left-radius: 0;
+    @include bp($xl) {
+      font-size: rem(22);
     }
+  }
+
+  code {
+    width: 100%;
+    padding: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    border-bottom-left-radius: 0;
+  }
 }
 
 .contentarea code {
-    color: white;
-    background: var(--clr-black);
-    word-wrap: break-word;
-    box-decoration-break: clone;
+  color: white;
+  background: var(--clr-black);
+  word-wrap: break-word;
+  box-decoration-break: clone;
 
-    a {
-        color: inherit;
-    }
+  a {
+    color: inherit;
+  }
 
-    a:focus, a:hover {
-        color: yellow;
-    }
+  a:focus,
+  a:hover {
+    color: yellow;
+  }
 }
 
 .unset-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

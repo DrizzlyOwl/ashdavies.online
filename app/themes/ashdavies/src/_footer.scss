@@ -1,34 +1,42 @@
 .footer {
-    font-size: rem(16);
-    margin: 2vh auto;
-    padding: 0 $gutter;
+  font-size: rem(16);
+  margin: 2vh auto;
+  padding: 0 $gutter;
 }
 
 .footer__sign {
-    width: 100%;
-    margin-top: rem(14);
-    font-size: rem(14);
+  width: 100%;
+  margin-top: rem(14);
+  font-size: rem(14);
 }
 
 .footer__nav {
-    flex: 1;
+  flex: 1;
+  max-width: rem(420);
 }
 
 .footer__heading {
-    font-size: rem(18);
+  font-size: rem(18);
 }
 
 .footer__list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .footer__list-item {
-    font-size: rem(16);
-    margin-bottom: rem(6);
+  font-size: rem(15);
+  margin-bottom: rem(4);
+  padding-bottom: rem(4);
+  border-bottom: rem(1) solid var(--clr-grey);
+}
+
+.footer-list-label {
+  font-weight: bold;
+  display: block;
 }
 
 .footer__list-link {
-
+  display: inline-block;
 }
