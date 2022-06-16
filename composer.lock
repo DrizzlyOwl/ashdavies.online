@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13cbbef4a5a68868c2cf985060088ac3",
+    "content-hash": "05f2de5372cc2adce90c2baffb275c23",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,15 +152,15 @@
         },
         {
             "name": "wpackagist-plugin/cloudflare",
-            "version": "4.9.1",
+            "version": "4.10.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/cloudflare/",
-                "reference": "tags/4.9.1"
+                "reference": "tags/4.10.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cloudflare.4.9.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/cloudflare.4.10.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -170,15 +170,15 @@
         },
         {
             "name": "wpackagist-plugin/theme-check",
-            "version": 20210617,
+            "version": 20211203,
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/theme-check/",
-                "reference": "tags/20210617"
+                "reference": "tags/20211203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/theme-check.20210617.zip"
+                "url": "https://downloads.wordpress.org/plugin/theme-check.20211203.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -188,15 +188,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "17.9",
+            "version": "19.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/17.9"
+                "reference": "tags/19.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.17.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

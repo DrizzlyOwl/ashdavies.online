@@ -12,9 +12,9 @@
         }
     },
     "require": {
-        "wpackagist-plugin/wordpress-seo": "^17",
+        "wpackagist-plugin/wordpress-seo": "^19",
         "wpackagist-plugin/cloudflare": "^4",
-        "wpackagist-plugin/theme-check": "20210617"
+        "wpackagist-plugin/theme-check": "20211203"
     },
     "extra": {
         "installer-paths": {

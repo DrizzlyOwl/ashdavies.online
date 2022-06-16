@@ -1,7 +1,8 @@
 version: "3.9"
 services:
   wordpress:
-    image: wordpress:5.9
+    # image: ghcr.io/drizzlyowl/ashdavies.online/ashdavies:latest
+    image: wordpress:6
     restart: always
     ports:
       - 8080:80
