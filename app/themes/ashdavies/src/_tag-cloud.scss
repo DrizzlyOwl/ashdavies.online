@@ -1,0 +1,46 @@
+@use "sass:math";
+
+.tag-cloud {
+}
+
+.tag-cloud__list {
+  margin: 0 0 0 rem(-2);
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-cloud__list-item {
+  padding-left: rem(2);
+  margin-bottom: 0;
+}
+
+.tag-cloud-link {
+  display: block;
+  line-height: 1.2;
+  margin: rem(4);
+  padding: rem(6) rem(12);
+  background-color: var(--clr-peach);
+  border-radius: rem(6);
+  padding-left: rem(30);
+  position: relative;
+  color: var(--clr-black);
+  text-decoration: none;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: rem(12);
+    top: 50%;
+    transform: translateY(-50%);
+    width: rem(6);
+    height: rem(6);
+    border-radius: 100%;
+    background: var(--clr-black);
+  }
+
+  &:hover:before {
+    background: white;
+  }
+}

@@ -1,11 +1,4 @@
 .page-anchors {
-  padding: $gutter;
-  background: var(--clr-grey);
-  border-radius: var(--radii);
-
-  @include bp($m) {
-    padding: rem(24);
-  }
 }
 
 .page-anchors__title {

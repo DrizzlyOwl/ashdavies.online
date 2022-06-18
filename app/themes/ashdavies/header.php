@@ -14,7 +14,16 @@ namespace Ash;
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="screen-reader-text ~ skiplink" href="#contentarea">
+<a class="screen-reader-text skiplink" href="#contentarea">
     <?php _e("Skip to start of content", 'ashdavies'); ?>
 </a>
 <div id="app">
+    <header class="site-header">
+        <div class="wrapper">
+            <p class="site-header__help"><?php _e("Pages"); ?></p>
+            <?php wp_nav_menu([
+                'container' => 'nav',
+                'menu_class' => 'nav'
+            ]); ?>
+        </div>
+    </header>

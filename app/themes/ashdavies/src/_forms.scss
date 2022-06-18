@@ -1,54 +1,60 @@
-@use 'sass:math';
+@use "sass:math";
 
 label {
-    font-size: rem(20);
+  font-size: rem(20);
 }
 
 input,
 textarea {
-    color: var(--clr-black);
-    font-size: 18px;
-    margin: 0;
-    width: 100%;
-    padding: 0.8rem;
-    border: rem(2) solid var(--clr-papyrus);
-    border-radius: math.div(var(--radii), 2);
+  color: var(--clr-black);
+  font-size: rem(16);
+  margin: 0;
+  width: 100%;
+  padding: rem(8);
+  font-family: $ff-sans-serif;
+  border: rem(2) solid var(--clr-papyrus);
+  border-radius: rem(3);
 
-    &:focus {
-        outline: none;
-        border-color: var(--clr-red);
-    }
+  &:focus {
+    outline: none;
+    border-color: var(--clr-red);
+  }
 }
 
 button,
 [type="submit"] {
-    padding: 0.4rem 1.6rem;
-    background: var(--clr-green);
+  padding: rem(6) rem(12);
+  background: var(--clr-peach);
+  color: var(--clr-black);
+  border: rem(2) solid var(--clr-peach);
+  font-size: rem(16);
+  width: 100%;
+
+  @media only screen and (min-width: 420px) {
+    width: auto;
+  }
+
+  @media only screen and (min-width: 740px) {
+    font-size: rem(18);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--clr-black);
+    background: var(--clr-black);
     color: white;
-    border: rem(2) solid var(--clr-green);
-    font-size: rem(20);
-    width: 100%;
+  }
 
-    @media only screen and (min-width: 420px) {
-        width: auto;
-    }
-    @media only screen and (min-width: 740px) {
-        font-size: 24px;
-    }
-
-    &:focus {
-        outline: none;
-        border-color: var(--clr-black);
-        background: var(--clr-black);
-        color: white;
-    }
-
-    &:hover {
-        cursor: pointer;
-        border-color: var(--clr-green);
-    }
+  &:hover {
+    cursor: pointer;
+    border-color: var(--clr-green);
+  }
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
+}
+
+.comment-form-url {
+  display: none; // not wanted
 }

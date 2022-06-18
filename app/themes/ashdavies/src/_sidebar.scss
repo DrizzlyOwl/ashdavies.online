@@ -1,24 +1,36 @@
 .sidebar {
-    padding: 2vh;
-    color: white;
-    flex: 1 1 0;
+  padding: 2vh;
+  color: white;
+  flex: 1 1 0;
 }
 
 .sidebar__avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    overflow: hidden;
-    border: 5px solid var(--clr-grey);
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 5px solid var(--clr-grey);
 }
 
 .sidebar__list {
-    list-style-type: none;
-    margin: 2rem 0 2rem 0;
-    padding: 0;
-    font-size: 19px;
+  list-style-type: none;
+  margin: 2rem 0 2rem 0;
+  padding: 0;
+  font-size: 19px;
 }
 
 .sidebar__list-item {
-    text-align: center
+  text-align: center;
+}
+
+.sidebar__item {
+  margin-bottom: rem(32);
+}
+
+.sidebar__title {
+  text-transform: uppercase;
+  letter-spacing: rem(4);
+  line-height: 1;
+  font-weight: bold;
+  font-size: rem(18);
 }

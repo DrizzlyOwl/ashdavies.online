@@ -1,31 +1,102 @@
-.comment-respond{
-    padding: 5vh $gutter;
-    background-color: var(--clr-papyrus);
+.comment-respond {
+  padding: $gutter;
+  margin-bottom: $gutter;
+  border-radius: rem(3);
+  background-color: var(--clr-papyrus);
+
+  @include bp($l) {
+    padding: rem(32);
+  }
 }
 
 .comment-form {
-    @extend .wrapper;
+  // form row
+  p {
+    margin-bottom: $gutter;
+  }
 
-    // form row
-    p {
-        margin-bottom: $gutter;
-    }
+  .logged-in-as {
+    width: 100%;
+  }
 
-    .logged-in-as {
-        width: 100%;
-    }
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .comment-form-comment textarea {
-    height: rem(60);
+  min-height: rem(80);
+  height: rem(100);
+  resize: vertical;
 }
 
-.form-submit,
+.form-submit input,
 .comment-notes,
 .comment-form-comment {
-    width: 100%;
+  width: 100%;
+
+  @include bp($m) {
+    width: auto;
+  }
 }
 
 .comment-reply-title {
-    text-align: center;
+  text-align: center;
+}
+
+.comment-awaiting-moderation {
+  background-color: var(--clr-green);
+  color: white;
+  padding: rem(6) rem(12);
+  margin: rem(16) 0;
+  border-radius: rem(3);
+  display: block;
+  font-style: normal;
+}
+
+.comment-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vcard .avatar {
+  border-radius: 100%;
+  border: rem(2) solid white;
+}
+
+.comment-body {
+  margin-bottom: rem(16);
+
+  @include bp($l) {
+    margin-bottom: rem(32);
+  }
+}
+
+.comment-metadata {
+  font-size: rem(14);
+}
+
+.comment-content {
+  margin-top: rem(32);
+  background-color: var(--clr-grey);
+  padding: rem(12);
+  position: relative;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  &:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: rem(-19);
+    border-right: rem(20) solid transparent;
+    border-bottom: rem(20) solid transparent;
+    border-left: rem(20) solid var(--clr-grey);
+    border-top: rem(20) solid transparent;
+  }
 }

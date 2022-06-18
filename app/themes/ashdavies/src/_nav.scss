@@ -1,0 +1,50 @@
+.nav {
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  margin-left: rem(-16);
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav .page_item {
+  margin: 0;
+  padding-left: rem(16);
+}
+
+.nav .page_item a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  font-size: rem(16);
+  padding-bottom: rem(1);
+
+  &:hover {
+    background: inherit;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+
+  &:after {
+    content: "";
+    will-change: width;
+    transition: width 200ms;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    margin: 0 auto;
+    height: rem(1);
+    background: white;
+    transform: skew(45deg);
+  }
+}
+
+.nav .current_page_item a:after {
+  width: 100%;
+}

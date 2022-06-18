@@ -23,20 +23,13 @@ add_action('init', function () {
     }
 
     // Theme support registrations
-    // add_theme_support('admin-bar');
     add_theme_support('title-tag');
     add_theme_support('automatic-feed-links');
     add_theme_support('html5', [
         'comment-list',
         'comment-form',
-        // 'search-form',
-        // 'gallery',
-        // 'caption',
-        // 'style',
-        // 'script'
     ]);
     add_theme_support('post-thumbnails');
-    // add_theme_support('disable-custom-colors');
     add_theme_support('disable-custom-font-sizes');
     add_theme_support('yoast-seo-breadcrumbs');
 
@@ -57,13 +50,13 @@ add_action('init', function () {
         'screen'
     );
 
-    wp_register_style(
-        '@ash/gutenberg',
-        get_theme_dir() . '/gutenberg.css',
-        [],
-        filemtime(get_template_directory() . '/gutenberg.css'),
-        'screen'
-    );
+    // wp_register_style(
+    //     '@ash/gutenberg',
+    //     get_theme_dir() . '/gutenberg.css',
+    //     [],
+    //     filemtime(get_template_directory() . '/gutenberg.css'),
+    //     'screen'
+    // );
 
     // wp_register_script(
     //     '@ash/main',
@@ -93,6 +86,13 @@ add_action('wp_enqueue_scripts', function () {
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
 });
+
+/**
+ * Remove the default theme styles that get shipped with WP
+ */
+remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
+remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 
 /**
  * Enqueue assets for the Gutenberg editor

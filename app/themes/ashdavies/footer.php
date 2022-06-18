@@ -2,36 +2,81 @@
 
 namespace Ash;
 
-$recent_posts = wp_get_recent_posts(['post_status' => 'publish'], OBJECT);
+$recent_posts = wp_get_recent_posts(['post_status' => 'publish', 'posts_per_page' => 8], OBJECT);
+$categories = get_terms(['taxonomy' => 'category']);
+$tags = get_terms(['taxonomy' => 'post_tag', 'number' => 4]);
+$pages = get_pages(['posts_per_page' => 4]);
 ?>
 </div>
+<!-- #app -->
 <div class="divider"></div>
 <footer class="footer">
     <div class="wrapper">
-        <?php if (!empty($recent_posts)) : ?>
-            <nav class="footer__nav">
-                <h2 class="footer__heading"><?php _e("My recent blog posts", 'ashdavies'); ?></h2>
-                <ul class="footer__list">
-                <?php foreach ($recent_posts as $post) : ?>
-                    <?php setup_postdata($post); ?>
-                    <li class="footer__list-item">
-                        <span class="footer-list-label"><?php echo get_post_datetime()->format(get_option('date_format')); ?></span>
-                        <a class="footer__list-link" href="<?php echo add_query_arg('ref', '_footer', get_permalink()); ?>">
-                            <?php the_title(); ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
+        <div class="footer__content">
+            <nav class="footer__nav footer__nav--cats">
+                <h2 class="footer__heading"><?php _e("Categories", 'ashdavies'); ?></h2>
+                <?php if (!empty($categories)) : ?>
+                    <ul class="footer__list">
+                        <?php foreach ($categories as $term) : ?>
+                            <li class="footer__list-item">
+                                <a class="footer__list-link" href="<?php echo add_query_arg('ref', '_footer', get_category_link($term)); ?>">
+                                    <?php echo $term->name; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+                <h2 class="footer__heading"><?php _e("Popular Tags", 'ashdavies'); ?></h2>
+                <?php if (!empty($tags)) : ?>
+                    <ul class="footer__list">
+                        <?php foreach ($tags as $term) : ?>
+                            <li class="footer__list-item">
+                                <a class="footer__list-link" href="<?php echo add_query_arg('ref', '_footer', get_category_link($term)); ?>">
+                                    <?php echo $term->name; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
             </nav>
-        <?php endif; ?>
+            <nav class="footer__nav footer__nav--posts">
+                <h2 class="footer__heading"><?php _e("Posts", 'ashdavies'); ?></h2>
+                <?php if (!empty($recent_posts)) : ?>
+                    <ul class="footer__list">
+                    <?php foreach ($recent_posts as $post) : ?>
+                        <?php setup_postdata($post); ?>
+                        <li class="footer__list-item">
+                            <a class="footer__list-link" href="<?php echo add_query_arg('ref', '_footer', get_permalink()); ?>">
+                                <?php the_title(); ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </nav>
+            <nav class="footer__nav footer__nav--pages">
+                <h2 class="footer__heading"><?php _e("Pages", 'ashdavies'); ?></h2>
+                <?php if (!empty($pages)) : ?>
+                    <ul class="footer__list">
+                    <?php foreach ($pages as $post) : ?>
+                        <?php setup_postdata($post); ?>
+                        <li class="footer__list-item">
+                            <a class="footer__list-link" href="<?php echo add_query_arg('ref', '_footer', get_permalink()); ?>">
+                                <?php the_title(); ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </nav>
+        </div>
         <p class="footer__sign">
             &copy; <?php _e("Ash Davies", 'ashdavies'); ?>
-            • <a href="/privacy/">Privacy</a>
-            • <a href="mailto:<?php echo antispambot("hello@ashdavies.online"); ?>">Get in touch</a></p>
+            • <a href="/privacy/"><?php _e("Privacy", 'ashdavies'); ?></a>
+            • <a href="mailto:<?php echo antispambot("hello@ashdavies.online"); ?>"><?php _e("Get in touch", 'ashdavies'); ?></a></p>
         </p>
     </div>
 </footer>
-<!-- #app -->
 <?php
 
 wp_footer();
