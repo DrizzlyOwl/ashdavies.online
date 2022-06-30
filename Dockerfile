@@ -9,10 +9,11 @@ RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ 
 COPY ./app/themes/ ./wp-content/themes/
 COPY ./app/languages/ ./wp-content/languages/
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY --from=wp:cli /usr/bin/wp /usr/bin/wp
 COPY ./composer.json .
 COPY ./composer.lock .
 RUN composer install
-RUN mv ./app/plugins/ ./wp-content/plugins/
+RUN mv ./app/plugins/* ./wp-content/plugins/
 RUN rm -rf ./app/
 USER root
 RUN chmod 775 ./wp-content/ -R
