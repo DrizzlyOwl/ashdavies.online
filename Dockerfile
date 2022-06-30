@@ -8,14 +8,15 @@ RUN rm -rf ./wp-content/themes/ ./wp-content/plugins/
 RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ ./wp-content/plugins/
 COPY ./app/themes/ ./wp-content/themes/
 COPY ./app/languages/ ./wp-content/languages/
+COPY build.ini $PHP_INI_DIR/conf.d/
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY --from=wp:cli /usr/bin/wp /usr/bin/wp
 COPY ./composer.json .
 COPY ./composer.lock .
 RUN composer install
 RUN mv ./app/plugins/* ./wp-content/plugins/
 RUN rm -rf ./app/
 USER root
-RUN chmod 775 ./wp-content/ -R
-RUN chmod u-w,g-w,o-w ./wp-content/themes/
-RUN chmod u-w,g-w,o-w ./wp-content/plugins/
+RUN find . -type d -exec chmod 755 {} \; 
+RUN find . -type f -exec chmod 644 {} \;
+RUN find ./wp-content/themes/ -type f -exec chmod 644 {} \; 
+RUN find ./wp-content/plugins/ -type f -exec chmod 644 {} \; 
