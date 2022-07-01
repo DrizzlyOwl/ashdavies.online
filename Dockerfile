@@ -1,4 +1,6 @@
 FROM wordpress:apache
+RUN pecl install redis \
+	&& docker-php-ext-enable redis
 WORKDIR /usr/src/wordpress
 RUN set -eux; \
 	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
@@ -6,19 +8,13 @@ RUN set -eux; \
 USER www-data
 RUN rm -rf ./wp-content/themes/ ./wp-content/plugins/
 RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ ./wp-content/plugins/
-COPY ./app/themes/ ./wp-content/themes/
+COPY ./app/themes/ashdavies/ ./wp-content/themes/ashdavies/
 COPY ./app/languages/ ./wp-content/languages/
 COPY ./app/object-cache.php ./wp-content/object-cache.php
-COPY ./app/plugins/ash-mods.php ./wp-content/plugins/ash-mods.php
-COPY build.ini $PHP_INI_DIR/conf.d/
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY ./composer.json .
-COPY ./composer.lock .
-RUN composer install
-RUN mv ./app/plugins/* ./wp-content/plugins/
-RUN rm -rf ./app/
+COPY ./app/plugins/ ./wp-content/plugins/
+COPY php.ini $PHP_INI_DIR/conf.d/
 USER root
-RUN find . -type d -exec chmod 755 {} \;
-RUN find . -type f -exec chmod 644 {} \;
-RUN find ./wp-content/themes/ -type f -exec chmod 644 {} \;
-RUN find ./wp-content/plugins/ -type f -exec chmod 644 {} \;
+RUN find . -type d -exec chmod 555 {} \;
+RUN find . -type f -exec chmod 444 {} \;
+RUN find ./wp-content/uploads/ -type f -exec chmod 644 {} \;
+RUN find ./wp-content/uploads/ -type d -exec chmod 755 {} \;

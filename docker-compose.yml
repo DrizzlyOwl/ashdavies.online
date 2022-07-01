@@ -7,7 +7,8 @@ services:
      - ashdavies
   wordpress:
     # image: ghcr.io/drizzlyowl/ashdavies.online/ashdavies:latest
-    image: wordpress:6
+    # image: wordpress:6
+    image: ashdavies:latest
     restart: always
     ports:
       - 8080:80
