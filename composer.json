@@ -2,19 +2,16 @@
     "name": "drizzlyowl/ashdavies.online",
     "description": "Ash's Website",
     "repositories": {
-        "composer": {
+        "wpackagist": {
             "type": "composer",
             "url": "https://wpackagist.org"
-        },
-        "packagist.org": {
-            "type": "composer",
-            "url": "https://repo-eu-uk-1.packagist.org"
         }
     },
     "require": {
         "wpackagist-plugin/wordpress-seo": "^19",
         "wpackagist-plugin/cloudflare": "^4",
-        "wpackagist-plugin/theme-check": "20211203"
+        "wpackagist-plugin/theme-check": "20211203",
+        "wpackagist-plugin/redis-cache": "^2.0"
     },
     "extra": {
         "installer-paths": {

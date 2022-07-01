@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05f2de5372cc2adce90c2baffb275c23",
+    "content-hash": "8eae0065c2923fb2ac7ab2cea650eccc",
     "packages": [
         {
             "name": "composer/installers",
@@ -169,6 +169,24 @@
             "homepage": "https://wordpress.org/plugins/cloudflare/"
         },
         {
+            "name": "wpackagist-plugin/redis-cache",
+            "version": "2.0.26",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/redis-cache/",
+                "reference": "tags/2.0.26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/redis-cache.2.0.26.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/redis-cache/"
+        },
+        {
             "name": "wpackagist-plugin/theme-check",
             "version": 20211203,
             "source": {
@@ -188,15 +206,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.1",
+            "version": "19.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.1"
+                "reference": "tags/19.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
