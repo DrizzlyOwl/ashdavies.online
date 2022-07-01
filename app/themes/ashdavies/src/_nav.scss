@@ -1,7 +1,4 @@
 .nav {
-}
-
-.nav ul {
   padding: 0;
   margin: 0;
   margin-left: rem(-16);
@@ -10,12 +7,12 @@
   flex-wrap: wrap;
 }
 
-.nav .page_item {
+.nav .menu-item {
   margin: 0;
   padding-left: rem(16);
 }
 
-.nav .page_item a {
+.nav .menu-item a {
   color: white;
   text-decoration: none;
   position: relative;
