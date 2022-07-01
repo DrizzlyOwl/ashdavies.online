@@ -20,8 +20,9 @@ namespace Ash;
 <div id="app">
     <header class="site-header">
         <div class="wrapper">
-            <p class="site-header__help"><?php _e("Pages"); ?></p>
+            <p class="site-header__help"><?php _e("Pages", "ashdavies"); ?></p>
             <?php wp_nav_menu([
+                'menu' => 'primary',
                 'container' => 'nav',
                 'menu_class' => 'nav'
             ]); ?>

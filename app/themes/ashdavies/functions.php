@@ -10,7 +10,7 @@ use DOMDocument;
 
 $env = "production";
 
-if (strpos(home_url(), ".local")) {
+if (strpos(home_url(), "localhost")) {
     $env = "development";
 }
 
@@ -100,7 +100,6 @@ remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 add_action('enqueue_block_editor_assets', function () {
     wp_enqueue_style('@ash/gutenberg');
 });
-
 
 /**
  * When Post content is being displayed, update the headings to use ID anchors if they are missing
@@ -215,8 +214,14 @@ function get_heading_anchors(int $post_id = 0)
     return $anchors;
 }
 
-
 /**
  * Apply an id html attributes to all <h2> tags
  */
 add_filter('the_content', 'Ash\set_heading_anchors', 10, 1);
+
+/**
+ * Register the primary nav
+ */
+add_action('after_setup_theme', function () {
+    register_nav_menu('primary', __('Primary Menu', 'ashdavies'));
+});
