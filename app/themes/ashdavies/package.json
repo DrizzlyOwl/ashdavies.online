@@ -7,7 +7,7 @@
     "watch": "sass --no-source-map --watch ./src/gutenberg.scss:./gutenberg.css ./src/global.scss:./style.css"
   },
   "devDependencies": {
-    "sass": "^1.35.2"
+    "sass": "^1.54.5"
   },
   "author": "Ash Davies",
   "private": true
