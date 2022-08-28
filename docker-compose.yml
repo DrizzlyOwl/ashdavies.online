@@ -5,18 +5,28 @@ services:
     restart: always
     networks:
      - ashdavies
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8880:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+    networks:
+      - ashdavies
   wordpress:
     # image: ghcr.io/drizzlyowl/ashdavies.online/ashdavies:latest
-    # image: wordpress:6
-    image: ashdavies:latest
+    image: wordpress:6
+    # image: ashdavies:latest
     restart: always
     ports:
       - 8080:80
     environment:
       WORDPRESS_DB_HOST: mysql
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: root
-      WORDPRESS_DB_NAME: wp_ash
+      WORDPRESS_DB_USER: ash
+      WORDPRESS_DB_PASSWORD: JSc9r4463eRZg!Rp8jHF=WTbVHD2zGwx
+      WORDPRESS_DB_NAME: wp_ashdavies
       WORDPRESS_DEBUG: 1
       WORDPRESS_CONFIG_EXTRA: |
         /* Custom rules */
@@ -30,24 +40,26 @@ services:
     networks:
       - ashdavies
   mysql:
-    platform: linux/amd64
+    # platform: linux/amd64
     image: mysql:5.7
     environment:
       - PUID=1000
       - PGID=1000
+      - MYSQL_USER=ash
+      - MYSQL_PASSWORD=JSc9r4463eRZg!Rp8jHF=WTbVHD2zGwx
       - MYSQL_ROOT_PASSWORD=root
       - TZ=Europe/London
-      - MYSQL_DATABASE=wp_ash
+      # - MYSQL_DATABASE=wp_ash
     ports:
       - 3306:3306
     restart: unless-stopped
     volumes:
-      - db:/var/lib/mysql
+      - C:\Users\ashle\Sites\mysql:/var/lib/mysql
     networks:
       - ashdavies
 
 networks:
   ashdavies:
 
-volumes:
-  db:
+# volumes:
+#   db:
