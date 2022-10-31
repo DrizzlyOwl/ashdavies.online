@@ -31,6 +31,8 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         /* Custom rules */
         define( 'WP_REDIS_HOST', 'redis' );
+        define( 'WP_HOME', 'http://localhost:8080' );
+        define( 'WP_SITEURL', 'http://localhost:8080' );
     volumes:
       - ./app/uploads/:/var/www/html/wp-content/uploads/
       - ./app/languages/:/var/www/html/wp-content/languages/
@@ -40,26 +42,26 @@ services:
     networks:
       - ashdavies
   mysql:
-    # platform: linux/amd64
+    platform: linux/amd64
     image: mysql:5.7
     environment:
       - PUID=1000
       - PGID=1000
       - MYSQL_USER=ash
       - MYSQL_PASSWORD=JSc9r4463eRZg!Rp8jHF=WTbVHD2zGwx
-      - MYSQL_ROOT_PASSWORD=root
+      # - MYSQL_ROOT_PASSWORD=root
       - TZ=Europe/London
-      # - MYSQL_DATABASE=wp_ash
+      # - MYSQL_DATABASE=wp_ashdavies
     ports:
       - 3306:3306
     restart: unless-stopped
     volumes:
-      - C:\Users\ashle\Sites\mysql:/var/lib/mysql
+      - db:/var/lib/mysql
     networks:
       - ashdavies
 
 networks:
   ashdavies:
 
-# volumes:
-#   db:
+volumes:
+  db:
