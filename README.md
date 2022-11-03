@@ -1,4 +1,4 @@
-`%cd%` in cmd.exe == `$pwd` in bash
+`%cd%` in cmd.exe == `$(pwd)` in bash
 
 To install composer packages (from the root):
 ```
