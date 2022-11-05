@@ -26,4 +26,6 @@ app/plugins/*
 
 # Never retain config files
 .env
-/.terraform
+
+# Never retain terraform stuff
+.terraform
