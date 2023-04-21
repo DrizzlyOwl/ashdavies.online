@@ -23,23 +23,26 @@ jobs:
             exit 1
           fi
 
+      - name: Remove aws backend
+        run: rm ./terraform/aws/backend.tf
+
       - name: Run a Terraform init
         uses: docker://hashicorp/terraform:1.4.5
         with:
           entrypoint: terraform
-          args: init
+          args: -chdir=terraform/aws init
 
       - name: Run a Terraform validate
         uses: docker://hashicorp/terraform:1.4.5
         with:
           entrypoint: terraform
-          args: validate
+          args: -chdir=terraform/aws validate
 
       - name: Run a Terraform format check
         uses: docker://hashicorp/terraform:1.4.5
         with:
           entrypoint: terraform
-          args: fmt -check=true -diff=true
+          args: -chdir=terraform/aws fmt -check=true -diff=true
 
       - name: Run a tfsec check
         uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
@@ -48,7 +51,7 @@ jobs:
 
       - uses: terraform-linters/setup-tflint@v3
         with:
-          tflint_version: v0.44.1
+          tflint_version: v0.46.0
 
       - name: Run tflint
         run: tflint -f compact
