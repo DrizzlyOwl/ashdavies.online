@@ -1,0 +1,54 @@
+name: Terraform Tests
+
+on:
+  push:
+    branches: master
+  pull_request:
+
+jobs:
+  terraform-validate:
+    name: Terraform Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Check for terraform version mismatch
+        run: |
+          DOTFILE_VERSION=$(cat .terraform-version)
+          TERRAFORM_IMAGE_REFERENCES=$(grep "uses: docker://hashicorp/terraform" .github/workflows/terraform.yml | grep -v TERRAFORM_IMAGE_REFERENCES | wc -l | tr -d ' ')
+          if [ "$(grep "docker://hashicorp/terraform:${DOTFILE_VERSION}" .github/workflows/terraform.yml | wc -l | tr -d ' ')" != "$TERRAFORM_IMAGE_REFERENCES" ]
+          then
+            echo -e "\033[1;31mError: terraform version in .terraform-version file does not match docker://hashicorp/terraform versions in .github/workflows/terraform.yml"
+            exit 1
+          fi
+
+      - name: Run a Terraform init
+        uses: docker://hashicorp/terraform:1.4.5
+        with:
+          entrypoint: terraform
+          args: init
+
+      - name: Run a Terraform validate
+        uses: docker://hashicorp/terraform:1.4.5
+        with:
+          entrypoint: terraform
+          args: validate
+
+      - name: Run a Terraform format check
+        uses: docker://hashicorp/terraform:1.4.5
+        with:
+          entrypoint: terraform
+          args: fmt -check=true -diff=true
+
+      - name: Run a tfsec check
+        uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
+        with:
+          github_token: ${{ github.token }}
+
+      - uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: v0.44.1
+
+      - name: Run tflint
+        run: tflint -f compact
