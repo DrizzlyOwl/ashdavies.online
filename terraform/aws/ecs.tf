@@ -31,6 +31,7 @@ resource "aws_ecs_task_definition" "ecs-task" {
         { "name" : "WORDPRESS_DB_NAME", "value" : aws_db_instance.mysql.db_name },
         # { "name" : "WP_HOME", "value" : aws_alb.lb.dns_name },
         # { "name" : "WP_SITEURL", "value" : aws_alb.lb.dns_name },
+        # { "name" : "WP_REDIS_DISABLED", "value" : "true" },
         # { "name" : "WP_REDIS_HOST", "value" : "${aws_elasticache_cluster.redis.cache_nodes[0].address}:${aws_elasticache_cluster.redis.cache_nodes[0].port}" }
       ],
 
