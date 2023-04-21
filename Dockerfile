@@ -1,4 +1,4 @@
-FROM wordpress:fpm
+FROM wordpress:apache
 LABEL org.opencontainers.image.source https://github.com/DrizzlyOwl/ashdavies.online
 
 # Install redis extension
@@ -20,7 +20,7 @@ COPY php.ini $PHP_INI_DIR/conf.d/
 
 # Install plugins from composer sources
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY ./composer.lock .
+# COPY ./composer.lock .
 COPY ./composer.json .
 RUN composer install --verbose --prefer-dist --no-interaction
 
@@ -30,12 +30,17 @@ RUN mv -f ./app/plugins/* ./wp-content/plugins/
 # Install ash-mods
 COPY ./app/plugins/ash-mods.php ./wp-content/plugins/ash-mods.php
 
-# Set final permissions for the image
 USER root
+
+# Cleanup
+RUN rm -rf ./app/ ./vendor/
+
+# Set final permissions for the image
 RUN find . -type d -exec chmod 555 {} \;
 RUN find . -type f -exec chmod 444 {} \;
 RUN find ./wp-content/uploads/ -type f -exec chmod 644 {} \;
 RUN find ./wp-content/uploads/ -type d -exec chmod 755 {} \;
 
-# Cleanup
-RUN rm -rf ./app/ ./vendor/
+RUN set -eux; \
+	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
+	cp -s wp-config-docker.php wp-config.php
