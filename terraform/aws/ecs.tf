@@ -42,13 +42,13 @@ resource "aws_ecs_task_definition" "ecs-task" {
       ]
 
       logConfiguration = {
-          logDriver = "awslogs",
-          options = {
-            "awslogs-group": aws_cloudwatch_log_group.cw.name,
-            "awslogs-region": "eu-west-2",
-            "awslogs-stream-prefix": "ecs"
-          }
+        logDriver = "awslogs",
+        options = {
+          "awslogs-group" : aws_cloudwatch_log_group.cw.name,
+          "awslogs-region" : "eu-west-2",
+          "awslogs-stream-prefix" : "ecs"
         }
+      }
     }
   ])
 

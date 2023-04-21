@@ -1,7 +1,7 @@
 locals {
   # project_name = "${local.prefix}project"
-  prefix       = "ashdavies-"
-  domain       = "ashdavies.online"
+  prefix = "ashdavies-"
+  domain = "ashdavies.online"
 
   mysql = {
     user    = var.mysql_user
