@@ -13,11 +13,6 @@ resource "aws_ecs_task_definition" "ecs-task" {
 
   container_definitions = jsonencode([
     {
-      # healthCheck = {
-      #   command  = ["CMD-SHELL", "curl -f http://localhost/ || exit 1"],
-      #   interval = 30
-      # }
-
       name      = "${local.prefix}web"
       image     = "${aws_ecr_repository.ecr.repository_url}:${local.image.tag}"
       essential = true
@@ -29,10 +24,10 @@ resource "aws_ecs_task_definition" "ecs-task" {
         { "name" : "WORDPRESS_DB_USER", "value" : aws_db_instance.mysql.username },
         { "name" : "WORDPRESS_DB_PASSWORD", "value" : local.mysql.pwd },
         { "name" : "WORDPRESS_DB_NAME", "value" : aws_db_instance.mysql.db_name },
-        # { "name" : "WP_HOME", "value" : aws_alb.lb.dns_name },
-        # { "name" : "WP_SITEURL", "value" : aws_alb.lb.dns_name },
-        # { "name" : "WP_REDIS_DISABLED", "value" : "true" },
-        # { "name" : "WP_REDIS_HOST", "value" : "${aws_elasticache_cluster.redis.cache_nodes[0].address}:${aws_elasticache_cluster.redis.cache_nodes[0].port}" }
+        { "name" : "WORDPRESS_DEBUG", "value" : "1" },
+        { "name" : "WP_HOME", "value" : aws_alb.lb.dns_name },
+        { "name" : "WP_SITEURL", "value" : aws_alb.lb.dns_name },
+        { "name" : "WP_REDIS_HOST", "value" : "${aws_elasticache_cluster.redis.cache_nodes[0].address}:${aws_elasticache_cluster.redis.cache_nodes[0].port}" }
       ],
 
       portMappings = [
@@ -70,7 +65,7 @@ resource "aws_ecs_service" "ecs-service" {
   ]
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.tg.arn
+    target_group_arn = aws_alb_target_group.lb.arn
     container_name   = "${local.prefix}web"
     container_port   = 80
   }
@@ -79,7 +74,27 @@ resource "aws_ecs_service" "ecs-service" {
     assign_public_ip = true
     subnets          = [for subnet in aws_subnet.private : subnet.id]
     security_groups = [
-      aws_security_group.sg.id
+      aws_security_group.tasks.id
     ]
+  }
+}
+
+# Traffic to the ECS cluster should only come from the ALB
+resource "aws_security_group" "tasks" {
+  vpc_id      = aws_vpc.vpc.id
+  description = "Allows inbound access from the ALB only"
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 80
+    to_port         = 80
+    security_groups = [aws_security_group.lb.id]
+  }
+
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
