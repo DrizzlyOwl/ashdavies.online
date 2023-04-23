@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "ecs-task" {
       cpu       = 1024
       memory    = 2048
       healthCheck = {
-        "Command" : ["CMD-SHELL", "curl -fL http://localhost/health.txt || exit 1"],
+        "Command" : ["CMD-SHELL", "curl -IfL http://localhost/health.txt || exit 1"],
         "Interval" : 5,
         "Timeout" : 2,
         "Retries" : 3
