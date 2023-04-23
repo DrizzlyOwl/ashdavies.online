@@ -41,6 +41,9 @@ RUN find . -type f -exec chmod 444 {} \;
 RUN find ./wp-content/uploads/ -type f -exec chmod 644 {} \;
 RUN find ./wp-content/uploads/ -type d -exec chmod 755 {} \;
 
+# Health endpoint
+RUN echo "Healthy" >> health.txt
+
 RUN set -eux; \
 	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
 	cp -s wp-config-docker.php wp-config.php
