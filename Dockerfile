@@ -20,7 +20,7 @@ COPY php.ini $PHP_INI_DIR/conf.d/
 
 # Install plugins from composer sources
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-# COPY ./composer.lock .
+COPY ./composer.lock .
 COPY ./composer.json .
 RUN composer install --verbose --prefer-dist --no-interaction
 

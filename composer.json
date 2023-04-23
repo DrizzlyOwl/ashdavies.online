@@ -14,9 +14,8 @@
         }
     },
     "require": {
-        "wpackagist-plugin/wordpress-seo": "^19",
-        "wpackagist-plugin/cloudflare": "^4",
-        "wpackagist-plugin/theme-check": "^20211203",
+        "wpackagist-plugin/wordpress-seo": "^20",
+        "wpackagist-plugin/theme-check": "^20230417",
         "wpackagist-plugin/redis-cache": "^2.0"
     },
     "extra": {
