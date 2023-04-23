@@ -3,8 +3,7 @@ resource "aws_alb" "lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.lb.id]
-
-  subnets = [for subnet in aws_subnet.public : subnet.id]
+  subnets            = [for subnet in aws_subnet.public : subnet.id]
 }
 
 resource "aws_security_group" "lb" {
@@ -41,10 +40,23 @@ resource "aws_alb_target_group" "lb" {
   target_type = "ip"
 }
 
-resource "aws_alb_listener" "lb" {
+resource "aws_alb_listener" "http" {
   load_balancer_arn = aws_alb.lb.arn
   port              = 80
   protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.lb.arn
+  }
+}
+
+resource "aws_alb_listener" "https" {
+  load_balancer_arn = aws_alb.lb.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = aws_acm_certificate_validation.tls.certificate_arn
 
   default_action {
     type             = "forward"
