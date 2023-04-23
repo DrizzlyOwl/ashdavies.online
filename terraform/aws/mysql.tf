@@ -11,6 +11,7 @@ resource "aws_db_instance" "mysql" {
   parameter_group_name            = "default.mysql${local.mysql.version}"
   db_subnet_group_name            = aws_db_subnet_group.default.name
   skip_final_snapshot             = true
+  allow_major_version_upgrade     = true
   apply_immediately               = true
   backup_retention_period         = 3
   availability_zone               = data.aws_availability_zones.az.names[0]
