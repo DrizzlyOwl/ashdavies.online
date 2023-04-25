@@ -38,6 +38,10 @@ resource "aws_alb_target_group" "lb" {
   protocol    = "HTTP"
   vpc_id      = aws_vpc.vpc.id
   target_type = "ip"
+
+  health_check {
+    path = "/health.txt"
+  }
 }
 
 resource "aws_alb_listener" "http" {

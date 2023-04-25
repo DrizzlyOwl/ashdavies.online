@@ -18,6 +18,12 @@ resource "aws_ecs_task_definition" "ecs-task" {
       essential = true
       cpu       = 1024
       memory    = 2048
+      healthCheck = {
+        "Command" : ["CMD-SHELL", "curl -IfL http://localhost/health.txt || exit 1"],
+        "Interval" : 5,
+        "Timeout" : 2,
+        "Retries" : 3
+      }
 
       environment = [
         { "name" : "WORDPRESS_DB_HOST", "value" : aws_db_instance.mysql.endpoint },
