@@ -11,6 +11,7 @@ resource "aws_security_group" "lb" {
   description = "Controls access to the ALB"
 
   ingress {
+    description = "Allow INGRESS for HTTP on port 80"
     protocol    = "tcp"
     from_port   = 80
     to_port     = 80
@@ -18,6 +19,7 @@ resource "aws_security_group" "lb" {
   }
 
   ingress {
+    description = "Allow INGRESS for HTTPS on port 443"
     protocol    = "tcp"
     from_port   = 443
     to_port     = 443
@@ -25,6 +27,7 @@ resource "aws_security_group" "lb" {
   }
 
   egress {
+    description = "Allow EGRESS for any on all ports"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"

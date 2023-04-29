@@ -92,6 +92,7 @@ resource "aws_security_group" "tasks" {
   description = "Allows inbound access from the ALB only"
 
   ingress {
+    description     = "Allow INGRESS for HTTP on port 80"
     protocol        = "tcp"
     from_port       = 80
     to_port         = 80
@@ -99,6 +100,7 @@ resource "aws_security_group" "tasks" {
   }
 
   egress {
+    description = "Allow EGRESS for any on all ports"
     protocol    = "-1"
     from_port   = 0
     to_port     = 0

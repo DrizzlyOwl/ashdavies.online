@@ -29,6 +29,7 @@ resource "aws_security_group" "mysql" {
   description = "Controls access to the MySQL cluster"
 
   ingress {
+    description = "Allow INGRESS for MYSQL on port 3306"
     protocol    = "tcp"
     from_port   = 3306
     to_port     = 3306
