@@ -1,4 +1,4 @@
-FROM wordpress:apache
+FROM wordpress:6.2.2-apache
 LABEL org.opencontainers.image.source https://github.com/DrizzlyOwl/ashdavies.online
 
 # Install redis extension
@@ -6,7 +6,7 @@ RUN pecl install redis \
 	&& docker-php-ext-enable redis
 
 RUN apt-get update
-RUN apt-get -y install python3-pip
+RUN apt-get -y install python3-pip less sendmail
 RUN pip3 install botocore --upgrade
 
 WORKDIR /usr/src/wordpress
@@ -22,6 +22,9 @@ COPY ./app/object-cache.php ./wp-content/object-cache.php
 
 # Custom PHP ini for upload sizes
 COPY php.ini $PHP_INI_DIR/conf.d/
+
+# Install wp-cli
+COPY --from=wordpress:cli /usr/local/bin/wp /usr/local/bin/wp
 
 # Install plugins from composer sources
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -52,3 +55,5 @@ RUN echo "Healthy" >> health.txt
 RUN set -eux; \
 	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
 	cp -s wp-config-docker.php wp-config.php
+
+USER www-data
