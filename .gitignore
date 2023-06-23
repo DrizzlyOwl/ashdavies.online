@@ -25,7 +25,8 @@ app/plugins/*
 !app/plugins/ash-mods.php
 
 # Never retain config files
-.env
+.env*
+!.env.*.example
 
 # Never retain terraform stuff
 .terraform
