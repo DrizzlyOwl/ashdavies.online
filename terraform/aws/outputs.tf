@@ -11,8 +11,8 @@ output "connection_strings" {
   }
 }
 
-output "availability_zones" {
-  value = data.aws_availability_zones.az.names
+output "availability_zone" {
+  value = data.aws_availability_zones.az.names[0]
 }
 
 output "dns_ns_records" {
