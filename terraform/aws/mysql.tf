@@ -21,5 +21,6 @@ resource "aws_db_instance" "mysql" {
 }
 
 resource "aws_db_subnet_group" "default" {
+  name       = "${local.project_name}-db-subnet-group"
   subnet_ids = [for subnet in aws_subnet.private : subnet.id]
 }

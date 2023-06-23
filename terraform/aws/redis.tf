@@ -1,4 +1,5 @@
 resource "aws_elasticache_cluster" "redis" {
+  availability_zone    = data.aws_availability_zones.az.names[0]
   cluster_id           = "${local.prefix}cluster"
   engine               = "redis"
   node_type            = "cache.t3.micro"
@@ -12,11 +13,12 @@ resource "aws_elasticache_cluster" "redis" {
 }
 
 resource "aws_elasticache_subnet_group" "redis" {
-  name       = "${local.prefix}redis-subnet"
+  name       = "${local.project_name}-redis-subnet-group"
   subnet_ids = [for subnet in aws_subnet.private : subnet.id]
 }
 
 resource "aws_security_group" "redis" {
+  name        = "${local.project_name}-sg-redis"
   vpc_id      = aws_vpc.vpc.id
   description = "Controls access to the Redis cluster"
 

@@ -1,5 +1,5 @@
 resource "aws_wafv2_web_acl" "acl" {
-  name  = "${local.prefix}waf-acl"
+  name  = "${local.project_name}-waf-acl"
   scope = "REGIONAL"
 
   default_action {
