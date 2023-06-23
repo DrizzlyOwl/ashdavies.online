@@ -225,3 +225,47 @@ add_filter('the_content', 'Ash\set_heading_anchors', 10, 1);
 add_action('after_setup_theme', function () {
     register_nav_menu('primary', __('Primary Menu', 'ashdavies'));
 });
+
+/**
+ * Ensure PHPMailer inherits the SMTP credentials we give it
+ */
+add_action('phpmailer_init', function ($phpmailer) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = getenv('SMTP_HOSTNAME');
+    $phpmailer->Port = getenv('SMTP_PORT');
+    $phpmailer->Username = getenv('SMTP_USER');
+    $phpmailer->Password = getenv('SMTP_PASSWORD');
+    $phpmailer->From = getenv('SMTP_FROM');
+    $phpmailer->FromName = getenv('SMTP_FROM_NAME');
+
+    // Additional settings
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->SMTPSecure = "tls";
+    $phpmailer->SMTPAutoTLS = true;
+
+    // Filter out client message body and output debug info to the logs
+    // NOTE: Log level must be set to '2' or higher in order for the filter to work
+    $phpmailer->SMTPDebug = 2;
+
+    $phpmailer->Debugoutput = function($str) {
+        static $logging = true;
+        if ($logging === false && strpos($str, 'SERVER -> CLIENT') !== false) {
+            $logging = true;
+        }
+        if ($logging) {
+            error_log("SMTP " . "$str");
+        }
+        if (strpos($str, 'SERVER -> CLIENT: 354') !== false) {
+            $logging = false;
+        }
+    };
+});
+
+// Prevent Wordpress from overriding the SMTP FROM address (Office 365 compatibility)
+add_filter('wp_mail_from', function ($email) {
+    return $_ENV["SMTP_FROM"];
+}, 10, 1);
+
+add_filter( 'wp_mail_content_type', function () {
+    return "text/html";
+});
