@@ -16,23 +16,13 @@ services:
     networks:
       - ashdavies
   wordpress:
-    # image: ghcr.io/drizzlyowl/ashdavies.online/ashdavies:latest
-    image: wordpress:6
-    # image: ashdavies:latest
+    build:
+      context: .
     restart: always
     ports:
       - 8080:80
-    environment:
-      WORDPRESS_DB_HOST: mysql
-      WORDPRESS_DB_USER: ash
-      WORDPRESS_DB_PASSWORD: JSc9r4463eRZg!Rp8jHF=WTbVHD2zGwx
-      WORDPRESS_DB_NAME: wp_ashdavies
-      WORDPRESS_DEBUG: 1
-      WORDPRESS_CONFIG_EXTRA: |
-        /* Custom rules */
-        define( 'WP_REDIS_HOST', 'redis' );
-        define( 'WP_HOME', 'http://localhost:8080' );
-        define( 'WP_SITEURL', 'http://localhost:8080' );
+    env_file:
+      - .env.wordpress
     volumes:
       - ./app/uploads/:/var/www/html/wp-content/uploads/
       - ./app/languages/:/var/www/html/wp-content/languages/
@@ -44,14 +34,8 @@ services:
   mysql:
     platform: linux/amd64
     image: mysql:5.7
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - MYSQL_USER=ash
-      - MYSQL_PASSWORD=JSc9r4463eRZg!Rp8jHF=WTbVHD2zGwx
-      # - MYSQL_ROOT_PASSWORD=root
-      - TZ=Europe/London
-      # - MYSQL_DATABASE=wp_ashdavies
+    env_file:
+      - .env.mysql
     ports:
       - 3306:3306
     restart: unless-stopped
