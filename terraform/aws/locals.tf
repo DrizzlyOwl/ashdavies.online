@@ -46,7 +46,14 @@ locals {
     },
     {
       "name" : "WORDPRESS_CONFIG_EXTRA",
-      "value" : "define( 'WP_REDIS_PORT', ${aws_elasticache_cluster.redis.cache_nodes[0].port} );define( 'WP_REDIS_DISABLED', false );define( 'WP_REDIS_HOST', '${aws_elasticache_cluster.redis.cache_nodes[0].address}' );define( 'WP_HOME', 'https://${local.domain}' );define( 'WP_SITEURL', 'https://${local.domain}' );"
+      "value" : templatefile("./templates/wp-config.tftpl", {
+        domain : local.domain
+        redis : {
+          host : aws_elasticache_cluster.redis.cache_nodes[0].address
+          port : aws_elasticache_cluster.redis.cache_nodes[0].port
+          disabled : false
+        }
+      })
     }
   ]
 
