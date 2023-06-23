@@ -18,13 +18,16 @@ variable "redis_version" {
   description = "Version of Redis to deploy"
   default     = "7"
 }
-variable "availability_zone_count" {
-  type        = number
-  description = "Number of Availability Zones to use"
-  default     = 3
-}
 variable "container_count" {
   type        = number
   description = "Number of Containers to spin up"
   default     = 3
+}
+variable "keypair" {
+  type        = string
+  description = "Name of the AWS Key Pair to add to any EC2 instances"
+}
+variable "ip_addr" {
+  type        = string
+  description = "My IP Address"
 }

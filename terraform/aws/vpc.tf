@@ -3,17 +3,17 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "public" {
-  count                   = local.availability_zones
-  availability_zone       = data.aws_availability_zones.az.names[count.index]
+  for_each                = toset(data.aws_availability_zones.az.names)
+  availability_zone       = each.value
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, local.availability_zones + count.index)
+  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, index(data.aws_availability_zones.az.names, each.value) + 10)
   map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "private" {
-  count                   = local.availability_zones
-  availability_zone       = data.aws_availability_zones.az.names[count.index]
+  for_each                = toset(data.aws_availability_zones.az.names)
+  availability_zone       = each.value
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.index)
+  cidr_block              = cidrsubnet(aws_vpc.vpc.cidr_block, 8, index(data.aws_availability_zones.az.names, each.value) + 1)
   map_public_ip_on_launch = false
 }
