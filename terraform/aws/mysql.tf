@@ -23,15 +23,3 @@ resource "aws_db_instance" "mysql" {
 resource "aws_db_subnet_group" "default" {
   subnet_ids = [for subnet in aws_subnet.private : subnet.id]
 }
-
-resource "aws_security_group" "mysql" {
-  vpc_id      = aws_vpc.vpc.id
-  description = "Controls access to the MySQL cluster"
-
-  ingress {
-    protocol    = "tcp"
-    from_port   = 3306
-    to_port     = 3306
-    cidr_blocks = [for subnet in aws_subnet.private : subnet.cidr_block]
-  }
-}

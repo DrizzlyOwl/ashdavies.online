@@ -21,6 +21,7 @@ resource "aws_security_group" "redis" {
   description = "Controls access to the Redis cluster"
 
   ingress {
+    description = "Allow INGRESS for REDIS on port 6379"
     protocol    = "tcp"
     from_port   = 6379
     to_port     = 6379

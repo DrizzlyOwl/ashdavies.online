@@ -1,17 +1,21 @@
 resource "aws_route_table" "table" {
-  count  = local.availability_zones
   vpc_id = aws_vpc.vpc.id
 
   route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = element(aws_nat_gateway.gw[*].id, count.index)
+    cidr_block           = "0.0.0.0/0"
+    network_interface_id = aws_network_interface.nat.id
+  }
+
+  route {
+    cidr_block           = "0.0.0.0/0"
+    network_interface_id = aws_network_interface.mysql.id
   }
 }
 
 resource "aws_route_table_association" "table" {
-  count          = local.availability_zones
-  route_table_id = element(aws_route_table.table[*].id, count.index)
-  subnet_id      = element(aws_subnet.private[*].id, count.index)
+  for_each       = aws_subnet.private
+  route_table_id = aws_route_table.table.id
+  subnet_id      = each.value.id
 }
 
 resource "aws_internet_gateway" "ig" {
@@ -24,20 +28,22 @@ resource "aws_route" "egress" {
   destination_cidr_block = "0.0.0.0/0"
 }
 
-resource "aws_nat_gateway" "gw" {
-  count         = local.availability_zones
-  allocation_id = element(aws_eip.eip[*].id, count.index)
-  subnet_id     = element(aws_subnet.public[*].id, count.index)
+resource "aws_network_interface" "nat" {
+  subnet_id         = element([for subnet in aws_subnet.public : subnet.id], 0)
+  source_dest_check = false
+  security_groups   = [aws_security_group.nat.id]
+}
 
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.ig]
+resource "aws_network_interface" "mysql" {
+  subnet_id         = element([for subnet in aws_subnet.public : subnet.id], 0)
+  source_dest_check = false
+  security_groups   = [aws_security_group.ssh.id, aws_security_group.nat.id]
 }
 
 resource "aws_eip" "eip" {
-  count = local.availability_zones
-  vpc   = true
-  depends_on = [
-    aws_internet_gateway.ig
-  ]
+  network_interface = aws_network_interface.nat.id
+}
+
+resource "aws_eip" "mysql" {
+  network_interface = aws_network_interface.mysql.id
 }
