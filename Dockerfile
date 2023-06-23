@@ -4,6 +4,11 @@ LABEL org.opencontainers.image.source https://github.com/DrizzlyOwl/ashdavies.on
 # Install redis extension
 RUN pecl install redis \
 	&& docker-php-ext-enable redis
+
+RUN apt-get update
+RUN apt-get -y install python3-pip
+RUN pip3 install botocore --upgrade
+
 WORKDIR /usr/src/wordpress
 
 # Remove default themes and plugins
