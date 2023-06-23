@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "ecs-cluster" {
-  name = "${local.prefix}cluster"
+  name = "${local.project_name}-ecs-cluster"
 
   setting {
     name  = "containerInsights"
@@ -16,8 +16,8 @@ resource "aws_ecs_task_definition" "ecs-task" {
       name      = "${local.prefix}web"
       image     = "${aws_ecr_repository.ecr.repository_url}:${local.image.tag}"
       essential = true
-      cpu       = 1024
-      memory    = 2048
+      cpu       = 512
+      memory    = 1024
       healthCheck = {
         "Command" : ["CMD-SHELL", "curl -IfL http://localhost/health.txt || exit 1"],
         "Interval" : 5,
@@ -56,12 +56,12 @@ resource "aws_ecs_task_definition" "ecs-task" {
 
   requires_compatibilities = ["FARGATE"] # Stating that we are using ECS Fargate
   network_mode             = "awsvpc"    # Using awsvpc as our network mode as this is required for Fargate
-  memory                   = 2048        # Specifying the memory our container requires
-  cpu                      = 1024        # Specifying the CPU our container requires
+  memory                   = 1024        # Specifying the memory our container requires
+  cpu                      = 512         # Specifying the CPU our container requires
 }
 
 resource "aws_ecs_service" "ecs-service" {
-  name            = "${local.prefix}service"
+  name            = "${local.project_name}-ecs-service"
   cluster         = aws_ecs_cluster.ecs-cluster.arn
   desired_count   = local.instance_count
   launch_type     = "FARGATE"
@@ -88,6 +88,7 @@ resource "aws_ecs_service" "ecs-service" {
 
 # Traffic to the ECS cluster should only come from the ALB
 resource "aws_security_group" "tasks" {
+  name        = "${local.project_name}-sg-ecs"
   vpc_id      = aws_vpc.vpc.id
   description = "Allows inbound access from the ALB only"
 
