@@ -7,6 +7,9 @@ namespace Ash;
  */
 
 get_header();
+
+$is_post_old = is_post_older_than("1 year");
+
 ?>
 <main id="contentarea">
     <div class="masthead masthead--slim">
@@ -19,7 +22,18 @@ get_header();
     <article <?php post_class("contentarea"); ?>>
         <div class="wrapper">
             <div class="content-sidebar-group">
-                <div class="content-sidebar-group__content"><?php the_content(); ?></div>
+                <div class="content-sidebar-group__content">
+                    <?php if ($is_post_old) : ?>
+                        <p class="notice notice--warning">
+                            <strong><?php _e("Yikes! This post is over a year old!"); ?></strong>
+                            <br>
+                            <?php _e("If you think it deserves a rewrite please get in touch or leave a comment."); ?>
+                            <br>
+                            <?php _e("— Thanks, Ash."); ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php the_content(); ?>
+                </div>
                 <?php get_sidebar(); ?>
             </div>
         </div>

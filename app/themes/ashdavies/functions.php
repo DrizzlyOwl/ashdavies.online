@@ -269,3 +269,14 @@ add_filter('wp_mail_from', function ($email) {
 add_filter( 'wp_mail_content_type', function () {
     return "text/html";
 });
+
+/**
+ * @return bool
+ */
+function is_post_older_than(string $range): bool
+{
+    $last_updated = date_create_immutable_from_format('Ymd', get_the_modified_time('Ymd'));
+    $last_year = date_sub(date_create('now'), date_interval_create_from_date_string($range));
+
+    return $last_year->format('Ymd') >= $last_updated->format('Ymd');
+}
