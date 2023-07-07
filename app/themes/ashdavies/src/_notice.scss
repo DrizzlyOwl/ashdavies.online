@@ -1,0 +1,12 @@
+$default-clr-primary: var(--clr-green);
+$default-clr-accent: white;
+
+.notice {
+  padding: rem(5) rem(10);
+  border: rem(1) solid $default-clr-primary;
+  border-radius: rem(3);
+  background: $default-clr-primary;
+  color: $default-clr-accent;
+
+  &--warning {}
+}
