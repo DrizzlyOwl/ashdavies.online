@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ddb9a98a7e6c5fca0560fc4cc8d22d70",
+    "content-hash": "bca425a7dc91b4fe6ad0ba0e46d54f4b",
     "packages": [
         {
             "name": "composer/installers",
@@ -153,21 +153,39 @@
         },
         {
             "name": "wpackagist-plugin/redis-cache",
-            "version": "2.4.1",
+            "version": "2.4.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redis-cache/",
-                "reference": "tags/2.4.1"
+                "reference": "tags/2.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redis-cache.2.4.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/redis-cache.2.4.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/redis-cache/"
+        },
+        {
+            "name": "wpackagist-plugin/smtp-amazon-ses",
+            "version": "1.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/smtp-amazon-ses/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.zip?timestamp=1680681460"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/smtp-amazon-ses/"
         },
         {
             "name": "wpackagist-plugin/theme-check",
