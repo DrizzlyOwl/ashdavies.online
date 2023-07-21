@@ -5,13 +5,6 @@ services:
     restart: always
     networks:
      - ashdavies
-  mailhog:
-    image: mailhog/mailhog:latest
-    restart: always
-    networks:
-    - ashdavies
-    ports:
-      - 8025:8025
   phpmyadmin:
     image: phpmyadmin
     restart: always
