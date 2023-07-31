@@ -25,7 +25,7 @@ locals {
 
   wordpress = {
     enable_redis = true
-    debug_mode = false
+    debug_mode = "0"
   }
 
   container_env = [
