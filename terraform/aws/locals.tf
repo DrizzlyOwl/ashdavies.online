@@ -23,6 +23,11 @@ locals {
     tag  = "latest"
   }
 
+  wordpress = {
+    enable_redis = true
+    debug_mode = false
+  }
+
   container_env = [
     {
       "name" : "WORDPRESS_DB_HOST",
@@ -42,7 +47,7 @@ locals {
     },
     {
       "name" : "WORDPRESS_DEBUG",
-      "value" : "1"
+      "value" : local.wordpress.debug_mode
     },
     {
       "name" : "WORDPRESS_CONFIG_EXTRA",
@@ -51,7 +56,7 @@ locals {
         redis : {
           host : aws_elasticache_cluster.redis.cache_nodes[0].address
           port : aws_elasticache_cluster.redis.cache_nodes[0].port
-          disabled : true
+          disabled : local.wordpress.enable_redis
         }
       })
     }
