@@ -15,15 +15,16 @@ the_post();
         <header class="masthead__inner">
             <div class="avatar">
                 <div class="avatar__wrap">
-                    <img class="avatar__image" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies" width="200" height="200">
+                    <img class="avatar__image" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies"
+                        width="200" height="200">
                 </div>
             </div>
             <div class="masthead__copy">
                 <h1 class="masthead__heading"><?php the_title(); ?></h1>
                 <div class="masthead__blurb"><?php the_excerpt(); ?></div>
                 <p class="masthead__connect">
-                    <img src="<?php theme_dir(); ?>/dist/twitter.svg" alt="Twitter icon" width="20" height="20">
-                    <a href="https://twitter.com/DrizzlyOwl" aria-label="Connect with me on Twitter @DrizzlyOwl">
+                    <img src="<?php theme_dir(); ?>/dist/github.svg" alt="GitHub icon" width="20" height="20">
+                    <a href="https://github.com/DrizzlyOwl" aria-label="Connect with me on GitHub @DrizzlyOwl">
                         <?php _e("DrizzlyOwl", 'ashdavies'); ?>
                     </a>
                 </p>
@@ -34,56 +35,36 @@ the_post();
         <h2 id="coreskills" class="skillbox__title"><?php _e("My core skills", 'ashdavies'); ?></h2>
         <div class="skillbox__wrap">
             <article class="skill">
-                <figure class="skill__icon skill__icon--wp">
-                    <img src="<?php theme_dir(); ?>/dist/wp.svg" alt="WordPress icon">
-                    <figcaption class="screen-reader-text"><?php _e("WordPress", 'ashdavies'); ?></figcaption>
+                <figure class="skill__icon skill__icon--azure">
+                    <img src="<?php theme_dir(); ?>/dist/azure.svg" alt="Microsoft Azure icon">
+                    <figcaption class="screen-reader-text"><?php _e("Azure", 'ashdavies'); ?></figcaption>
                 </figure>
-                <h3 class="skill__heading"><?php _e("WordPress", 'ashdavies'); ?></h3>
+                <h3 class="skill__heading"><?php _e("Microsoft Azure", 'ashdavies'); ?></h3>
                 <p class="skill__text">
-                    <?php _e("I continue to build and maintain bespoke themes and plugins for the NHS, Police, local
-                    councils and other public sector entities. It's my bread and butter.", 'ashdavies'); ?>
-                </p>
-            </article>
-            <article class="skill">
-                <figure class="skill__icon skill__icon--php">
-                    <img src="<?php theme_dir(); ?>/dist/php.svg" alt="PHP icon">
-                    <figcaption class="screen-reader-text">
-                        <abbr title="<?php _e("PHP Hypertext Preprocessor", 'ashdavies'); ?>">
-                            <?php _e("PHP", 'ashdavies'); ?>
-                        </abbr>
-                    </figcaption>
-                </figure>
-                <h3 class="skill__heading"><?php _e("PHP", 'ashdavies'); ?></h3>
-                <p class="skill__text">
-                    <?php
-                    _e("I'm no stranger to frameworks like ", 'ashdavies');
-                    echo wp_sprintf(
-                        "<a href='%s' rel='nofollow'>%s</a>",
-                        "https://laravel.com/",
-                        __("Laravel", 'ashdavies')
-                    );
-                    _e(" and ", 'ashdavies');
-                    echo wp_sprintf(
-                        "<a href='%s' rel='nofollow'>%s</a>",
-                        "https://symfony.com/",
-                        __("Symfony", 'ashdavies')
-                    );
-                    _e(" and love to get stuck in to some <abbr title='Object-oriented Programming'>OOP</abbr> once in
-                    a while.", 'ashdavies');
-                    ?>
+                    <?php _e("I continue to develop my skills within the Azure ecosystem,", 'ashdavies'); ?>
+                    <?php _e("supporting dxw with their technical operations.", 'ashdavies'); ?>
                 </p>
             </article>
             <article class="skill">
                 <figure class="skill__icon skill__icon--sys">
                     <img src="<?php theme_dir(); ?>/dist/ubuntu.svg" alt="Ubuntu icon">
-                    <figcaption class="screen-reader-text"><?php _e("Ubuntu enterprise", 'ashdavies'); ?></figcaption>
+                    <figcaption class="screen-reader-text"><?php _e("Ubuntu", 'ashdavies'); ?>
                 </figure>
-                <h3 class="skill__heading"><?php _e("Ubuntu", 'ashdavies'); ?></h3>
+                <h3 class="skill__heading"><?php _e("Linux SysAdmin", 'ashdavies'); ?></h3>
                 <p class="skill__text">
-                    <?php
-                    _e("I'm adept at using <abbr title='Command Line Interface'>CLI</abbr> . I'm responsible for the
-                    upkeep, configuration, and reliable operation of Cloud Hosting within Mixd.", 'ashdavies');
-                    ?>
+                    <?php _e("I'm no stranger to getting stuck in with CLI tooling,", 'ashdavies'); ?>
+                    <?php _e("crafting my own bash scripts or managing linux servers.", 'ashdavies'); ?>
+                </p>
+            </article>
+            <article class="skill">
+                <figure class="skill__icon skill__icon--terraform">
+                    <img src="<?php theme_dir(); ?>/dist/terraform.svg" alt="Terraform icon">
+                    <figcaption class="screen-reader-text"><?php _e("Terraform", 'ashdavies'); ?></figcaption>
+                </figure>
+                <h3 class="skill__heading"><?php _e("Terraform", 'ashdavies'); ?></h3>
+                <p class="skill__text">
+                    <?php _e("I'm readily able to write, and deploy clean, maintainable", 'ashdavies'); ?>
+                    <?php _e("Infrastructure as Code for AWS and Azure.", 'ashdavies'); ?>
                 </p>
             </article>
         </div>
