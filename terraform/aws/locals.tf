@@ -51,7 +51,7 @@ locals {
         redis : {
           host : aws_elasticache_cluster.redis.cache_nodes[0].address
           port : aws_elasticache_cluster.redis.cache_nodes[0].port
-          disabled : false
+          disabled : true
         }
       })
     }
