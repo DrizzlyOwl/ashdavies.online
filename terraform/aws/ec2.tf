@@ -9,6 +9,7 @@ resource "aws_instance" "mysql" {
     device_index         = 0
   }
 
+  user_data_replace_on_change = true
   user_data = templatefile("./userdata/mysql-client.tftpl", {})
 }
 
@@ -23,6 +24,7 @@ resource "aws_instance" "nat" {
     device_index         = 0
   }
 
+  user_data_replace_on_change = true
   user_data = templatefile("./userdata/iptables.tftpl", {
     cidr_block : aws_vpc.vpc.cidr_block
   })
