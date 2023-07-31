@@ -10,7 +10,7 @@ resource "aws_instance" "mysql" {
   }
 
   user_data_replace_on_change = true
-  user_data = templatefile("./userdata/mysql-client.tftpl", {})
+  user_data                   = templatefile("./userdata/mysql-client.tftpl", {})
 }
 
 resource "aws_instance" "nat" {
