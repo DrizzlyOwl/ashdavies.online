@@ -5,7 +5,7 @@ resource "aws_db_instance" "mysql" {
   db_name                         = "wp_ashdavies"
   engine                          = "mysql"
   engine_version                  = local.mysql.version
-  instance_class                  = "db.t3.micro"
+  instance_class                  = "db.t2.micro"
   username                        = local.mysql.user
   password                        = local.mysql.pwd
   parameter_group_name            = "default.mysql${local.mysql.version}"

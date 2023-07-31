@@ -2,7 +2,7 @@ resource "aws_elasticache_cluster" "redis" {
   availability_zone    = data.aws_availability_zones.az.names[0]
   cluster_id           = "${local.prefix}cluster"
   engine               = "redis"
-  node_type            = "cache.t3.micro"
+  node_type            = "cache.t2.micro"
   parameter_group_name = "default.redis${local.redis.version}"
   subnet_group_name    = aws_elasticache_subnet_group.redis.name
   security_group_ids   = [aws_security_group.redis.id]
