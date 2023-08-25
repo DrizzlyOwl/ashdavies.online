@@ -59,7 +59,7 @@ locals {
         redis : {
           host : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].address : ""
           port : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].port : ""
-          disabled : local.wordpress.enable_redis
+          disabled : ! local.wordpress.enable_redis
         }
       })
     }
