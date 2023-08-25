@@ -57,9 +57,9 @@ locals {
       "value" : templatefile("./templates/wp-config.tftpl", {
         domain : local.domain
         redis : {
-          host : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].address : ""
-          port : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].port : ""
-          disabled : ! local.wordpress.enable_redis
+          host : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].address : "localhost"
+          port : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].port : 6379
+          disabled : !local.wordpress.enable_redis
         }
       })
     }
