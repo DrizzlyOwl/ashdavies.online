@@ -12,8 +12,11 @@ locals {
   region = "eu-west-2"
 
   redis = {
+    enabled = false
     version = var.redis_version
   }
+
+  enable_waf = false
 
   keypair = var.keypair
   ip_addr = var.ip_addr
@@ -24,8 +27,8 @@ locals {
   }
 
   wordpress = {
-    enable_redis = true
-    debug_mode = "0"
+    enable_redis = false
+    debug_mode   = "0"
   }
 
   container_env = [
@@ -54,8 +57,8 @@ locals {
       "value" : templatefile("./templates/wp-config.tftpl", {
         domain : local.domain
         redis : {
-          host : aws_elasticache_cluster.redis.cache_nodes[0].address
-          port : aws_elasticache_cluster.redis.cache_nodes[0].port
+          host : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].address : ""
+          port : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].port : ""
           disabled : local.wordpress.enable_redis
         }
       })

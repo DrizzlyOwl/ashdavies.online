@@ -1,6 +1,6 @@
 resource "aws_instance" "mysql" {
   ami               = data.aws_ami.ubuntu.id
-  instance_type     = "t2.micro"
+  instance_type     = "t3.nano"
   availability_zone = data.aws_availability_zones.az.names[0]
   key_name          = local.keypair
 
@@ -16,7 +16,7 @@ resource "aws_instance" "mysql" {
 resource "aws_instance" "nat" {
   ami               = data.aws_ami.ubuntu.id
   key_name          = local.keypair
-  instance_type     = "t2.micro"
+  instance_type     = "t3.nano"
   availability_zone = data.aws_availability_zones.az.names[0]
 
   network_interface {

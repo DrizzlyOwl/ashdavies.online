@@ -1,4 +1,6 @@
 resource "aws_wafv2_web_acl" "acl" {
+  count = local.enable_waf ? 1 : 0
+
   name  = "${local.project_name}-waf-acl"
   scope = "REGIONAL"
 
@@ -132,6 +134,8 @@ resource "aws_wafv2_web_acl" "acl" {
 }
 
 resource "aws_wafv2_web_acl_association" "waf" {
+  count = local.enable_waf ? 1 : 0
+
   resource_arn = aws_alb.lb.arn
-  web_acl_arn  = aws_wafv2_web_acl.acl.arn
+  web_acl_arn  = aws_wafv2_web_acl.acl[0].arn
 }
