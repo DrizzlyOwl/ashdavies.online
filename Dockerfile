@@ -1,4 +1,4 @@
-FROM wordpress:6.2.2-apache
+FROM wordpress:6.3.2-apache
 LABEL org.opencontainers.image.source https://github.com/DrizzlyOwl/ashdavies.online
 
 # Install redis extension
