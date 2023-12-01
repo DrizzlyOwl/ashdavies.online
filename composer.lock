@@ -153,15 +153,15 @@
         },
         {
             "name": "wpackagist-plugin/redis-cache",
-            "version": "2.4.3",
+            "version": "2.5.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redis-cache/",
-                "reference": "tags/2.4.3"
+                "reference": "tags/2.5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redis-cache.2.4.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/redis-cache.2.5.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -175,11 +175,11 @@
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/smtp-amazon-ses/",
-                "reference": "trunk"
+                "reference": "tags/1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.zip?timestamp=1680681460"
+                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.1.5.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -207,15 +207,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.12",
+            "version": "20.13",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.12"
+                "reference": "tags/20.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.12.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.13.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
