@@ -6,8 +6,7 @@ RUN pecl install redis \
 	&& docker-php-ext-enable redis
 
 RUN apt-get update
-RUN apt-get -y install python3-pip less sendmail
-RUN pip3 install botocore --upgrade
+RUN apt-get -y install python3-pip less sendmail python3-botocore
 
 WORKDIR /usr/src/wordpress
 
