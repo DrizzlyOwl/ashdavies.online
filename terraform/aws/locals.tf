@@ -1,9 +1,10 @@
 locals {
-  project_name = "${local.prefix}project"
   prefix       = "ashdavies-"
+  project_name = "${local.prefix}project"
   domain       = "ashdavies.online"
 
   mysql = {
+    name    = var.mysql_name
     user    = var.mysql_user
     pwd     = var.mysql_pwd
     version = var.mysql_version
@@ -18,7 +19,6 @@ locals {
 
   enable_waf = false
 
-  keypair = var.keypair
   ip_addr = var.ip_addr
 
   image = {
@@ -27,43 +27,29 @@ locals {
   }
 
   wordpress = {
-    enable_redis = false
+    enable_redis = true
     debug_mode   = "0"
   }
 
-  container_env = [
-    {
-      "name" : "WORDPRESS_DB_HOST",
-      "value" : aws_db_instance.mysql.endpoint
-    },
-    {
-      "name" : "WORDPRESS_DB_USER",
-      "value" : aws_db_instance.mysql.username
-    },
-    {
-      "name" : "WORDPRESS_DB_PASSWORD",
-      "value" : local.mysql.pwd
-    },
-    {
-      "name" : "WORDPRESS_DB_NAME",
-      "value" : aws_db_instance.mysql.db_name
-    },
-    {
-      "name" : "WORDPRESS_DEBUG",
-      "value" : local.wordpress.debug_mode
-    },
-    {
-      "name" : "WORDPRESS_CONFIG_EXTRA",
-      "value" : templatefile("./templates/wp-config.tftpl", {
-        domain : local.domain
-        redis : {
-          host : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].address : "localhost"
-          port : local.redis.enabled ? aws_elasticache_cluster.redis[0].cache_nodes[0].port : 6379
-          disabled : !local.wordpress.enable_redis
-        }
-      })
-    }
-  ]
+  container_env = {
+    "WORDPRESS_DB_HOST"     = aws_lightsail_database.database.master_endpoint_address,
+    "WORDPRESS_DB_USER"     = local.mysql.user,
+    "WORDPRESS_DB_PASSWORD" = local.mysql.pwd,
+    "WORDPRESS_DB_NAME"     = local.mysql.name,
+    "WORDPRESS_DEBUG"       = local.wordpress.debug_mode,
+    "WORDPRESS_CONFIG_EXTRA" = templatefile("./templates/wp-config.tftpl", {
+      domain : local.domain,
+      redis : {
+        disabled : local.wordpress.enable_redis ? false : true,
+        port : 6379
+        host : "${aws_lightsail_container_service.container.private_domain_name}"
+      }
+    })
+  }
 
   instance_count = var.container_count
+
+  tags = {
+    "Project Name" = local.project_name
+  }
 }

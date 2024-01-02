@@ -8,8 +8,8 @@ resource "aws_route53_record" "www" {
   type    = "A"
 
   alias {
-    name                   = aws_alb.lb.dns_name
-    zone_id                = aws_alb.lb.zone_id
+    name                   = replace(replace(aws_lightsail_container_service.container.url, "https:", ""), "/", "")
+    zone_id                = "Z0624918ZXDYQZLOXA66"
     evaluate_target_health = true
   }
 }

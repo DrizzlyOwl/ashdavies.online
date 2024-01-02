@@ -1,3 +1,8 @@
+variable "mysql_name" {
+  type        = string
+  description = "Name to use for the primary MySQL database"
+  sensitive   = true
+}
 variable "mysql_pwd" {
   type        = string
   description = "Password to use for the primary MySQL user"
@@ -11,7 +16,7 @@ variable "mysql_user" {
 variable "mysql_version" {
   type        = string
   description = "Version of MySQL to deploy"
-  default     = "5.7"
+  default     = "8_0"
 }
 variable "redis_version" {
   type        = string
@@ -22,10 +27,6 @@ variable "container_count" {
   type        = number
   description = "Number of Containers to spin up"
   default     = 3
-}
-variable "keypair" {
-  type        = string
-  description = "Name of the AWS Key Pair to add to any EC2 instances"
 }
 variable "ip_addr" {
   type        = string

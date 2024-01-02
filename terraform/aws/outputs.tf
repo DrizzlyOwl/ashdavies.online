@@ -1,16 +1,3 @@
-output "container_registry_url" {
-  value = aws_ecr_repository.ecr.repository_url
-}
-
-output "connection_strings" {
-  value = {
-    mysql : "${aws_db_instance.mysql.address}:${aws_db_instance.mysql.port}"
-    redis : local.redis.enabled ? "${aws_elasticache_cluster.redis[0].cache_nodes[0].address}:${aws_elasticache_cluster.redis[0].cache_nodes[0].port}" : ""
-    load_balancer : aws_alb.lb.dns_name
-    domain : "https://${local.domain}"
-  }
-}
-
 output "availability_zone" {
   value = data.aws_availability_zones.az.names[0]
 }

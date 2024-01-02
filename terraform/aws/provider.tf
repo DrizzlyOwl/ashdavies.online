@@ -13,4 +13,8 @@ provider "aws" {
   region                   = "eu-west-2"
   shared_credentials_files = ["/Users/ash/.aws/credentials"]
   profile                  = "dxw-ash"
+
+  default_tags {
+    tags = local.tags
+  }
 }
