@@ -1,5 +1,23 @@
-FROM wordpress:6-apache
+# Install plugins from composer sources
+FROM composer:latest as php-build
+WORKDIR /build
+COPY ./composer.lock .
+COPY ./composer.json .
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install --verbose --prefer-dist --no-interaction
+
+# Install assets from npm sources
+FROM node:latest as theme-build
+COPY ./app/themes/ashdavies /build/
+WORKDIR /build/
+RUN npm install --prefer-dist
+RUN npm run build
+
+FROM wordpress:6-apache as final
 LABEL org.opencontainers.image.source="https://github.com/DrizzlyOwl/ashdavies.online"
+
+# Install wp-cli
+COPY --from=wordpress:cli /usr/local/bin/wp /usr/local/bin/wp
 
 # Install redis extension
 RUN pecl install redis \
@@ -18,25 +36,15 @@ RUN rm -rf ./wp-content/themes/ ./wp-content/plugins/
 
 # Install custom themes and sources
 RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ ./wp-content/plugins/
-COPY ./app/themes/ashdavies/ ./wp-content/themes/ashdavies/
+COPY --from=theme-build /build/ ./wp-content/themes/ashdavies/
 COPY ./app/languages/ ./wp-content/languages/
 COPY ./app/object-cache.php ./wp-content/object-cache.php
 
 # Custom PHP ini for upload sizes
 COPY php.ini $PHP_INI_DIR/conf.d/
 
-# Install wp-cli
-COPY --from=wordpress:cli /usr/local/bin/wp /usr/local/bin/wp
-
-# Install plugins from composer sources
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY ./composer.lock .
-COPY ./composer.json .
-ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install --verbose --prefer-dist --no-interaction
-
 # Move vendor plugins to the right places
-RUN mv -f ./app/plugins/* ./wp-content/plugins/
+COPY --from=php-build /build/app/plugins/* ./wp-content/plugins/
 
 # Install ash-mods
 COPY ./app/plugins/ash-mods.php ./wp-content/plugins/ash-mods.php
