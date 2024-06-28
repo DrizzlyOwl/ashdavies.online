@@ -1,5 +1,5 @@
 FROM wordpress:6-apache
-LABEL org.opencontainers.image.source https://github.com/DrizzlyOwl/ashdavies.online
+LABEL org.opencontainers.image.source="https://github.com/DrizzlyOwl/ashdavies.online"
 
 # Install redis extension
 RUN pecl install redis \
