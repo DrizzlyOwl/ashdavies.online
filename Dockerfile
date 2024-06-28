@@ -3,10 +3,13 @@ LABEL org.opencontainers.image.source="https://github.com/DrizzlyOwl/ashdavies.o
 
 # Install redis extension
 RUN pecl install redis \
-	&& docker-php-ext-enable redis
+  && docker-php-ext-enable redis
 
 RUN apt-get update
 RUN apt-get -y install python3-pip less sendmail python3-botocore
+
+# Install any apt package upgrades that are tagged 'securi'
+RUN apt-get -s dist-upgrade | grep "^Inst" | grep -i securi | awk -F " " {'print $2'} | xargs apt-get install
 
 WORKDIR /usr/src/wordpress
 
@@ -29,6 +32,7 @@ COPY --from=wordpress:cli /usr/local/bin/wp /usr/local/bin/wp
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY ./composer.lock .
 COPY ./composer.json .
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --verbose --prefer-dist --no-interaction
 
 # Move vendor plugins to the right places
@@ -52,5 +56,5 @@ RUN find ./wp-content/uploads/ -type d -exec chmod 755 {} \;
 RUN echo "Healthy" >> health.txt
 
 RUN set -eux; \
-	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
-	cp -s wp-config-docker.php wp-config.php
+  find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
+  cp -s wp-config-docker.php wp-config.php
