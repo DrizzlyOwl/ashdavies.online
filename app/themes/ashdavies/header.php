@@ -24,7 +24,8 @@ namespace Ash;
             <?php wp_nav_menu([
                 'menu' => 'primary',
                 'container' => 'nav',
-                'menu_class' => 'nav'
+                'menu_class' => 'nav',
+                'theme_location' => 'primary'
             ]); ?>
         </div>
     </header>
