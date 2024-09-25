@@ -29,6 +29,8 @@ jobs:
         username: ${{ secrets.ECR_USER }}
         password: ${{ secrets.ECR_PASS }}
         registry: ${{ secrets.ECR_HOST }}
+      env:
+        AWS_ACCOUNT_IDS: ${{ secrets.ECR_ACCOUNT_ID }}
 
     - name: Build and push
       uses: docker/build-push-action@v6
