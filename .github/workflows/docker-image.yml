@@ -26,6 +26,8 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
+        aws-access-key-id: ${{ secrets.ECR_USER }}
+        aws-secret-access-key: ${{ secrets.ECR_PASS }}
         role-to-assume: arn:aws:iam::${{ secrets.ECR_ACCOUNT_ID }}:role/github-actions
         aws-region: eu-west-2
 
