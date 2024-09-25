@@ -31,3 +31,6 @@ app/plugins/*
 # Never retain terraform stuff
 .terraform
 *.tfvars
+
+# Never retain sql backups
+*.sql
