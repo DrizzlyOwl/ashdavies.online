@@ -58,3 +58,27 @@ resource "aws_iam_user_policy" "deployment" {
   user   = aws_iam_user.deployment.name
   policy = data.aws_iam_policy_document.ecr_repo_policy.json
 }
+
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "AWS"
+      identifiers = [aws_iam_user.deployment.arn]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "github_action" {
+  name               = "${local.project_name}-github-action"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
+resource "aws_iam_role_policy" "ecs_task_execution_role_policy" {
+  name   = "${terraform.workspace}_ete_role_policy"
+  policy = data.aws_iam_policy_document.ecr_repo_policy.json
+  role   = aws_iam_role.github_action.id
+}
