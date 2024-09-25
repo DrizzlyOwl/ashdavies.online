@@ -53,10 +53,6 @@ data "aws_iam_policy_document" "ecr_repo_policy" {
   }
 }
 
-resource "aws_iam_access_key" "deployment" {
-  user = aws_iam_user.deployment.name
-}
-
 resource "aws_iam_user_policy" "deployment" {
   name   = "${local.project_name}-github-action"
   user   = aws_iam_user.deployment.name
