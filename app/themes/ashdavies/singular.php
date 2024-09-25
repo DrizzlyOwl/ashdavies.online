@@ -25,11 +25,11 @@ $is_post_old = is_post_older_than("1 year");
                 <div class="content-sidebar-group__content">
                     <?php if ($is_post_old) : ?>
                         <p class="notice notice--warning">
-                            <strong><?php _e("Yikes! This post is over a year old!"); ?></strong>
+                            <strong><?php _e("Yikes! This post is over a year old!", "ashdavies"); ?></strong>
                             <br>
-                            <?php _e("If you think it deserves a rewrite please get in touch or leave a comment."); ?>
+                            <?php _e("If you think it deserves a rewrite please get in touch or leave a comment.", "ashdavies"); ?>
                             <br>
-                            <?php _e("— Thanks, Ash."); ?>
+                            <?php _e("— Thanks, Ash.", "ashdavies"); ?>
                         </p>
                     <?php endif; ?>
                     <?php the_content(); ?>

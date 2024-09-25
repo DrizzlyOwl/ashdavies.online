@@ -9,7 +9,7 @@ $reading_time = get_post_meta($pid, '_yoast_wpseo_estimated-reading-time-minutes
 
 <aside class="content-sidebar-group__sidebar">
     <div class="sidebar__item">
-        <h2 class="sidebar__title"><?php _e("Info"); ?></h2>
+        <h2 class="sidebar__title"><?php _e("Info", "ashdavies"); ?></h2>
         <p>
             <strong><?php _e("Approximate reading time:", "ashdavies"); ?></strong><br>
             <?php echo $reading_time; ?> <?php echo _n('minute', 'minutes', $reading_time, 'ashdavies'); ?>
