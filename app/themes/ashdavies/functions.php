@@ -117,7 +117,14 @@ function set_heading_anchors(string $content = '')
     // If there is any content entered in to this post
     if (strlen(trim($content))) {
         // Convert HTML entities to UTF-8 symbols
-        $enforce_utf8 = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
+        $enforce_utf8 = mb_encode_numericentity(
+            htmlspecialchars_decode(
+                htmlentities($content, ENT_NOQUOTES, 'UTF-8', false),
+                ENT_NOQUOTES
+            ),
+            [0x80, 0x10FFFF, 0, ~0],
+            'UTF-8'
+        );
 
         // Instantiate a new DOMDocument HTML parser
         $dom = new DOMDocument('1.1', 'UTF-8');
