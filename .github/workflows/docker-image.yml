@@ -23,8 +23,17 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ghcr.io
 
+    - name: Login to ECR
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.ECR_USER }}
+        password: ${{ secrets.ECR_PASS }}
+        registry: ${{ secrets.ECR_HOST }}
+
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ashdavies.online:latest
+        tags: |
+          ${{ secrets.ECR_HOST }}/ashdavies-ecr:latest
+          ghcr.io/drizzlyowl/ashdavies.online:latest
