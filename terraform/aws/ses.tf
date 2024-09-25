@@ -24,21 +24,3 @@ resource "aws_ses_domain_identity_verification" "mail" {
 
   depends_on = [aws_route53_record.ses]
 }
-
-resource "aws_iam_user" "mail" {
-  name = "${local.project_name}-ses-user"
-}
-
-data "aws_iam_policy_document" "mail" {
-  statement {
-    effect    = "Allow"
-    actions   = ["ses:*"]
-    resources = ["*"]
-  }
-}
-
-resource "aws_iam_user_policy" "mail" {
-  name   = "${local.project_name}-ses-policy"
-  user   = aws_iam_user.mail.name
-  policy = data.aws_iam_policy_document.mail.json
-}
