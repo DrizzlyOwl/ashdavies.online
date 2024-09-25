@@ -1,5 +1,5 @@
 # Install plugins from composer sources
-FROM composer:latest as php-build
+FROM composer:latest AS php-build
 WORKDIR /build
 COPY ./composer.lock .
 COPY ./composer.json .
@@ -7,13 +7,13 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --verbose --prefer-dist --no-interaction
 
 # Install assets from npm sources
-FROM node:latest as theme-build
+FROM node:latest AS theme-build
 COPY ./app/themes/ashdavies /build/
 WORKDIR /build/
 RUN npm install --prefer-dist
 RUN npm run build
 
-FROM wordpress:6-apache as final
+FROM wordpress:6-apache AS final
 LABEL org.opencontainers.image.source="https://github.com/DrizzlyOwl/ashdavies.online"
 
 # Install wp-cli
