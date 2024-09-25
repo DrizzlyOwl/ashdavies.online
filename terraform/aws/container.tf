@@ -63,7 +63,7 @@ resource "aws_lightsail_container_service_deployment_version" "container" {
       timeout_seconds     = 2
       interval_seconds    = 5
       path                = "/health.txt"
-      success_codes       = "200-499"
+      success_codes       = "200"
     }
   }
 
