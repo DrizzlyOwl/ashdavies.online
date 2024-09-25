@@ -24,7 +24,7 @@ jobs:
         registry: ghcr.io
 
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::${{ secrets.ECR_ACCOUNT_ID }}:role/github-actions
         aws-region: eu-west-2
