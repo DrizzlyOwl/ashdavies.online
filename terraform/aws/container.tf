@@ -1,6 +1,6 @@
 resource "aws_lightsail_container_service" "container" {
   name        = "${local.prefix}lightsail"
-  power       = "micro"
+  power       = "nano"
   scale       = local.instance_count
   is_disabled = false
 
