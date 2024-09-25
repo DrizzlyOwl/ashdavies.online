@@ -41,12 +41,6 @@ resource "aws_iam_user" "deployment" {
 data "aws_iam_policy_document" "ecr_repo_policy" {
   statement {
     effect = "Allow"
-    sid    = "Allow push only from github actions"
-
-    principals {
-      type        = "AWS"
-      identifiers = ["arn:aws:iam::${local.account_id}:role/github-actions"]
-    }
 
     actions = [
       "ecr:BatchCheckLayerAvailability",
@@ -55,11 +49,12 @@ data "aws_iam_policy_document" "ecr_repo_policy" {
       "ecr:PutImage",
       "ecr:UploadLayerPart"
     ]
-
-    condition {
-      test     = "StringEquals"
-      variable = "aws:PrincipalAccount"
-      values   = [aws_iam_user.deployment.id]
-    }
+    resources = [aws_ecr_repository.ecr.arn]
   }
+}
+
+resource "aws_iam_user_policy" "deployment" {
+  name   = "${local.project_name}-github-action"
+  user   = aws_iam_user.deployment.name
+  policy = data.aws_iam_policy_document.ecr_repo_policy.json
 }
