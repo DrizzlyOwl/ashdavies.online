@@ -34,3 +34,14 @@ resource "aws_iam_role_policy_attachment" "github" {
   role       = aws_iam_role.github.name
   policy_arn = aws_iam_policy.github.arn
 }
+
+resource "aws_iam_policy" "lightsail" {
+  name        = "${local.project_name}-github-lightsail-deploy"
+  description = "Allow new service deployment on Lightsail from GitHub actions"
+  policy      = data.aws_iam_policy_document.lightsail.json
+}
+
+resource "aws_iam_role_policy_attachment" "lightsail" {
+  role       = aws_iam_role.github.name
+  policy_arn = aws_iam_policy.lightsail.arn
+}

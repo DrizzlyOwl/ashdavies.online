@@ -50,6 +50,17 @@ data "aws_iam_policy_document" "imagepush" {
   }
 }
 
+data "aws_iam_policy_document" "lightsail" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "lightsail:CreateContainerServiceDeployment",
+      "lightsail:GetContainerServiceDeployments"
+    ]
+    resources = [aws_lightsail_container_service.container.arn]
+  }
+}
+
 data "aws_iam_policy_document" "mail" {
   statement {
     effect    = "Allow"
