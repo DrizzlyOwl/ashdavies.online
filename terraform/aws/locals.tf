@@ -3,6 +3,10 @@ locals {
   prefix       = "ashdavies-"
   project_name = "${local.prefix}project"
   domain       = "ashdavies.online"
+  github = {
+    repo   = "drizzlyowl/ashdavies.online"
+    branch = "main"
+  }
 
   mysql = {
     name    = var.mysql_name
