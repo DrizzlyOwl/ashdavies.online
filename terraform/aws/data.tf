@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "lightsail" {
       "lightsail:CreateContainerServiceDeployment",
       "lightsail:GetContainerServiceDeployments"
     ]
-    resources = [aws_lightsail_container_service.container.arn]
+    resources = ["*"]
   }
 }
 
