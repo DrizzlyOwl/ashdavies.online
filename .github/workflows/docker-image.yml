@@ -85,7 +85,7 @@ jobs:
 
             STATE=$(echo "$REVISION_DETAILS" | jq -r '.state');
 
-            echo "[i] Status: $STATE
+            echo "[i] Status: $STATE"
 
             if [[
               $STATE == 'FAILED'
