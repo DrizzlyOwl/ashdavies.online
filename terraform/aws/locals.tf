@@ -5,7 +5,7 @@ locals {
   domain       = "ashdavies.online"
   github = {
     repo   = "drizzlyowl/ashdavies.online"
-    branch = "main"
+    branch = "master"
   }
 
   mysql = {
