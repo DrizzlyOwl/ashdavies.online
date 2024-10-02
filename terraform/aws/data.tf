@@ -29,6 +29,21 @@ data "aws_iam_policy_document" "github" {
   }
 }
 
+data "aws_iam_policy_document" "imagepush" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecr:GetAuthorizationToken",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:CompleteLayerUpload",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage",
+      "ecr:UploadLayerPart"
+    ]
+    resources = [aws_ecr_repository.ecr.arn]
+  }
+}
+
 data "aws_iam_policy_document" "mail" {
   statement {
     effect    = "Allow"

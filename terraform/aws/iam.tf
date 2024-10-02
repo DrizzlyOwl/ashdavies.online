@@ -23,3 +23,14 @@ resource "aws_iam_role" "github" {
   assume_role_policy = data.aws_iam_policy_document.github.json
   tags               = local.tags
 }
+
+resource "aws_iam_policy" "github" {
+  name        = "${local.project_name}-github-ecr-push"
+  description = "Allow push only from GitHub actions"
+  policy      = data.aws_iam_policy_document.imagepush.json
+}
+
+resource "aws_iam_role_policy_attachment" "github" {
+  role       = aws_iam_role.github.name
+  policy_arn = aws_iam_policy.github.arn
+}

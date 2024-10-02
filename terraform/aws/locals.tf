@@ -4,7 +4,7 @@ locals {
   project_name = "${local.prefix}project"
   domain       = "ashdavies.online"
   github = {
-    repo   = "drizzlyowl/ashdavies.online"
+    repo   = "DrizzlyOwl/ashdavies.online"
     branch = "master"
   }
 
