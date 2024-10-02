@@ -33,7 +33,8 @@ data "aws_iam_policy_document" "imagepush" {
   statement {
     effect = "Allow"
     actions = [
-      "ecr:GetAuthorizationToken",
+      "ecr:BatchGetImage",
+      "ecr:GetDownloadUrlForLayer",
       "ecr:BatchCheckLayerAvailability",
       "ecr:CompleteLayerUpload",
       "ecr:InitiateLayerUpload",
@@ -41,6 +42,11 @@ data "aws_iam_policy_document" "imagepush" {
       "ecr:UploadLayerPart"
     ]
     resources = [aws_ecr_repository.ecr.arn]
+  }
+
+  statement {
+    actions   = ["ecr:GetAuthorizationToken"]
+    resources = ["*"]
   }
 }
 
