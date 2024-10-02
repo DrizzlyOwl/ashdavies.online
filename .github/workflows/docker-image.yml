@@ -64,14 +64,18 @@ jobs:
           LIGHTSAIL_SERVICE_NAME: "ashdavies-lightsail"
           LIGHTSAIL_REGION: "eu-west-2"
         run: |
-          CONTAINERS=$(aws lightsail get-container-service-deployments \
+          LAST_REVISION=$(aws lightsail get-container-service-deployments \
             --service-name "$LIGHTSAIL_SERVICE_NAME" \
-            --region "$LIGHTSAIL_REGION" | jq '.deployments[0].containers')
+            --region "$LIGHTSAIL_REGION" | jq '.deployments[0]')
+
+          CONTAINERS=$(echo "$LAST_REVISION" | jq -r '.containers')
+          PUBLIC_ENDPOINT=$(echo "$LAST_REVISION" | jq -r '.publicEndpoint')
 
           STATE=$(aws lightsail create-container-service-deployment \
             --service-name "$LIGHTSAIL_SERVICE_NAME" \
             --region "$LIGHTSAIL_REGION" \
-            --containers "$CONTAINERS" | jq '.nextDeployment.state')
+            --containers "$CONTAINERS" \
+            --public-endpoint "$PUBLIC_ENDPOINT" | jq '.nextDeployment.state')
 
           TIMEOUT=$((SECONDS+300))
 
