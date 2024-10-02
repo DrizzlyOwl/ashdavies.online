@@ -40,8 +40,8 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        cache-from: gha
-        cache-to: gha
+        cache-from: type=gha
+        cache-to: type=gha
         tags: |
           ${{ secrets.AWS_ECR_HOST }}:latest
           ghcr.io/drizzlyowl/ashdavies.online:latest
