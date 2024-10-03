@@ -10,12 +10,17 @@ To run `npm` tasks (from the theme folder):
 $ docker run -it --rm -v "$(pwd)":/usr/src/app -w /usr/src/app node npm <command>
 ```
 
-To run db import tasks:
+To grab the latest database for working on locally, assuming you have valid
+credentials in `~/.aws/credentials`
+
 ```
-$ docker run -it --rm -v /tmp:/tmp mysql:8.0 mysqldump \
-  --single-transaction --set-gtid-purged=OFF \
-  -h $HOST \
-  -u $USER $DB_NAME -p > database.sql
-$ mysql -h 127.0.0.1 \
-  -u $USER $DB_NAME -p < database.sql
+$ ./get-database.sh
+$ source ./.env.mysql
+$ docker compose up -d mysql
+$ docker compose cp /tmp/database.sql mysql:/tmp/database.sql
+$ docker compose exec -d mysql \
+  mysql -h 127.0.0.1 \
+  -u "$MYSQL_USER" "$MYSQL_DATABASE" \
+  -p"$MYSQL_PASSWORD" < /tmp/database.sql
+$ rm /tmp/database.sql
 ```
