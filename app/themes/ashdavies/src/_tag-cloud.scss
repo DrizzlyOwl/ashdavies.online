@@ -1,10 +1,12 @@
 @use "sass:math";
 
+$tag-arrow-size: rem(8);
+
 .tag-cloud {
 }
 
 .tag-cloud__list {
-  margin: 0 0 0 rem(-2);
+  margin: rem(-8) 0 rem(16) rem(-2);
   padding: 0;
   list-style-type: none;
   display: flex;
@@ -14,16 +16,17 @@
 .tag-cloud__list-item {
   padding-left: rem(2);
   margin-bottom: 0;
+  position: relative;
 }
 
 .tag-cloud-link {
   display: block;
   line-height: 1.2;
-  margin: rem(4);
-  padding: rem(6) rem(12);
-  background-color: var(--clr-peach);
-  border-radius: rem(6);
-  padding-left: rem(30);
+  padding: rem(4) rem(12) rem(4) rem(8);
+  margin: 0 rem(12) rem(4) 0;
+  background-color: var(--clr-papyrus);
+  border-radius: rem(2) 0 0 rem(2);
+  font-size: rem(14);
   position: relative;
   color: var(--clr-black);
   text-decoration: none;
@@ -31,16 +34,26 @@
   &:before {
     content: "";
     position: absolute;
-    left: rem(12);
     top: 50%;
     transform: translateY(-50%);
-    width: rem(6);
-    height: rem(6);
-    border-radius: 100%;
-    background: var(--clr-black);
+    right: rem(-24);
+    width: 0;
+    height: 0;
+    border-width: rem(12);
+    border-style: solid;
+    border-color: transparent transparent transparent var(--clr-papyrus);
+  }
+
+  &:after {
+    content: '•';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    color: inherit;
   }
 
   &:hover:before {
-    background: white;
+    border-color: transparent transparent transparent $anchor-color-focus-bg;
   }
 }

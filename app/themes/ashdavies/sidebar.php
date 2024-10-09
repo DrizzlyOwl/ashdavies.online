@@ -4,16 +4,31 @@ namespace Ash;
 
 $pid = get_the_ID();
 $anchors = get_heading_anchors($pid);
-$reading_time = get_post_meta($pid, '_yoast_wpseo_estimated-reading-time-minutes', true);
+$reading_time = get_post_meta($pid, '_estimated-reading-time-minutes', true);
+$tags = wp_get_post_tags($pid);
 ?>
-
 <aside class="content-sidebar-group__sidebar">
     <div class="sidebar__item">
         <h2 class="sidebar__title"><?php _e("Info", "ashdavies"); ?></h2>
+        <?php if ($reading_time) : ?>
         <p>
             <strong><?php _e("Approximate reading time:", "ashdavies"); ?></strong><br>
             <?php echo $reading_time; ?> <?php echo _n('minute', 'minutes', $reading_time, 'ashdavies'); ?>
         </p>
+        <?php endif; ?>
+        <?php if (!empty($tags)) : ?>
+        <div class="tag-cloud">
+            <p><strong><?php _e("Tags:", "ashdavies"); ?></strong></p>
+            <ul class="tag-cloud__list">
+            <?php foreach ($tags as $tag) : ?>
+                <?php $tag_archive_url = get_tag_link($tag); ?>
+                <li class="tag-cloud__list-item">
+                    <a href="<?php echo add_query_arg('ref', 'sidebar', $tag_archive_url); ?>" class="tag-cloud-link"><?php echo $tag->name; ?></a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php endif; ?>
         <p>
             <strong><?php _e("Published:", "ashdavies"); ?></strong><br>
             <?php the_date(); ?>
