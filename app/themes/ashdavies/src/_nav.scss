@@ -13,7 +13,7 @@
 }
 
 .nav .menu-item a {
-  color: white;
+  color: var(--clr-black);
   text-decoration: none;
   position: relative;
   font-size: rem(16);
@@ -27,6 +27,11 @@
     width: 100%;
   }
 
+  &:focus {
+    background-color: var(--clr-black);
+    color: white
+  }
+
   &:after {
     content: "";
     will-change: width;
@@ -37,7 +42,7 @@
     width: 0;
     margin: 0 auto;
     height: rem(1);
-    background: white;
+    background: var(--clr-black);;
     transform: skew(45deg);
   }
 }

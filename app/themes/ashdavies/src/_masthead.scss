@@ -1,13 +1,15 @@
 .masthead {
-    background: var(--clr-blue);
+    background: var(--clr-grey);
     position: relative;
     padding: 0 $gutter;
-    color: white;
+    color: var(--clr-black);
+    overflow: hidden;
 }
 
 .masthead__inner {
     padding: rem(32) 0;
     max-width: var(--content_width);
+    z-index: 1;
     width: 100%;
     position: relative;
     margin: 0 auto;
@@ -17,8 +19,11 @@
     align-items: center;
 
     @include bp($m) {
-        padding: rem(100) 0;
-        flex-direction: row;
+        padding: rem(100);
+    }
+
+    @include bp($l) {
+        padding: rem(100);
     }
 
     .avatar-group {
@@ -34,46 +39,77 @@
 .masthead__copy {
     font-weight: medium;
     text-align: center;
+}
+
+.masthead__heading {
+    margin-top: $gutter;
 
     @include bp($m) {
-        padding-left: rem(32);
-        text-align: left;
+        font-size: rem(68);
     }
 }
 
-// .masthead__heading {}
-
 .masthead__blurb p {
     margin-bottom: 0;
+
+    @include bp($m) {
+        &:last-child {
+            margin-bottom: $gutter;
+        }
+        font-size: rem(22);
+        line-height: 1.5;
+    }
+
+    @include bp($l) {
+        font-size: rem(28);
+    }
 }
 
 .masthead__back {
-    font-size: 1rem;
+    font-size: rem(14);
     margin-bottom: $gutter;
-}
-.masthead__back a,
-.masthead__back a:hover,
-.masthead__back a:focus {
-    color: white;
 }
 
 .masthead__connect {
     display: inline-block;
     font-size: rem(16);
-    padding-right: $gutter;
+    padding: rem(8) $gutter;
     margin: $gutter 0 0 0;
+    background: var(--clr-grey);
+    border-radius: rem(8);
+    border: rem(2) solid var(--clr-black);
+    color: var(--clr-black);
+    font-weight: bold;
+    text-decoration: none;
 
-    a, a:hover, a:focus {
-        text-decoration: underline;
-        color: inherit;
+    &:hover, &:focus {
+        text-decoration: none;
+        background: white;
+        border-color: var(--clr-blue);
+        color: var(--clr-black);
+        box-shadow: 0 rem(2) 0 0 var(--clr-blue);
     }
 
     img {
         width: rem(20);
+        margin-top: rem(-4);
     }
 
-    a {
+    span {
         margin-left: rem(6);
+    }
+}
+
+.masthead__connect--steam {
+    background: #171d25;
+    color: var(--clr-grey);
+
+    &:hover, &:focus {
+        text-decoration: none;
+        background: #171d25;
+        border-color: var(--clr-blue);
+        color: var(--clr-grey);
+        box-shadow: 0 rem(2) 0 0 var(--clr-blue);
     }
 }
 
@@ -88,10 +124,44 @@
 }
 
 .masthead__tags {
-    font-size: 1.1em;
+    font-size: rem(12);
 
     a {
         color: inherit;
         text-decoration: underline;
+    }
+}
+
+.masthead__shim {
+    display: none;
+    width: 80vh;
+    height: 80vh;
+    background: white;
+    position: absolute;
+    border-radius: 100%;
+
+    &--top-left {
+        top: -33vh;
+        left: -33vh;
+    }
+    &--bottom-right {
+        bottom: -33vh;
+        right: -33vh;
+    }
+
+    @include bp($m) {
+        display: block;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        left: 50%;
+        width: 60vh;
+        height: 60vh;
+        background: var(--clr-grey);
+        border-radius: 100%;
     }
 }

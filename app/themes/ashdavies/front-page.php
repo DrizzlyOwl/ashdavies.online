@@ -22,14 +22,22 @@ the_post();
             <div class="masthead__copy">
                 <h1 class="masthead__heading"><?php the_title(); ?></h1>
                 <div class="masthead__blurb"><?php the_excerpt(); ?></div>
-                <p class="masthead__connect">
+                <a href="https://github.com/DrizzlyOwl" aria-label="Connect with me on GitHub @DrizzlyOwl" class="masthead__connect">
                     <img src="<?php theme_dir(); ?>/dist/github.svg" alt="GitHub icon" width="20" height="20">
-                    <a href="https://github.com/DrizzlyOwl" aria-label="Connect with me on GitHub @DrizzlyOwl">
-                        <?php _e("DrizzlyOwl", 'ashdavies'); ?>
-                    </a>
-                </p>
+                    <span >
+                        <?php _e("GitHub", 'ashdavies'); ?>
+                    </span>
+                </a>
+                <a href="https://steamcommunity.com/id/drizzlyowl" aria-label="Find me on Steam @DrizzlyOwl" class="masthead__connect masthead__connect--steam">
+                    <img src="<?php theme_dir(); ?>/dist/steam.svg" alt="Steam icon" width="20" height="20">
+                    <span >
+                        <?php _e("Steam", 'ashdavies'); ?>
+                    </span>
+                </a>
             </div>
         </header>
+        <div class="masthead__shim masthead__shim--circle masthead__shim--top-left"></div>
+        <div class="masthead__shim masthead__shim--circle masthead__shim--bottom-right"></div>
     </div>
     <div class="skillbox">
         <h2 id="coreskills" class="skillbox__title"><?php _e("My core skills", 'ashdavies'); ?></h2>

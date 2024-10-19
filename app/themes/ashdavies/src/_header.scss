@@ -1,13 +1,16 @@
 .site-header {
-  background-color: var(--clr-black);
+  background-color: white;
   padding: rem(12) $gutter rem(8) $gutter;
+
+  @include bp($l) {
+    padding: rem(20) $gutter rem(16) $gutter;
+  }
 }
 
 .site-header__help {
   text-transform: uppercase;
   letter-spacing: rem(4);
   margin-bottom: 0;
-  color: white;
   font-size: rem(14);
   line-height: 1;
   font-weight: bold;
