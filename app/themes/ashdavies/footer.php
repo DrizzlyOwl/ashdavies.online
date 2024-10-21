@@ -2,10 +2,10 @@
 
 namespace Ash;
 
-$recent_posts = wp_get_recent_posts(['post_status' => 'publish', 'posts_per_page' => 8], OBJECT);
+$recent_posts = wp_get_recent_posts(['post_status' => 'publish', 'posts_per_page' => 15], OBJECT);
 $categories = get_terms(['taxonomy' => 'category']);
-$tags = get_terms(['taxonomy' => 'post_tag', 'number' => 4]);
-$pages = get_pages(['posts_per_page' => 4]);
+$tags = get_terms(['taxonomy' => 'post_tag', 'number' => 10]);
+$pages = get_pages(['posts_per_page' => 10]);
 ?>
 </div>
 <!-- #app -->
@@ -73,7 +73,6 @@ $pages = get_pages(['posts_per_page' => 4]);
         <p class="footer__sign">
             &copy; <?php _e("Ash Davies", 'ashdavies'); ?>
             • <a href="/privacy/"><?php _e("Privacy", 'ashdavies'); ?></a>
-            • <a href="mailto:<?php echo antispambot("hello@ashdavies.online"); ?>"><?php _e("Get in touch", 'ashdavies'); ?></a></p>
         </p>
     </div>
 </footer>
