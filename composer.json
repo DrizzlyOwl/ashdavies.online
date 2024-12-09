@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "wpackagist-plugin/wordpress-seo": "^23",
+        "wpackagist-plugin/wordpress-seo": "^24",
         "wpackagist-plugin/theme-check": "^20231220",
         "wpackagist-plugin/redis-cache": "^2.0",
         "wpackagist-plugin/smtp-amazon-ses": "^1.7"
