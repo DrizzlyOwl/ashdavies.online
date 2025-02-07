@@ -16,22 +16,34 @@ the_post();
             <div class="avatar">
                 <div class="avatar__wrap">
                     <img class="avatar__image" src="<?php theme_dir(); ?>/dist/profile.jpg" alt="Picture of Ash Davies"
-                        width="200" height="200">
+                        width="500" height="500">
                 </div>
             </div>
             <div class="masthead__copy">
                 <h1 class="masthead__heading"><?php the_title(); ?></h1>
                 <div class="masthead__blurb"><?php the_excerpt(); ?></div>
-                <a href="https://github.com/DrizzlyOwl" aria-label="Connect with me on GitHub @DrizzlyOwl" class="masthead__connect">
-                    <img src="<?php theme_dir(); ?>/dist/github.svg" alt="GitHub icon" width="20" height="20">
-                    <span >
-                        <?php _e("GitHub", 'ashdavies'); ?>
+                <a href="https://www.linkedin.com/in/drizzlyowl/" aria-label="Connect with me on LinkedIn" class="masthead__connect">
+                    <img src="<?php theme_dir(); ?>/dist/linkedin.svg" alt="LinkedIn icon" width="20" height="20">
+                    <span>
+                        <?php _e("Connect on LinkedIn", 'ashdavies'); ?>
                     </span>
                 </a>
-                <a href="https://steamcommunity.com/id/drizzlyowl" aria-label="Find me on Steam @DrizzlyOwl" class="masthead__connect masthead__connect--steam">
+                <a href="/cv" aria-label="Read about my skills" class="masthead__connect">
+                    <img src="<?php theme_dir(); ?>/dist/document.svg" alt="File icon" width="20" height="20">
+                    <span>
+                        <?php _e("View My Resume", 'ashdavies'); ?>
+                    </span>
+                </a>
+                <a href="https://github.com/DrizzlyOwl" aria-label="Connect with me on GitHub" class="masthead__connect">
+                    <img src="<?php theme_dir(); ?>/dist/github.svg" alt="GitHub icon" width="20" height="20">
+                    <span >
+                        <?php _e("See My Work", 'ashdavies'); ?>
+                    </span>
+                </a><br>
+                <a href="https://steamcommunity.com/id/drizzlyowl" aria-label="Find me on Steam" class="masthead__connect masthead__connect--steam">
                     <img src="<?php theme_dir(); ?>/dist/steam.svg" alt="Steam icon" width="20" height="20">
                     <span >
-                        <?php _e("Steam", 'ashdavies'); ?>
+                        <?php _e("See What I'm Playing", 'ashdavies'); ?>
                     </span>
                 </a>
             </div>

@@ -8,10 +8,30 @@
 }
 
 .site-header__help {
-  text-transform: uppercase;
-  letter-spacing: rem(4);
   margin-bottom: 0;
-  font-size: rem(14);
-  line-height: 1;
-  font-weight: bold;
+
+  @include bp($m) {
+    font-size: rem(20);
+  }
+
+  @include bp($l) {
+    font-size: rem(24);
+  }
+
+  a {
+    color: inherit
+  }
+
+  a:hover, a:focus {
+    color: white;
+  }
+}
+
+.site-header__wrapper {
+
+  @include bp($l) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

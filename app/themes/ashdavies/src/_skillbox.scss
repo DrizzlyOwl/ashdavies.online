@@ -5,13 +5,14 @@
 }
 
 .skillbox__wrap {
+    max-width: var(--content_width);
+    margin: 0 auto;
+
     @media only screen and (min-width: 740px) {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    max-width: var(--content_width);
-    margin: 0 auto;
 }
 
 .skillbox__title {
@@ -22,6 +23,7 @@
     text-align: center;
     flex: 1;
     padding: 1vh;
+
     @media only screen and (min-width: 740px) {
         padding: 1vw;
     }

@@ -11,12 +11,19 @@
     overflow: hidden;
     width: rem(204);
     height: rem(204);
-    border-radius: 100%;
     padding: rem(2);
     background: white;
+    border: rem(2) solid white;
+    border-radius: 100%;
+
 
     @include bp($m) {
         margin-bottom: 0;
+    }
+
+    @include bp($l) {
+        width: rem(306);
+        height: rem(306);
     }
 }
 
@@ -24,4 +31,9 @@
     width: rem(200);
     height: rem(200);
     border-radius: 100%;
+
+    @include bp($l) {
+        width: rem(300);
+        height: rem(300);
+    }
 }
