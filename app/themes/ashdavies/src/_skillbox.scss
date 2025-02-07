@@ -27,10 +27,18 @@
     @media only screen and (min-width: 740px) {
         padding: 1vw;
     }
+
+    @include bp($l) {
+        text-align: left;
+    }
 }
 
 .skill__heading {
     margin-top: 0;
+
+    @include bp($l) {
+        margin-bottom: rem(8);
+    }
 }
 
 .skill__icon {
@@ -56,6 +64,10 @@
 
     &--sys img {
         max-width: 200px;
+    }
+
+    &--docker img {
+        max-width: 100px;
     }
 }
 

@@ -968,9 +968,19 @@ textarea {
     padding: 1vw;
   }
 }
+@media only screen and (min-width: 85.375rem) {
+  .skill {
+    text-align: left;
+  }
+}
 
 .skill__heading {
   margin-top: 0;
+}
+@media only screen and (min-width: 85.375rem) {
+  .skill__heading {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .skill__icon {
@@ -993,6 +1003,9 @@ textarea {
 }
 .skill__icon--sys img {
   max-width: 200px;
+}
+.skill__icon--docker img {
+  max-width: 100px;
 }
 
 .skill__text {

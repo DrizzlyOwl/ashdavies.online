@@ -54,39 +54,30 @@ the_post();
     <div class="skillbox">
         <h2 id="coreskills" class="skillbox__title"><?php _e("My core skills", 'ashdavies'); ?></h2>
         <div class="skillbox__wrap">
-            <article class="skill">
+            <div class="skill">
                 <figure class="skill__icon skill__icon--azure">
                     <img src="<?php theme_dir(); ?>/dist/azure.svg" alt="Microsoft Azure icon">
                     <figcaption class="screen-reader-text"><?php _e("Azure", 'ashdavies'); ?></figcaption>
                 </figure>
-                <h3 class="skill__heading"><?php _e("Microsoft Azure", 'ashdavies'); ?></h3>
-                <p class="skill__text">
-                    <?php _e("I continue to develop my skills within the Azure ecosystem,", 'ashdavies'); ?>
-                    <?php _e("supporting dxw with their technical operations.", 'ashdavies'); ?>
-                </p>
-            </article>
-            <article class="skill">
+            </div>
+            <div class="skill">
                 <figure class="skill__icon skill__icon--sys">
                     <img src="<?php theme_dir(); ?>/dist/ubuntu.svg" alt="Ubuntu icon">
                     <figcaption class="screen-reader-text"><?php _e("Ubuntu", 'ashdavies'); ?>
                 </figure>
-                <h3 class="skill__heading"><?php _e("Linux SysAdmin", 'ashdavies'); ?></h3>
-                <p class="skill__text">
-                    <?php _e("I'm no stranger to getting stuck in with CLI tooling,", 'ashdavies'); ?>
-                    <?php _e("crafting my own bash scripts or managing linux servers.", 'ashdavies'); ?>
-                </p>
-            </article>
-            <article class="skill">
+            </div>
+            <div class="skill">
                 <figure class="skill__icon skill__icon--terraform">
                     <img src="<?php theme_dir(); ?>/dist/terraform.svg" alt="Terraform icon">
                     <figcaption class="screen-reader-text"><?php _e("Terraform", 'ashdavies'); ?></figcaption>
                 </figure>
-                <h3 class="skill__heading"><?php _e("Terraform", 'ashdavies'); ?></h3>
-                <p class="skill__text">
-                    <?php _e("I'm readily able to write, and deploy clean, maintainable", 'ashdavies'); ?>
-                    <?php _e("Infrastructure as Code for AWS and Azure.", 'ashdavies'); ?>
-                </p>
-            </article>
+            </div>
+            <div class="skill">
+                <figure class="skill__icon skill__icon--docker">
+                    <img src="<?php theme_dir(); ?>/dist/docker.svg" alt="Docker icon">
+                    <figcaption class="screen-reader-text"><?php _e("Docker", 'ashdavies'); ?></figcaption>
+                </figure>
+            </div>
         </div>
     </div>
     <article <?php post_class("contentarea"); ?>>
