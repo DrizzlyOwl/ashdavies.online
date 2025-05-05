@@ -172,7 +172,7 @@
         },
         {
             "name": "wpackagist-plugin/smtp-amazon-ses",
-            "version": "1.8",
+            "version": "1.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/smtp-amazon-ses/",
@@ -180,7 +180,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.zip?timestamp=1738635543"
+                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.zip?timestamp=1744269621"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
