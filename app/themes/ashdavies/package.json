@@ -7,7 +7,7 @@
     "watch": "sass --no-source-map --watch ./src/global.scss:./style.css"
   },
   "devDependencies": {
-    "sass": "^1.83.1"
+    "sass": "^1.88.0"
   },
   "author": "Ash Davies",
   "private": true
