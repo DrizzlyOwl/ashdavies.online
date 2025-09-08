@@ -172,7 +172,7 @@
         },
         {
             "name": "wpackagist-plugin/smtp-amazon-ses",
-            "version": "1.9",
+            "version": "1.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/smtp-amazon-ses/",
@@ -180,7 +180,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.zip?timestamp=1744269621"
+                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.zip?timestamp=1752294394"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -228,10 +228,10 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
