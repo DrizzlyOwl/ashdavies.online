@@ -33,7 +33,7 @@ jobs:
         registry: ghcr.io
 
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v5
       with:
         aws-region: eu-west-2
         role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_TO_ASSUME }}
@@ -58,7 +58,7 @@ jobs:
     needs: [ build ]
     steps:
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v5
         with:
           aws-region: eu-west-2
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_TO_ASSUME }}
