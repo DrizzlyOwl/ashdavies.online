@@ -245,10 +245,19 @@ add_action('phpmailer_init', function ($phpmailer) {
     $phpmailer->From = getenv('SMTP_FROM');
     $phpmailer->FromName = getenv('SMTP_FROM_NAME');
 
-    // Additional settings
-    $phpmailer->SMTPAuth = true;
-    $phpmailer->SMTPSecure = "tls";
-    $phpmailer->SMTPAutoTLS = true;
+    // Local development uses a plain SMTP mail catcher (Mailpit) with no
+    // authentication or TLS. Set SMTP_INSECURE=1 in the local environment to
+    // opt out of auth/TLS. Production leaves this unset and behaves as before.
+    if (getenv('SMTP_INSECURE')) {
+        $phpmailer->SMTPAuth = false;
+        $phpmailer->SMTPSecure = "";
+        $phpmailer->SMTPAutoTLS = false;
+    } else {
+        // Additional settings
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->SMTPSecure = "tls";
+        $phpmailer->SMTPAutoTLS = true;
+    }
 
     // Filter out client message body and output debug info to the logs
     // NOTE: Log level must be set to '2' or higher in order for the filter to work

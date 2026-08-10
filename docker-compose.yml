@@ -4,6 +4,16 @@ services:
     restart: always
     networks:
      - ashdavies
+  mailhog:
+    image: axllent/mailpit:latest
+    restart: always
+    ports:
+      - 8025:8025
+    environment:
+      - MP_SMTP_AUTH_ACCEPT_ANY=1
+      - MP_SMTP_AUTH_ALLOW_INSECURE=1
+    networks:
+      - ashdavies
   phpmyadmin:
     image: phpmyadmin
     restart: always

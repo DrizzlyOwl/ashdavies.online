@@ -24,3 +24,21 @@ $ docker compose exec -d mysql \
   -p"$MYSQL_PASSWORD" < /tmp/database.sql
 $ rm /tmp/database.sql
 ```
+
+> **Note:** `get-database.sh` briefly toggles the Lightsail RDS to publicly
+> accessible in order to take the dump, then always returns it to private — even
+> if the script errors or is interrupted (via an `EXIT`/`INT`/`TERM` trap). The
+> script also **scrubs sensitive credentials** (e.g. the Amazon SES access key
+> stored in `wp_options`) from the dump, so no live secret is ever written to a
+> local working copy of the database. Always delete the local `database.sql`
+> after importing it.
+
+## Local email
+
+Local development mail is captured by a [Mailpit](https://mailpit.axllent.org/)
+container (a mail catcher) rather than being sent to a real SMTP/SES endpoint.
+No real mail credentials are needed locally. WordPress is pointed at Mailpit via
+the `SMTP_*` variables in `.env.wordpress` (see `.env.wordpress.example`), with
+`SMTP_INSECURE=1` disabling auth/TLS for the plain catcher.
+
+View captured emails at: http://localhost:8025
