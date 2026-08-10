@@ -4,7 +4,7 @@ WORKDIR /build
 COPY ./composer.lock .
 COPY ./composer.json .
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install --verbose --prefer-dist --no-interaction
+RUN composer install --verbose --prefer-dist --no-interaction --no-dev
 
 # Install assets from npm sources
 FROM node:latest AS theme-build

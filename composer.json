@@ -14,10 +14,12 @@
         }
     },
     "require": {
-        "wpackagist-plugin/wordpress-seo": "^25",
-        "wpackagist-plugin/theme-check": "^20231220",
+        "wpackagist-plugin/wordpress-seo": "^28",
         "wpackagist-plugin/redis-cache": "^2.0",
         "wpackagist-plugin/smtp-amazon-ses": "^1.7"
+    },
+    "require-dev": {
+        "wpackagist-plugin/theme-check": "^20231220"
     },
     "extra": {
         "installer-paths": {
