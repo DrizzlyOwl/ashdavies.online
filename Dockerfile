@@ -13,7 +13,7 @@ WORKDIR /build/
 RUN npm install --prefer-dist
 RUN npm run build
 
-FROM wordpress:6-apache AS final
+FROM wordpress:7-apache AS final
 LABEL org.opencontainers.image.source="https://github.com/DrizzlyOwl/ashdavies.online"
 
 # Install wp-cli
