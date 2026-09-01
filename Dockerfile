@@ -49,8 +49,6 @@ COPY --from=php-build /build/app/plugins/* ./wp-content/plugins/
 # Install ash-mods
 COPY ./app/plugins/ash-mods.php ./wp-content/plugins/ash-mods.php
 
-USER root
-
 # Cleanup
 RUN rm -rf ./app/ ./vendor/
 
@@ -66,3 +64,7 @@ RUN echo "Healthy" >> health.txt
 RUN set -eux; \
   find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
   cp -s wp-config-docker.php wp-config.php
+
+RUN chown -R www-data:www-data .
+
+USER www-data
