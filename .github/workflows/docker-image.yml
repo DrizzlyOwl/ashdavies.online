@@ -36,7 +36,7 @@ jobs:
       uses: docker/metadata-action@v6
       id: meta
       with:
-        images: ghcr.io/drizzlyowl/ashdavies.online:latest
+        images: ghcr.io/drizzlyowl/ashdavies.online
 
     - name: Build and push
       uses: docker/build-push-action@v7
