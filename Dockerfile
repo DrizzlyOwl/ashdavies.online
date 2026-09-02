@@ -55,11 +55,13 @@ RUN rm -rf ./app/ ./vendor/
 RUN find . -type d -exec chmod 555 {} \;
 RUN find . -type f -exec chmod 444 {} \;
 RUN find ./wp-content/uploads/ -type f -exec chmod 644 {} \;
-RUN find ./wp-content/languages/ -type f -exec chmod 644 {} \;
-RUN touch ./wp-content/plugins/object-cache.php
-RUN chmod 644 ./wp-content/plugins/object-cache.php
 RUN find ./wp-content/uploads/ -type d -exec chmod 755 {} \;
+RUN find ./wp-content/languages/ -type f -exec chmod 644 {} \;
 RUN find ./wp-content/languages/ -type d -exec chmod 755 {} \;
+RUN mkdir -p ./wp-content/upgrade/
+RUN chmod 755 ./wp-content/upgrade/
+RUN touch ./wp-content/object-cache.php
+RUN chmod 644 ./wp-content/object-cache.php
 
 # Health endpoint
 RUN echo "Healthy" >> health.txt
