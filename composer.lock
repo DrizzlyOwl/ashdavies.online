@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "818d72bc8a02e430fa4b66558a8043cd",
+    "content-hash": "86c881066e0a200ea1c69f67cab2976d",
     "packages": [
         {
             "name": "composer/installers",
@@ -153,6 +153,24 @@
             "time": "2024-06-24T20:46:46+00:00"
         },
         {
+            "name": "wpackagist-plugin/google-site-kit",
+            "version": "1.186.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/google-site-kit/",
+                "reference": "tags/1.186.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/google-site-kit.1.186.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/google-site-kit/"
+        },
+        {
             "name": "wpackagist-plugin/redis-cache",
             "version": "2.8.0",
             "source": {
@@ -171,24 +189,6 @@
             "homepage": "https://wordpress.org/plugins/redis-cache/"
         },
         {
-            "name": "wpackagist-plugin/smtp-amazon-ses",
-            "version": "1.9.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/smtp-amazon-ses/",
-                "reference": "tags/1.9.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/smtp-amazon-ses.1.9.1.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/smtp-amazon-ses/"
-        },
-        {
             "name": "wpackagist-plugin/wordpress-seo",
             "version": "28.4",
             "source": {
@@ -205,6 +205,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-seo/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-2fa",
+            "version": "4.1.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-2fa/",
+                "reference": "tags/4.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-2fa.4.1.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-2fa/"
         }
     ],
     "packages-dev": [
@@ -229,10 +247,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
 }

@@ -14,9 +14,10 @@
         }
     },
     "require": {
-        "wpackagist-plugin/wordpress-seo": "^28",
+        "wpackagist-plugin/google-site-kit": "^1.186",
         "wpackagist-plugin/redis-cache": "^2.0",
-        "wpackagist-plugin/smtp-amazon-ses": "^1.7"
+        "wpackagist-plugin/wordpress-seo": "^28",
+        "wpackagist-plugin/wp-2fa": "^4.1"
     },
     "require-dev": {
         "wpackagist-plugin/theme-check": "^20231220"
