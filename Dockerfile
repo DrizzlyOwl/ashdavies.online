@@ -43,7 +43,7 @@ COPY ./app/languages/ ./wp-content/languages/
 COPY php.ini $PHP_INI_DIR/conf.d/
 
 # Move vendor plugins to the right places
-COPY --from=php-build /build/app/plugins/* ./wp-content/plugins/
+COPY --from=php-build /build/app/plugins/ ./wp-content/plugins/
 
 # Install ash-mods
 COPY ./app/plugins/ash-mods.php ./wp-content/plugins/ash-mods.php
