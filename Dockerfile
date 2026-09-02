@@ -62,7 +62,7 @@ RUN mkdir -p ./wp-content/upgrade/
 RUN chmod 755 ./wp-content/upgrade/
 # Symlink Redis cache drop-in
 RUN ln -s ./wp-content/plugins/redis-cache/includes/object-cache.php ./wp-content/object-cache.php
-RUN chmod 644 ./wp-content/plugins/redis-cache/includes/object-cache.php ./wp-content/object-cache.php
+RUN chmod 644 ./wp-content/plugins/redis-cache/includes/object-cache.php
 
 # Health endpoint
 RUN echo "Healthy" >> health.txt
