@@ -38,7 +38,6 @@ RUN rm -rf ./wp-content/themes/ ./wp-content/plugins/
 RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ ./wp-content/plugins/
 COPY --from=theme-build /build/ ./wp-content/themes/ashdavies/
 COPY ./app/languages/ ./wp-content/languages/
-COPY ./app/object-cache.php ./wp-content/object-cache.php
 
 # Custom PHP ini for upload sizes
 COPY php.ini $PHP_INI_DIR/conf.d/
