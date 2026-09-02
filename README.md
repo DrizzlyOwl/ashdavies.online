@@ -14,7 +14,6 @@ To grab the latest database for working on locally, assuming you have valid
 credentials in `~/.aws/credentials`
 
 ```
-$ ./get-database.sh
 $ source ./.env.mysql
 $ docker compose up -d mysql
 $ docker compose cp /tmp/database.sql mysql:/tmp/database.sql
@@ -24,14 +23,6 @@ $ docker compose exec -d mysql \
   -p"$MYSQL_PASSWORD" < /tmp/database.sql
 $ rm /tmp/database.sql
 ```
-
-> **Note:** `get-database.sh` briefly toggles the Lightsail RDS to publicly
-> accessible in order to take the dump, then always returns it to private — even
-> if the script errors or is interrupted (via an `EXIT`/`INT`/`TERM` trap). The
-> script also **scrubs sensitive credentials** (e.g. the Amazon SES access key
-> stored in `wp_options`) from the dump, so no live secret is ever written to a
-> local working copy of the database. Always delete the local `database.sql`
-> after importing it.
 
 ## Local email
 

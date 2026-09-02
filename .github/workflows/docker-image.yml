@@ -32,17 +32,6 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ghcr.io
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v5
-      with:
-        aws-region: eu-west-2
-        role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_TO_ASSUME }}
-
-    - name: Login to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v2
-      with:
-        registries: ${{ secrets.AWS_ACCOUNT_ID }}
-
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
@@ -50,69 +39,4 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha
         tags: |
-          ${{ secrets.AWS_ECR_HOST }}:latest
           ghcr.io/drizzlyowl/ashdavies.online:latest
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [ build ]
-    steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
-        with:
-          aws-region: eu-west-2
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_ROLE_TO_ASSUME }}
-
-      - name: Deploy new revision to Lightsail
-        env:
-          LIGHTSAIL_SERVICE_NAME: "ashdavies-lightsail"
-          LIGHTSAIL_REGION: "eu-west-2"
-        run: |
-          LAST_REVISION=$(aws lightsail get-container-service-deployments \
-            --service-name "$LIGHTSAIL_SERVICE_NAME" \
-            --region "$LIGHTSAIL_REGION" | jq '.deployments[0]')
-
-          CONTAINERS=$(echo "$LAST_REVISION" | jq -r '.containers')
-          PUBLIC_ENDPOINT=$(echo "$LAST_REVISION" | jq -r '.publicEndpoint')
-
-          STATE=$(aws lightsail create-container-service-deployment \
-            --service-name "$LIGHTSAIL_SERVICE_NAME" \
-            --region "$LIGHTSAIL_REGION" \
-            --containers "$CONTAINERS" \
-            --public-endpoint "$PUBLIC_ENDPOINT" | jq '.nextDeployment.state')
-
-          TIMEOUT=$((SECONDS+300))
-
-          until [[
-            $STATE == 'ACTIVE'
-          ]]
-          do
-            REVISION_DETAILS=$(aws lightsail get-container-service-deployments \
-              --service-name "$LIGHTSAIL_SERVICE_NAME" \
-              --region "$LIGHTSAIL_REGION" | jq -r '.deployments[0]')
-
-            STATE=$(echo "$REVISION_DETAILS" | jq -r '.state');
-
-            echo "[i] Status: $STATE"
-
-            if [[
-              $STATE == 'FAILED'
-            ]]
-            then
-              echo "[!] Deployment failed!"
-              exit 1
-            fi
-
-            # Safety condition to avoid unnecessary execution time
-            if [[ $SECONDS -gt $TIMEOUT ]]
-            then
-              echo "[!] Deployment failed to reach a steady state after 5 minutes" >&2
-              exit 1
-            fi
-
-            sleep 5
-          done
-
-          # Final output to evidence the state
-          echo "Deployment completed successfully!"
-          exit 0
