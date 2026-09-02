@@ -60,8 +60,8 @@ RUN find ./wp-content/languages/ -type f -exec chmod 644 {} \;
 RUN find ./wp-content/languages/ -type d -exec chmod 755 {} \;
 RUN mkdir -p ./wp-content/upgrade/
 RUN chmod 755 ./wp-content/upgrade/
-RUN touch ./wp-content/object-cache.php
-RUN chmod 644 ./wp-content/object-cache.php
+RUN cp -s ./wp-content/object-cache.php ./wp-content/plugins/redis-cache/includes/object-cache.php
+RUN chmod 644 ./wp-content/plugins/redis-cache/includes/object-cache.php ./wp-content/object-cache.php
 
 # Health endpoint
 RUN echo "Healthy" >> health.txt
