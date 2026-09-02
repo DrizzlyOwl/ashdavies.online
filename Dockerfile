@@ -60,7 +60,8 @@ RUN find ./wp-content/languages/ -type f -exec chmod 644 {} \;
 RUN find ./wp-content/languages/ -type d -exec chmod 755 {} \;
 RUN mkdir -p ./wp-content/upgrade/
 RUN chmod 755 ./wp-content/upgrade/
-RUN cp -s ./wp-content/object-cache.php ./wp-content/plugins/redis-cache/includes/object-cache.php
+# Symlink Redis cache drop-in
+RUN cp -s ./wp-content/plugins/redis-cache/includes/object-cache.php ./wp-content/object-cache.php
 RUN chmod 644 ./wp-content/plugins/redis-cache/includes/object-cache.php ./wp-content/object-cache.php
 
 # Health endpoint
