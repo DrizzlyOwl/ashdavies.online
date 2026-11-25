@@ -27,7 +27,7 @@
   }
 
   &:hover:after {
-    width: 100%;
+    transform: scaleX(1) skew(45deg);
   }
 
   &:focus {
@@ -42,16 +42,15 @@
 
   &:after {
     content: "";
-    will-change: width;
-    transition: width 200ms;
+    transition: transform 200ms ease;
+    transform-origin: left center;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
-    margin: 0 auto;
+    width: 100%;
     height: rem(1);
     background: var(--clr-black);
-    transform: skew(45deg);
+    transform: scaleX(0) skew(45deg);
   }
 }
 
@@ -62,5 +61,5 @@
 }
 
 .nav .current_page_item a:after {
-  width: 100%;
+  transform: scaleX(1) skew(45deg);
 }

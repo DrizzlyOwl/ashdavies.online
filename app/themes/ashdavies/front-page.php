@@ -38,30 +38,32 @@ if (have_posts()) {
             <div class="masthead__copy">
                 <h1 class="masthead__heading"><?php the_title(); ?></h1>
                 <div class="masthead__blurb"><?php the_excerpt(); ?></div>
-                <a href="https://www.linkedin.com/in/drizzlyowl/" class="masthead__connect">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/linkedin.svg'); ?>" alt="" width="20" height="20">
-                    <span>
-                        <?php esc_html_e('Connect on LinkedIn', 'ashdavies'); ?>
-                    </span>
-                </a>
-                <a href="<?php echo esc_url(home_url('/cv')); ?>" class="masthead__connect">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/document.svg'); ?>" alt="" width="20" height="20">
-                    <span>
-                        <?php esc_html_e('View My Resume', 'ashdavies'); ?>
-                    </span>
-                </a>
-                <a href="https://github.com/DrizzlyOwl" class="masthead__connect">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/github.svg'); ?>" alt="" width="20" height="20">
-                    <span>
-                        <?php esc_html_e('See My Work', 'ashdavies'); ?>
-                    </span>
-                </a><br>
-                <a href="https://steamcommunity.com/id/drizzlyowl" class="masthead__connect masthead__connect--steam">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/steam.svg'); ?>" alt="" width="20" height="20">
-                    <span>
-                        <?php esc_html_e("See What I'm Playing", 'ashdavies'); ?>
-                    </span>
-                </a>
+                <div class="masthead__actions">
+                    <a href="https://www.linkedin.com/in/drizzlyowl/" class="masthead__connect">
+                        <img src="<?php echo esc_url(get_theme_dir() . '/dist/linkedin.svg'); ?>" alt="" width="20" height="20">
+                        <span>
+                            <?php esc_html_e('Connect on LinkedIn', 'ashdavies'); ?>
+                        </span>
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/cv')); ?>" class="masthead__connect">
+                        <img src="<?php echo esc_url(get_theme_dir() . '/dist/document.svg'); ?>" alt="" width="20" height="20">
+                        <span>
+                            <?php esc_html_e('View My Resume', 'ashdavies'); ?>
+                        </span>
+                    </a>
+                    <a href="https://github.com/DrizzlyOwl" class="masthead__connect">
+                        <img src="<?php echo esc_url(get_theme_dir() . '/dist/github.svg'); ?>" alt="" width="20" height="20">
+                        <span>
+                            <?php esc_html_e('See My Work', 'ashdavies'); ?>
+                        </span>
+                    </a>
+                    <a href="https://steamcommunity.com/id/drizzlyowl" class="masthead__connect masthead__connect--steam">
+                        <img src="<?php echo esc_url(get_theme_dir() . '/dist/steam.svg'); ?>" alt="" width="20" height="20">
+                        <span>
+                            <?php esc_html_e("See What I'm Playing", 'ashdavies'); ?>
+                        </span>
+                    </a>
+                </div>
             </div>
         </header>
         <div class="masthead__shim masthead__shim--circle masthead__shim--top-left"></div>

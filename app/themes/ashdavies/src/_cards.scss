@@ -3,32 +3,28 @@
 .cards {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: rem(32) $gutter;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $gutter;
 
   @include bp($m) {
     padding: rem(80) 0;
-    margin: 0 0 0 (-$gutter);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-}
-.card__item {
-  margin: $gutter;
-
-  @include bp($m) {
-    margin: 0 0 $gutter 0;
-    width: 50%;
-    padding-left: $gutter;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @include bp($l) {
-    width: 33%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
 }
+
+.card__item {
+  margin: 0;
+  display: flex;
+}
+
 .card__inner {
+  width: 100%;
   padding: $gutter;
   background: var(--clr-grey);
   border-radius: $radii;
@@ -37,12 +33,13 @@
     padding: rem(32);
   }
 }
-.card__title {
 
+.card__title {
   @include bp($l) {
     font-size: rem(26);
   }
 }
+
 .card__meta {
   font-weight: bold;
   margin-bottom: rem(8);
@@ -52,8 +49,8 @@
     margin-bottom: rem(16);
   }
 }
-.card__readmore {
 
+.card__readmore {
   p:last-child {
     margin-bottom: 0;
   }
