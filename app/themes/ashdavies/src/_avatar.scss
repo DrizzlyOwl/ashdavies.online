@@ -1,3 +1,5 @@
+@use "./vars" as *;
+
 .avatar--centered {
     text-align: center;
 
@@ -12,18 +14,17 @@
     width: rem(204);
     height: rem(204);
     padding: rem(2);
-    background: white;
-    border: rem(2) solid white;
+    background: var(--clr-bg);
+    border: rem(2) solid var(--clr-bg);
     border-radius: 100%;
-
 
     @include bp($m) {
         margin-bottom: 0;
     }
 
     @include bp($l) {
-        width: rem(306);
-        height: rem(306);
+        width: rem(260);
+        height: rem(260);
     }
 }
 
@@ -31,9 +32,56 @@
     width: rem(200);
     height: rem(200);
     border-radius: 100%;
+    object-fit: cover;
 
     @include bp($l) {
-        width: rem(300);
-        height: rem(300);
+        width: rem(256);
+        height: rem(256);
     }
+}
+
+.avatar-card {
+    text-align: center;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+
+    .avatar__wrap {
+        width: rem(164);
+        height: rem(164);
+    }
+
+    .avatar__image {
+        width: rem(160);
+        height: rem(160);
+        transition: transform 220ms ease;
+    }
+
+    &:hover {
+        border-color: var(--clr-link);
+
+        .avatar__image {
+            transform: scale(1.04);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .avatar-card,
+    .avatar-card .avatar__image {
+        transition: none;
+    }
+
+    .avatar-card:hover .avatar__image {
+        transform: none;
+    }
+}
+
+.avatar-card__handle {
+    margin: rem(16) 0 rem(4);
+    font-size: rem(18);
+}
+
+.avatar-card__caption {
+    margin-bottom: 0;
+    font-size: rem(15);
+    color: var(--clr-text-muted);
 }

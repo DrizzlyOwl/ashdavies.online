@@ -1,57 +1,74 @@
+@use "./vars" as *;
+
 .skillbox {
-    background-color: var(--clr-papyrus);
+    background-color: var(--clr-surface-warm);
     text-align: center;
-    padding: 4vh 0;
+    padding: rem(48) $gutter;
 }
 
 .skillbox__wrap {
-    max-width: var(--content_width);
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $gutter;
 
-    @media only screen and (min-width: 740px) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+    @include bp($m) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include bp($l) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
 .skillbox__title {
     margin-top: 0;
+    margin-bottom: rem(24);
 }
 
 .skill {
+    background: var(--clr-surface-skill);
+    color: var(--clr-black);
+    border: rem(1) solid var(--clr-border-subtle);
+    border-radius: $radii;
+    padding: rem(24) $gutter;
     text-align: center;
-    flex: 1;
-    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 
-    @media only screen and (min-width: 740px) {
-        padding: 1vw;
-    }
+    &:hover {
+        transform: translateY(rem(-3));
+        border-color: var(--clr-link);
+        box-shadow: 0 rem(6) rem(18) rgba(0, 0, 0, 0.08);
 
-    @include bp($l) {
-        text-align: left;
+        .skill__icon img {
+            transform: scale(1.06);
+        }
     }
 }
 
 .skill__heading {
     margin-top: 0;
-
-    @include bp($l) {
-        margin-bottom: rem(8);
-    }
+    margin-bottom: rem(4);
+    font-size: rem(18);
+    font-weight: 700;
+    color: var(--clr-black);
 }
 
 .skill__icon {
     display: flex;
-    flex-wrap: wrap;
-    position: relative;
     align-items: center;
-    min-height: 100px;
-    margin-bottom: 1vh;
+    justify-content: center;
+    min-height: rem(88);
+    margin-bottom: rem(12);
 
     img {
         display: block;
         margin: 0 auto;
+        height: auto;
+        transition: transform 220ms ease;
     }
 
     &--azure img {
@@ -59,18 +76,35 @@
     }
 
     &--terraform img {
-        max-width: 200px;
+        max-width: 180px;
     }
 
     &--sys img {
-        max-width: 200px;
+        max-width: 180px;
     }
 
     &--docker img {
-        max-width: 100px;
+        max-width: 96px;
     }
 }
 
 .skill__text {
     margin-bottom: 0;
+    font-size: rem(14);
+    color: #4b5563;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill,
+    .skill__icon img {
+        transition: none;
+    }
+
+    .skill:hover {
+        transform: none;
+
+        .skill__icon img {
+            transform: none;
+        }
+    }
 }

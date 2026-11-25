@@ -1,5 +1,8 @@
+@use "./vars" as *;
+
 .site-header {
-  background-color: white;
+  background-color: var(--clr-bg);
+  border-bottom: rem(1) solid var(--clr-border-subtle);
   padding: rem(12) $gutter rem(8) $gutter;
 
   @include bp($l) {
@@ -19,19 +22,124 @@
   }
 
   a {
-    color: inherit
+    color: inherit;
   }
 
-  a:hover, a:focus {
-    color: white;
+  a:hover,
+  a:focus {
+    color: var(--clr-link-hover-fg);
   }
 }
 
-.site-header__wrapper {
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(10);
+  text-decoration: none;
+  font-weight: 700;
+  padding: rem(4) rem(6);
+  border-radius: rem(6);
+}
 
-  @include bp($l) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.site-header__mark {
+  border-radius: rem(6);
+  flex-shrink: 0;
+}
+
+.site-header__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: rem(8) $gutter;
+}
+
+.site-header__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(8) $gutter;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: rem(6);
+  width: auto;
+  min-height: rem(36);
+  padding: rem(5) rem(12);
+  font-size: rem(14);
+  font-weight: 600;
+  line-height: 1.2;
+  background: var(--clr-surface-button);
+  color: var(--clr-text);
+  border: rem(2) solid var(--clr-border);
+  border-radius: rem(999);
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+
+  &:hover {
+    background: var(--clr-link);
+    border-color: var(--clr-link);
+    color: var(--clr-link-hover-fg);
+
+    .theme-toggle__icon {
+      transform: rotate(-12deg) scale(1.08);
+    }
+  }
+
+  &:focus {
+    background: var(--clr-text);
+    border-color: var(--clr-text);
+    color: var(--clr-bg);
+  }
+
+  &:focus-visible {
+    outline: rem(3) solid var(--clr-focus);
+    outline-offset: rem(2);
+  }
+}
+
+.theme-toggle__icon {
+  display: inline-flex;
+  align-items: center;
+  width: rem(16);
+  height: rem(16);
+  transition: transform 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle__icon {
+    transition: none;
+  }
+
+  .theme-toggle:hover .theme-toggle__icon {
+    transform: none;
+  }
+}
+
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+:root[data-theme="dark"] {
+  .theme-toggle__icon--moon {
+    display: none;
+  }
+
+  .theme-toggle__icon--sun {
+    display: inline-flex;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    .theme-toggle__icon--moon {
+      display: none;
+    }
+
+    .theme-toggle__icon--sun {
+      display: inline-flex;
+    }
   }
 }

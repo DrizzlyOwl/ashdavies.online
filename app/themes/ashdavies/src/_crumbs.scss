@@ -1,5 +1,8 @@
+@use "./vars" as *;
+
 .crumbs {
-    background-color: var(--clr-grey);
+    background-color: var(--clr-surface);
+    border-top: rem(1) solid var(--clr-border-subtle);
     padding: 1em 0;
     font-size: 17px;
 }

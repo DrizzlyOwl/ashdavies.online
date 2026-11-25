@@ -1,15 +1,87 @@
+@use "./vars" as *;
+
+@keyframes masthead-orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes masthead-orbit-flat {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes masthead-halo {
+    from {
+        opacity: 0.78;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
 .masthead {
-    background: var(--clr-grey);
+    background: var(--clr-surface);
     position: relative;
     padding: 0 $gutter;
-    color: var(--clr-black);
+    color: var(--clr-text);
     overflow: hidden;
+    border-bottom: rem(1) solid var(--clr-border-subtle);
+
+    // Subtle architectural dot-grid backdrop
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--clr-link) 22%, transparent) 1.5px,
+            transparent 1.5px
+        );
+        background-size: rem(28) rem(28);
+        mask-image: radial-gradient(ellipse at 50% 45%, black 25%, transparent 78%);
+        -webkit-mask-image: radial-gradient(ellipse at 50% 45%, black 25%, transparent 78%);
+    }
+}
+
+.masthead--hero {
+    // Soft spotlight halo behind portrait & heading
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+            radial-gradient(
+                circle at 50% 34%,
+                color-mix(in srgb, var(--clr-link) 14%, transparent) 0%,
+                transparent 46%
+            ),
+            radial-gradient(
+                circle at 64% 62%,
+                color-mix(in srgb, var(--clr-peach) 16%, transparent) 0%,
+                transparent 42%
+            );
+        animation: masthead-halo 10s ease-in-out infinite alternate;
+    }
 }
 
 .masthead__inner {
     padding: rem(32) 0;
     max-width: var(--content_width);
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     position: relative;
     margin: 0 auto;
@@ -19,11 +91,7 @@
     align-items: center;
 
     @include bp($m) {
-        padding: rem(100);
-    }
-
-    @include bp($l) {
-        padding: rem(100);
+        padding: rem(80) 0;
     }
 
     .avatar-group {
@@ -31,21 +99,70 @@
     }
 }
 
-.masthead--slim .masthead__inner {
-    padding: rem(60) 0;
-    display: block;
+.masthead--slim {
+    &::before {
+        mask-image: radial-gradient(ellipse at 82% 45%, black 15%, transparent 72%);
+        -webkit-mask-image: radial-gradient(ellipse at 82% 45%, black 15%, transparent 72%);
+    }
+
+    .masthead__inner {
+        padding: rem(48) 0;
+        display: block;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: rem(-110);
+        right: rem(-110);
+        width: rem(280);
+        height: rem(280);
+        border-radius: 100%;
+        border: rem(24) solid color-mix(in srgb, var(--clr-link) 12%, transparent);
+        box-shadow: inset 0 0 0 rem(18) color-mix(in srgb, var(--clr-peach) 16%, transparent);
+        pointer-events: none;
+    }
+}
+
+.masthead--404 {
+    &::after {
+        top: rem(-96);
+        right: rem(-96);
+        width: rem(260);
+        height: rem(260);
+        border-width: rem(4);
+        border-style: dashed;
+        border-color: color-mix(in srgb, var(--clr-link) 32%, transparent);
+        box-shadow: inset 0 0 0 rem(28) color-mix(in srgb, var(--clr-peach) 14%, transparent);
+        animation: masthead-orbit-flat 48s linear infinite;
+    }
 }
 
 .masthead__copy {
-    font-weight: medium;
+    font-weight: 500;
     text-align: center;
+}
+
+.masthead__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(12);
+    margin-top: $gutter;
 }
 
 .masthead__heading {
     margin-top: $gutter;
 
     @include bp($m) {
-        font-size: rem(68);
+        font-size: rem(56);
+    }
+}
+
+.masthead--slim .masthead__heading {
+    @include bp($m) {
+        font-size: rem(44);
     }
 }
 
@@ -61,7 +178,7 @@
     }
 
     @include bp($l) {
-        font-size: rem(28);
+        font-size: rem(26);
     }
 }
 
@@ -71,23 +188,27 @@
 }
 
 .masthead__connect {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-size: rem(16);
     padding: rem(8) $gutter;
-    margin: $gutter 0 0 0;
-    background: var(--clr-grey);
+    margin: 0;
+    background: var(--clr-surface-button);
     border-radius: rem(8);
-    border: rem(2) solid var(--clr-black);
-    color: var(--clr-black);
+    border: rem(2) solid var(--clr-border);
+    color: var(--clr-text);
     font-weight: bold;
     text-decoration: none;
+    box-shadow: 0 rem(1) rem(3) rgba(0, 0, 0, 0.08);
+    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 
     &:hover, &:focus {
         text-decoration: none;
-        background: white;
-        border-color: var(--clr-blue);
-        color: var(--clr-black);
-        box-shadow: 0 rem(2) 0 0 var(--clr-blue);
+        transform: translateY(rem(-2));
+        background: var(--clr-bg);
+        border-color: var(--clr-link);
+        color: var(--clr-link);
+        box-shadow: 0 rem(3) 0 0 var(--clr-link);
     }
 
     &:focus-visible {
@@ -95,9 +216,12 @@
         outline-offset: rem(2);
     }
 
-    img {
+    img,
+    svg {
         width: rem(20);
-        margin-top: rem(-4);
+        height: rem(20);
+        flex-shrink: 0;
+        display: block;
     }
 
     span {
@@ -107,25 +231,36 @@
 
 .masthead__connect--steam {
     background: #171d25;
-    color: var(--clr-grey);
+    border-color: #364454;
+    color: #f6f8fa;
 
     &:hover, &:focus {
         text-decoration: none;
-        background: #171d25;
-        border-color: var(--clr-blue);
-        color: var(--clr-grey);
-        box-shadow: 0 rem(2) 0 0 var(--clr-blue);
+        transform: translateY(rem(-2));
+        background: #0f1419;
+        border-color: var(--clr-link);
+        color: #ffffff;
+        box-shadow: 0 rem(3) 0 0 var(--clr-link);
     }
 }
 
 .masthead__meta {
     display: flex;
-    margin-bottom: $gutter;
-    margin-left: -$gutter;
+    flex-wrap: wrap;
+    gap: rem(8) rem(20);
+    margin-top: $gutter;
+    font-size: rem(15);
+    color: var(--clr-text-muted);
 
     p {
-        padding-left: $gutter;
+        margin-bottom: 0;
+        font-size: inherit;
     }
+}
+
+.masthead__meta-label {
+    font-weight: 600;
+    color: var(--clr-text);
 }
 
 .masthead__tags {
@@ -138,35 +273,63 @@
 }
 
 .masthead__shim {
-    display: none;
-    width: 80vh;
-    height: 80vh;
-    background: white;
     position: absolute;
+    z-index: 1;
+    width: clamp(11rem, 36vw, 32rem);
+    height: clamp(11rem, 36vw, 32rem);
     border-radius: 100%;
-
-    &--top-left {
-        top: -33vh;
-        left: -33vh;
-    }
-    &--bottom-right {
-        bottom: -33vh;
-        right: -33vh;
-    }
-
-    @include bp($m) {
-        display: block;
-    }
+    pointer-events: none;
 
     &::before {
         content: "";
         position: absolute;
         top: 50%;
-        transform: translateX(-50%) translateY(-50%);
         left: 50%;
-        width: 60vh;
-        height: 60vh;
-        background: var(--clr-grey);
+        transform: translate(-50%, -50%);
+        width: 72%;
+        height: 72%;
         border-radius: 100%;
+    }
+
+    &--top-left {
+        top: clamp(-14rem, -16vw, -5.5rem);
+        left: clamp(-14rem, -16vw, -5.5rem);
+        background: color-mix(in srgb, var(--clr-blue) 12%, var(--clr-surface));
+        border: rem(1) solid color-mix(in srgb, var(--clr-link) 20%, transparent);
+
+        &::before {
+            background: var(--clr-surface);
+            border: rem(2) dashed color-mix(in srgb, var(--clr-link) 28%, transparent);
+            animation: masthead-orbit 60s linear infinite;
+        }
+    }
+
+    &--bottom-right {
+        bottom: clamp(-14rem, -16vw, -5.5rem);
+        right: clamp(-14rem, -16vw, -5.5rem);
+        background: color-mix(in srgb, var(--clr-peach) 20%, var(--clr-surface));
+        border: rem(1) solid color-mix(in srgb, var(--clr-peach) 34%, transparent);
+
+        &::before {
+            background: color-mix(in srgb, var(--clr-green) 12%, var(--clr-surface));
+            border: rem(2) solid color-mix(in srgb, var(--clr-green) 26%, transparent);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .masthead--hero::after,
+    .masthead--404::after,
+    .masthead__shim--top-left::before {
+        animation: none;
+    }
+
+    .masthead__connect {
+        transition: none;
+
+        &:hover,
+        &:focus {
+            transform: none;
+        }
     }
 }

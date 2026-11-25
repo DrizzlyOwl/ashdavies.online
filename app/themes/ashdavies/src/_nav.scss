@@ -1,3 +1,5 @@
+@use "./vars" as *;
+
 .nav {
   padding: 0;
   margin: 0;
@@ -14,7 +16,7 @@
 
 .nav .menu-item a {
   display: inline-block;
-  color: var(--clr-black);
+  color: var(--clr-text);
   text-decoration: none;
   position: relative;
   font-size: rem(16);
@@ -22,15 +24,16 @@
 
   &:hover {
     background: inherit;
+    color: var(--clr-link);
   }
 
   &:hover:after {
-    width: 100%;
+    transform: scaleX(1) skew(45deg);
   }
 
   &:focus {
-    background-color: var(--clr-black);
-    color: white;
+    background-color: var(--clr-text);
+    color: var(--clr-bg);
   }
 
   &:focus-visible {
@@ -40,16 +43,15 @@
 
   &:after {
     content: "";
-    will-change: width;
-    transition: width 200ms;
+    transition: transform 200ms ease;
+    transform-origin: left center;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
-    margin: 0 auto;
+    width: 100%;
     height: rem(1);
-    background: var(--clr-black);
-    transform: skew(45deg);
+    background: currentColor;
+    transform: scaleX(0) skew(45deg);
   }
 }
 
@@ -60,5 +62,5 @@
 }
 
 .nav .current_page_item a:after {
-  width: 100%;
+  transform: scaleX(1) skew(45deg);
 }

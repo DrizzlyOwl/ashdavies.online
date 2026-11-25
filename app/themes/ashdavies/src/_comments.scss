@@ -1,8 +1,11 @@
+@use "./vars" as *;
+
 .comment-respond {
   padding: $gutter;
-  margin-bottom: $gutter;
-  border-radius: rem(3);
-  background-color: var(--clr-papyrus);
+  margin-bottom: rem(32);
+  border-radius: $radii;
+  background-color: var(--clr-surface-warm);
+  border: rem(1) solid var(--clr-border-subtle);
 
   @include bp($l) {
     padding: rem(32);
@@ -10,7 +13,6 @@
 }
 
 .comment-form {
-  // form row
   p {
     margin-bottom: $gutter;
   }
@@ -62,7 +64,7 @@
 
 .vcard .avatar {
   border-radius: 100%;
-  border: rem(2) solid white;
+  border: rem(2) solid var(--clr-bg);
 }
 
 .comment-body {
@@ -79,8 +81,9 @@
 
 .comment-content {
   margin-top: rem(32);
-  background-color: var(--clr-grey);
+  background-color: var(--clr-surface);
   padding: rem(12);
+  border-radius: rem(6);
   position: relative;
 
   p:last-child {
@@ -96,7 +99,7 @@
     top: rem(-19);
     border-right: rem(20) solid transparent;
     border-bottom: rem(20) solid transparent;
-    border-left: rem(20) solid var(--clr-grey);
+    border-left: rem(20) solid var(--clr-surface);
     border-top: rem(20) solid transparent;
   }
 }

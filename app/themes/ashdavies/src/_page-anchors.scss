@@ -1,4 +1,10 @@
+@use "./vars" as *;
+
 .page-anchors {
+  @include bp($m) {
+    position: sticky;
+    top: rem(24);
+  }
 }
 
 .page-anchors__title {

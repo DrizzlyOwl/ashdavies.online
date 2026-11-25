@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#175073"/>
+  <!-- Owl body -->
+  <ellipse cx="32" cy="39" rx="17" ry="16" fill="#2e6e62"/>
+  <ellipse cx="32" cy="42" rx="11" ry="11" fill="#f1edd9"/>
+  <!-- Owl head & ear tufts -->
+  <path d="M16 24 L21 13 L28 19 Q32 18 36 19 L43 13 L48 24 Q49 34 32 34 Q15 34 16 24 Z" fill="#1d2327"/>
+  <!-- Eye disks -->
+  <circle cx="25" cy="25" r="6.5" fill="#f1edd9"/>
+  <circle cx="39" cy="25" r="6.5" fill="#f1edd9"/>
+  <!-- Pupils -->
+  <circle cx="25.5" cy="25" r="3" fill="#1d2327"/>
+  <circle cx="38.5" cy="25" r="3" fill="#1d2327"/>
+  <circle cx="26.5" cy="23.8" r="1" fill="#ffffff"/>
+  <circle cx="39.5" cy="23.8" r="1" fill="#ffffff"/>
+  <!-- Beak -->
+  <polygon points="29,28 35,28 32,33" fill="#f2c063"/>
+  <!-- Raindrop accents -->
+  <path d="M11 16 C11 16 14 20 14 22 A3 3 0 0 1 8 22 C8 20 11 16 11 16 Z" fill="#7cc4f5"/>
+  <path d="M53 12 C53 12 55.5 15.5 55.5 17 A2.5 2.5 0 0 1 50.5 17 C50.5 15.5 53 12 53 12 Z" fill="#7cc4f5"/>
+</svg>
