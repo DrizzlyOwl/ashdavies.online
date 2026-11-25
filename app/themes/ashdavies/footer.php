@@ -2,13 +2,11 @@
 
 namespace Ash;
 
-$recent_posts = wp_get_recent_posts([
-    'post_status' => 'publish',
-    'numberposts' => 15,
-], OBJECT);
-$categories = get_terms(['taxonomy' => 'category']);
-$tags = get_terms(['taxonomy' => 'post_tag', 'number' => 10]);
-$pages = get_pages(['number' => 10]);
+$footer_nav = get_footer_nav_data();
+$categories = $footer_nav['categories'];
+$tags = $footer_nav['tags'];
+$recent_posts = $footer_nav['posts'];
+$pages = $footer_nav['pages'];
 $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
 ?>
 </div>
@@ -20,17 +18,12 @@ $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
             <div class="footer__nav footer__nav--cats">
                 <nav aria-labelledby="footer-categories-heading">
                     <h2 id="footer-categories-heading" class="footer__heading"><?php esc_html_e('Categories', 'ashdavies'); ?></h2>
-                    <?php if (!is_wp_error($categories) && !empty($categories)) : ?>
+                    <?php if (!empty($categories)) : ?>
                         <ul class="footer__list">
-                            <?php foreach ($categories as $term) :
-                                $term_link = get_term_link($term);
-                                if (is_wp_error($term_link)) {
-                                    continue;
-                                }
-                            ?>
+                            <?php foreach ($categories as $term) : ?>
                                 <li class="footer__list-item">
-                                    <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term_link)); ?>">
-                                        <?php echo esc_html($term->name); ?>
+                                    <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term['url'])); ?>">
+                                        <?php echo esc_html($term['name']); ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
@@ -39,17 +32,12 @@ $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
                 </nav>
                 <nav aria-labelledby="footer-tags-heading">
                     <h2 id="footer-tags-heading" class="footer__heading"><?php esc_html_e('Popular Tags', 'ashdavies'); ?></h2>
-                    <?php if (!is_wp_error($tags) && !empty($tags)) : ?>
+                    <?php if (!empty($tags)) : ?>
                         <ul class="footer__list">
-                            <?php foreach ($tags as $term) :
-                                $term_link = get_term_link($term);
-                                if (is_wp_error($term_link)) {
-                                    continue;
-                                }
-                            ?>
+                            <?php foreach ($tags as $term) : ?>
                                 <li class="footer__list-item">
-                                    <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term_link)); ?>">
-                                        <?php echo esc_html($term->name); ?>
+                                    <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term['url'])); ?>">
+                                        <?php echo esc_html($term['name']); ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
@@ -63,8 +51,8 @@ $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
                     <ul class="footer__list">
                     <?php foreach ($recent_posts as $recent_post) : ?>
                         <li class="footer__list-item">
-                            <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', get_permalink($recent_post))); ?>">
-                                <?php echo esc_html(get_the_title($recent_post)); ?>
+                            <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $recent_post['url'])); ?>">
+                                <?php echo esc_html($recent_post['title']); ?>
                             </a>
                         </li>
                     <?php endforeach; ?>
@@ -77,8 +65,8 @@ $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
                     <ul class="footer__list">
                     <?php foreach ($pages as $page_item) : ?>
                         <li class="footer__list-item">
-                            <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', get_permalink($page_item))); ?>">
-                                <?php echo esc_html(get_the_title($page_item)); ?>
+                            <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $page_item['url'])); ?>">
+                                <?php echo esc_html($page_item['title']); ?>
                             </a>
                         </li>
                     <?php endforeach; ?>
