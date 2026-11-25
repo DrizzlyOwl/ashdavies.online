@@ -77,14 +77,13 @@ jobs:
           ignore-unfixed: true
           severity: CRITICAL,HIGH
 
-      - name: Push image with SBOM and provenance
+      - name: Push image
         id: build
         if: github.event_name != 'pull_request'
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
-          provenance: mode=max
-          sbom: true
+          provenance: false
           tags: |
             ghcr.io/drizzlyowl/ashdavies.online:latest
             ${{ steps.meta.outputs.tags }}
