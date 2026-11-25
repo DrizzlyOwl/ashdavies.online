@@ -193,21 +193,22 @@
     font-size: rem(16);
     padding: rem(8) $gutter;
     margin: 0;
-    background: var(--clr-surface-card);
+    background: var(--clr-surface-button);
     border-radius: rem(8);
     border: rem(2) solid var(--clr-border);
     color: var(--clr-text);
     font-weight: bold;
     text-decoration: none;
-    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    box-shadow: 0 rem(1) rem(3) rgba(0, 0, 0, 0.08);
+    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 
     &:hover, &:focus {
         text-decoration: none;
         transform: translateY(rem(-2));
         background: var(--clr-bg);
         border-color: var(--clr-link);
-        color: var(--clr-text);
-        box-shadow: 0 rem(2) 0 0 var(--clr-link);
+        color: var(--clr-link);
+        box-shadow: 0 rem(3) 0 0 var(--clr-link);
     }
 
     &:focus-visible {
@@ -215,10 +216,12 @@
         outline-offset: rem(2);
     }
 
-    img {
+    img,
+    svg {
         width: rem(20);
         height: rem(20);
         flex-shrink: 0;
+        display: block;
     }
 
     span {
@@ -228,16 +231,16 @@
 
 .masthead__connect--steam {
     background: #171d25;
-    border-color: #171d25;
+    border-color: #364454;
     color: #f6f8fa;
 
     &:hover, &:focus {
         text-decoration: none;
         transform: translateY(rem(-2));
-        background: #171d25;
+        background: #0f1419;
         border-color: var(--clr-link);
-        color: #f6f8fa;
-        box-shadow: 0 rem(2) 0 0 var(--clr-link);
+        color: #ffffff;
+        box-shadow: 0 rem(3) 0 0 var(--clr-link);
     }
 }
 
