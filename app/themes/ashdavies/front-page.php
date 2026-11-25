@@ -25,7 +25,7 @@ $latest_posts = new WP_Query([
 ]);
 ?>
 <main id="contentarea" tabindex="-1">
-    <div class="masthead">
+    <div class="masthead masthead--hero">
         <header class="masthead__inner">
             <div class="avatar">
                 <div class="avatar__wrap">
@@ -78,8 +78,8 @@ $latest_posts = new WP_Query([
                 </div>
             </div>
         </header>
-        <div class="masthead__shim masthead__shim--circle masthead__shim--top-left"></div>
-        <div class="masthead__shim masthead__shim--circle masthead__shim--bottom-right"></div>
+        <div class="masthead__shim masthead__shim--circle masthead__shim--top-left" aria-hidden="true"></div>
+        <div class="masthead__shim masthead__shim--circle masthead__shim--bottom-right" aria-hidden="true"></div>
     </div>
     <section class="skillbox" aria-labelledby="coreskills">
         <div class="wrapper">

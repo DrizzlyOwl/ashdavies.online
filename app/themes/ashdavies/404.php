@@ -9,7 +9,7 @@ namespace Ash;
 get_header();
 ?>
 <main id="contentarea" tabindex="-1">
-    <div class="masthead masthead--slim">
+    <div class="masthead masthead--slim masthead--404">
         <header class="masthead__inner">
             <p class="masthead__back">
                 <?php if (function_exists('yoast_breadcrumb')) : ?>

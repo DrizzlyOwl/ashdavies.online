@@ -6,12 +6,52 @@
     padding: 0 $gutter;
     color: var(--clr-text);
     overflow: hidden;
+    border-bottom: rem(1) solid var(--clr-border-subtle);
+
+    // Subtle architectural dot-grid backdrop
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--clr-link) 22%, transparent) 1.5px,
+            transparent 1.5px
+        );
+        background-size: rem(28) rem(28);
+        mask-image: radial-gradient(ellipse at 50% 45%, black 25%, transparent 78%);
+        -webkit-mask-image: radial-gradient(ellipse at 50% 45%, black 25%, transparent 78%);
+    }
+}
+
+.masthead--hero {
+    // Soft spotlight halo behind portrait & heading
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+            radial-gradient(
+                circle at 50% 34%,
+                color-mix(in srgb, var(--clr-link) 14%, transparent) 0%,
+                transparent 46%
+            ),
+            radial-gradient(
+                circle at 64% 62%,
+                color-mix(in srgb, var(--clr-peach) 16%, transparent) 0%,
+                transparent 42%
+            );
+    }
 }
 
 .masthead__inner {
     padding: rem(32) 0;
     max-width: var(--content_width);
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     position: relative;
     margin: 0 auto;
@@ -30,7 +70,10 @@
 }
 
 .masthead--slim {
-    border-bottom: rem(1) solid var(--clr-border-subtle);
+    &::before {
+        mask-image: radial-gradient(ellipse at 82% 45%, black 15%, transparent 72%);
+        -webkit-mask-image: radial-gradient(ellipse at 82% 45%, black 15%, transparent 72%);
+    }
 
     .masthead__inner {
         padding: rem(48) 0;
@@ -40,14 +83,28 @@
     &::after {
         content: "";
         position: absolute;
-        top: rem(-120);
-        right: rem(-120);
+        z-index: 0;
+        top: rem(-110);
+        right: rem(-110);
         width: rem(280);
         height: rem(280);
         border-radius: 100%;
-        border: rem(28) solid var(--clr-bg);
-        opacity: 0.7;
+        border: rem(24) solid color-mix(in srgb, var(--clr-link) 12%, transparent);
+        box-shadow: inset 0 0 0 rem(18) color-mix(in srgb, var(--clr-peach) 16%, transparent);
         pointer-events: none;
+    }
+}
+
+.masthead--404 {
+    &::after {
+        top: rem(-96);
+        right: rem(-96);
+        width: rem(260);
+        height: rem(260);
+        border-width: rem(4);
+        border-style: dashed;
+        border-color: color-mix(in srgb, var(--clr-link) 32%, transparent);
+        box-shadow: inset 0 0 0 rem(28) color-mix(in srgb, var(--clr-peach) 14%, transparent);
     }
 }
 
@@ -179,36 +236,45 @@
 }
 
 .masthead__shim {
-    display: none;
-    width: clamp(16rem, 42vw, 34rem);
-    height: clamp(16rem, 42vw, 34rem);
-    background: var(--clr-bg);
     position: absolute;
+    z-index: 1;
+    width: clamp(11rem, 36vw, 32rem);
+    height: clamp(11rem, 36vw, 32rem);
     border-radius: 100%;
     pointer-events: none;
-
-    &--top-left {
-        top: clamp(-14rem, -18vw, -7rem);
-        left: clamp(-14rem, -18vw, -7rem);
-    }
-    &--bottom-right {
-        bottom: clamp(-14rem, -18vw, -7rem);
-        right: clamp(-14rem, -18vw, -7rem);
-    }
-
-    @include bp($m) {
-        display: block;
-    }
 
     &::before {
         content: "";
         position: absolute;
         top: 50%;
-        transform: translate(-50%, -50%);
         left: 50%;
-        width: 75%;
-        height: 75%;
-        background: var(--clr-surface);
+        transform: translate(-50%, -50%);
+        width: 72%;
+        height: 72%;
         border-radius: 100%;
+    }
+
+    &--top-left {
+        top: clamp(-14rem, -16vw, -5.5rem);
+        left: clamp(-14rem, -16vw, -5.5rem);
+        background: color-mix(in srgb, var(--clr-blue) 12%, var(--clr-surface));
+        border: rem(1) solid color-mix(in srgb, var(--clr-link) 20%, transparent);
+
+        &::before {
+            background: var(--clr-surface);
+            border: rem(2) dashed color-mix(in srgb, var(--clr-link) 28%, transparent);
+        }
+    }
+
+    &--bottom-right {
+        bottom: clamp(-14rem, -16vw, -5.5rem);
+        right: clamp(-14rem, -16vw, -5.5rem);
+        background: color-mix(in srgb, var(--clr-peach) 20%, var(--clr-surface));
+        border: rem(1) solid color-mix(in srgb, var(--clr-peach) 34%, transparent);
+
+        &::before {
+            background: color-mix(in srgb, var(--clr-green) 12%, var(--clr-surface));
+            border: rem(2) solid color-mix(in srgb, var(--clr-green) 26%, transparent);
+        }
     }
 }
