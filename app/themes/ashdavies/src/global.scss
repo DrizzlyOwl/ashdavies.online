@@ -4,17 +4,36 @@ Theme URI:          http://github.com/drizzlyowl/ashdavies.online
 Author:             Ash Davies
 Author URI:         https://ashdavies.online/
 Description:        A simple but compliant theme for my personal site
-Version:            1.3.0
-Requires at least:  5.0
-Tested up to:       6.0.1
-Requires PHP:       8.0
-Stable tag:         1.3.0
+Version:            1.4.0
+Requires at least:  6.0
+Tested up to:       7.1
+Requires PHP:       8.2
+Stable tag:         1.4.0
 Text domain:        ashdavies
 License:            GPLv2 or later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 */
-@import "./tools";
-@import "./vars";
+@use "./vars" as *;
+@use "./accessibility";
+@use "./wrapper";
+@use "./typography";
+@use "./header";
+@use "./nav";
+@use "./content-sidebar-group";
+@use "./contentarea";
+@use "./cards";
+@use "./notice";
+@use "./crumbs";
+@use "./forms";
+@use "./page-anchors";
+@use "./comments";
+@use "./sidebar";
+@use "./masthead";
+@use "./avatar";
+@use "./skillbox";
+@use "./tables";
+@use "./tag-cloud";
+@use "./footer";
 
 * {
   box-sizing: border-box;
@@ -54,7 +73,7 @@ img {
 
   @media only screen and (min-width: 740px) {
     display: flex;
-    margin-left: -$gutter;
+    margin-left: (-$gutter);
     flex-wrap: wrap;
     justify-content: space-between;
 
@@ -69,24 +88,3 @@ img {
     }
   }
 }
-
-@import "./accessibility";
-@import "./wrapper";
-@import "./typography";
-@import "./header";
-@import "./nav";
-@import "./content-sidebar-group";
-@import "./contentarea";
-@import "./cards";
-@import "./notice";
-@import "./crumbs";
-@import "./forms";
-@import "./page-anchors";
-@import "./comments";
-@import "./sidebar";
-@import "./masthead";
-@import "./avatar";
-@import "./skillbox";
-@import "./tables";
-@import "./tag-cloud";
-@import "./footer";

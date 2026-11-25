@@ -1,3 +1,5 @@
+@use "./vars" as *;
+
 .masthead {
     background: var(--clr-grey);
     position: relative;

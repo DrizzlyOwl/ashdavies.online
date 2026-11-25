@@ -1,3 +1,5 @@
+@use "./vars" as *;
+
 $default-clr-primary: var(--clr-green);
 $default-clr-accent: white;
 

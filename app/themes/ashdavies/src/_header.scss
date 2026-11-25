@@ -1,3 +1,5 @@
+@use "./vars" as *;
+
 .site-header {
   background-color: white;
   padding: rem(12) $gutter rem(8) $gutter;

@@ -1,3 +1,5 @@
+@use "./vars" as *;
+
 .contentarea {
     padding: rem(80) $gutter;
     margin: 0 auto;

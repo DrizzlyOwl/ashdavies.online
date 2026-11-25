@@ -1,4 +1,4 @@
-@use "sass:math";
+@use "./vars" as *;
 
 $tag-arrow-size: rem(8);
 
@@ -55,6 +55,6 @@ $tag-arrow-size: rem(8);
 
   &:hover:before,
   &:focus:before {
-    border-color: transparent transparent transparent $anchor-color-focus-bg;
+    border-color: transparent transparent transparent var(--clr-blue);
   }
 }

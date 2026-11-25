@@ -1,4 +1,4 @@
-@use "sass:math";
+@use "./vars" as *;
 
 $anchor-color: var(--clr-blue);
 $anchor-color-focus-bg: var(--clr-blue);
