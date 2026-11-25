@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "sass --no-source-map --style=compressed ./src/global.scss:./style.css",
-    "watch": "sass --no-source-map --watch ./src/global.scss:./style.css"
+    "build": "sass --no-source-map --style=compressed ./src/global.scss:./style.css ./src/editor.scss:./editor.css",
+    "watch": "sass --no-source-map --watch ./src/global.scss:./style.css ./src/editor.scss:./editor.css"
   },
   "devDependencies": {
     "sass": "^1.97.2"

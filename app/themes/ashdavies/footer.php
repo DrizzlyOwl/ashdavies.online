@@ -75,7 +75,7 @@ $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
             </nav>
         </div>
         <p class="footer__sign">
-            &copy; <?php esc_html_e('Ash Davies', 'ashdavies'); ?>
+            &copy; <?php echo esc_html(gmdate('Y')); ?> <?php esc_html_e('Ash Davies', 'ashdavies'); ?>
             &bull; <a href="<?php echo esc_url($privacy_url); ?>"><?php esc_html_e('Privacy', 'ashdavies'); ?></a>
         </p>
     </div>

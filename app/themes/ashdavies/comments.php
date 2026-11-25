@@ -10,8 +10,6 @@ namespace Ash;
 if (post_password_required()) {
     return;
 }
-
-$cc = get_comments_number();
 ?>
 
 <div id="comments" class="comments-area default-max-width <?php echo get_option( 'show_avatars' ) ? 'show-avatars' : ''; ?>">

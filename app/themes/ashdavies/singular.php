@@ -12,7 +12,7 @@ $pid = (int) get_the_ID();
 $is_post = is_singular('post');
 $is_post_old = $is_post && is_post_older_than('1 year');
 $post_date = get_post_datetime();
-$reading_time = (int) get_post_meta($pid, '_estimated-reading-time-minutes', true);
+$reading_time = get_reading_time($pid);
 ?>
 <main id="contentarea" tabindex="-1">
     <div class="masthead masthead--slim">

@@ -30,8 +30,11 @@ add_action('after_setup_theme', function () {
         'script',
     ]);
     add_theme_support('post-thumbnails');
+    add_theme_support('editor-styles');
     add_theme_support('disable-custom-font-sizes');
     add_theme_support('yoast-seo-breadcrumbs');
+
+    add_editor_style('editor.css');
 
     register_nav_menu('primary', __('Primary Menu', 'ashdavies'));
 });
@@ -88,6 +91,9 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('@ash/main');
     wp_enqueue_script('@ash/theme-toggle');
     wp_enqueue_script('@ash/reveal');
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
     wp_dequeue_style('global-styles');
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
@@ -371,4 +377,32 @@ function is_post_older_than(string $range): bool
     $cutoff = date_create_immutable('now')->sub($interval);
 
     return $cutoff->format('Ymd') >= $last_updated->format('Ymd');
+}
+
+/**
+ * Return estimated reading time in minutes, falling back to word count (~200 wpm)
+ * when the `_estimated-reading-time-minutes` meta key is absent.
+ */
+function get_reading_time(int $post_id = 0): int
+{
+    if ($post_id === 0) {
+        $post_id = (int) get_the_ID();
+    }
+
+    if ($post_id <= 0) {
+        return 0;
+    }
+
+    $meta = (int) get_post_meta($post_id, '_estimated-reading-time-minutes', true);
+    if ($meta > 0) {
+        return $meta;
+    }
+
+    $post = get_post($post_id);
+    if (!$post || empty($post->post_content)) {
+        return 0;
+    }
+
+    $words = str_word_count(wp_strip_all_tags($post->post_content));
+    return $words > 0 ? max(1, (int) ceil($words / 200)) : 0;
 }

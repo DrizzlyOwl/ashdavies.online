@@ -20,7 +20,7 @@ RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY --link app/themes/ashdavies/ ./
 RUN npm run build \
  && mkdir -p /theme-out \
- && cp -a ./*.php ./template-parts ./style.css ./theme.json ./readme.txt ./screenshot.png ./LICENSE.md ./dist /theme-out/
+ && cp -a ./*.php ./*.css ./template-parts ./theme.json ./readme.txt ./screenshot.png ./LICENSE.md ./dist /theme-out/
 
 # Production runtime image
 FROM wordpress:7.1.5-apache@sha256:9b46af6a41fd0dcb2e5cf85033a6350d05010356847ede1cfcac5cf94292eb26 AS final
