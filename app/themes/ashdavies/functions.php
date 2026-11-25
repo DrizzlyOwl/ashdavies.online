@@ -61,6 +61,14 @@ add_action('init', function () {
         filemtime(get_template_directory() . '/dist/theme-toggle.js'),
         ['in_footer' => true, 'strategy' => 'defer']
     );
+
+    wp_register_script(
+        '@ash/reveal',
+        get_theme_dir() . '/dist/reveal.js',
+        [],
+        filemtime(get_template_directory() . '/dist/reveal.js'),
+        ['in_footer' => true, 'strategy' => 'defer']
+    );
 });
 
 function theme_dir()
@@ -79,6 +87,7 @@ function get_theme_dir()
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('@ash/main');
     wp_enqueue_script('@ash/theme-toggle');
+    wp_enqueue_script('@ash/reveal');
     wp_dequeue_style('global-styles');
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');

@@ -24,11 +24,15 @@
 
     button.addEventListener('click', function () {
         var next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
+        root.classList.add('theme-transitioning');
         root.setAttribute('data-theme', next);
         try {
             localStorage.setItem('ash-theme', next);
         } catch (e) {}
         syncButton();
+        window.setTimeout(function () {
+            root.classList.remove('theme-transitioning');
+        }, 240);
     });
 
     if (typeof mediaQuery.addEventListener === 'function') {

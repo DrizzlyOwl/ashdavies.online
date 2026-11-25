@@ -38,15 +38,24 @@
     transform: translateY(rem(-2));
     border-color: var(--clr-link);
     box-shadow: 0 rem(6) rem(18) rgba(0, 0, 0, 0.08);
+
+    .card__image {
+      transform: scale(1.03);
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card__inner {
+  .card__inner,
+  .card__image {
     transition: none;
 
     &:hover {
       transform: none;
+
+      .card__image {
+        transform: none;
+      }
     }
   }
 }
@@ -72,6 +81,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 260ms ease;
 }
 
 .card__body {

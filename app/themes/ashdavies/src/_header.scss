@@ -75,11 +75,16 @@
   color: var(--clr-text);
   border: rem(2) solid var(--clr-border);
   border-radius: rem(999);
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 
   &:hover {
     background: var(--clr-link);
     border-color: var(--clr-link);
     color: var(--clr-link-hover-fg);
+
+    .theme-toggle__icon {
+      transform: rotate(-12deg) scale(1.08);
+    }
   }
 
   &:focus {
@@ -99,6 +104,18 @@
   align-items: center;
   width: rem(16);
   height: rem(16);
+  transition: transform 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle__icon {
+    transition: none;
+  }
+
+  .theme-toggle:hover .theme-toggle__icon {
+    transform: none;
+  }
 }
 
 .theme-toggle__icon--sun {
