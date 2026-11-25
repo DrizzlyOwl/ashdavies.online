@@ -26,7 +26,8 @@ get_header();
             <h2><?php esc_html_e('Page not found', 'ashdavies'); ?></h2>
             <p><?php esc_html_e("The page you're looking for doesn't exist anymore.", 'ashdavies'); ?></p>
             <p><?php esc_html_e("I might have moved it or worse, if it wasn't very accurate, I might have decided to bin it.", 'ashdavies'); ?></p>
-            <p><?php esc_html_e('You might find something similar in the following links:', 'ashdavies'); ?></p>
+            <p><?php esc_html_e('You might find something similar by searching or checking the links below:', 'ashdavies'); ?></p>
+            <?php get_search_form(); ?>
             <nav aria-label="<?php esc_attr_e('Site directory', 'ashdavies'); ?>">
                 <h3><?php esc_html_e('Categories', 'ashdavies'); ?></h3>
                 <ul><?php wp_list_categories(['title_li' => '']); ?></ul>
