@@ -53,6 +53,14 @@ add_action('init', function () {
         filemtime(get_template_directory() . '/style.css'),
         'all'
     );
+
+    wp_register_script(
+        '@ash/theme-toggle',
+        get_theme_dir() . '/dist/theme-toggle.js',
+        [],
+        filemtime(get_template_directory() . '/dist/theme-toggle.js'),
+        ['in_footer' => true, 'strategy' => 'defer']
+    );
 });
 
 function theme_dir()
@@ -70,6 +78,7 @@ function get_theme_dir()
  */
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('@ash/main');
+    wp_enqueue_script('@ash/theme-toggle');
     wp_dequeue_style('global-styles');
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
