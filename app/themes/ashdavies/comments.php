@@ -17,7 +17,7 @@ $cc = get_comments_number();
 <div id="comments" class="comments-area default-max-width <?php echo get_option( 'show_avatars' ) ? 'show-avatars' : ''; ?>">
     <?php if (have_comments()) : ?>
         <h2 class="comments-title">
-            <?php _e("Comments", 'ashdavies'); ?>
+            <?php esc_html_e('Comments', 'ashdavies'); ?>
         </h2><!-- .comments-title -->
 
         <ol class="comment-list">
@@ -55,9 +55,9 @@ $cc = get_comments_number();
     <?php
     comment_form(
         array(
-            'title_reply'        => '',
-            'title_reply_before' => '',
-            'title_reply_after'  => '',
+            'title_reply'        => esc_html__('Leave a Reply', 'ashdavies'),
+            'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
+            'title_reply_after'  => '</h2>',
         )
     );
     ?>

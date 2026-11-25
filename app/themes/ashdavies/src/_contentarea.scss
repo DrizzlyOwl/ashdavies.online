@@ -2,6 +2,7 @@
     padding: rem(80) $gutter;
     margin: 0 auto;
     display: block;
+    overflow-wrap: break-word;
 
     p + h2,
     p + h3 {

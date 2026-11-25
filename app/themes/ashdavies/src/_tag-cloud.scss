@@ -21,9 +21,9 @@ $tag-arrow-size: rem(8);
 
 .tag-cloud-link {
   display: block;
-  line-height: 1.2;
-  padding: rem(4) rem(12) rem(4) rem(8);
-  margin: 0 rem(12) rem(4) 0;
+  line-height: rem(16);
+  padding: rem(5) rem(12) rem(5) rem(8);
+  margin: 0 rem(14) rem(6) 0;
   background-color: var(--clr-papyrus);
   border-radius: rem(2) 0 0 rem(2);
   font-size: rem(14);
@@ -36,10 +36,10 @@ $tag-arrow-size: rem(8);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: rem(-24);
+    right: rem(-26);
     width: 0;
     height: 0;
-    border-width: rem(12);
+    border-width: rem(13);
     border-style: solid;
     border-color: transparent transparent transparent var(--clr-papyrus);
   }
@@ -53,7 +53,8 @@ $tag-arrow-size: rem(8);
     color: inherit;
   }
 
-  &:hover:before {
+  &:hover:before,
+  &:focus:before {
     border-color: transparent transparent transparent $anchor-color-focus-bg;
   }
 }
