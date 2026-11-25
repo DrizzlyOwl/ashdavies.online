@@ -43,7 +43,7 @@ resource "aws_lightsail_container_service_deployment_version" "container" {
 
     content {
       container_name = "${local.prefix}redis"
-      image          = "redis:latest"
+      image          = "redis:8.12.0-alpine@sha256:5af80107c1eeecb484a2269b80a26d12bfa6521787da4663bd9f19f60a163483"
 
       command = []
 

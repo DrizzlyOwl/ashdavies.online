@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
 
       - name: Check for terraform version mismatch
         run: |
@@ -27,29 +27,29 @@ jobs:
         run: rm ./terraform/aws/backend.tf
 
       - name: Run a Terraform init
-        uses: docker://hashicorp/terraform:1.9.0
+        uses: docker://hashicorp/terraform:1.9.0@sha256:03a02bdccc125ccb519f360710be1aaf1264181329b4b0484822fcc23329302a
         with:
           entrypoint: terraform
           args: -chdir=terraform/aws init
 
       - name: Run a Terraform validate
-        uses: docker://hashicorp/terraform:1.9.0
+        uses: docker://hashicorp/terraform:1.9.0@sha256:03a02bdccc125ccb519f360710be1aaf1264181329b4b0484822fcc23329302a
         with:
           entrypoint: terraform
           args: -chdir=terraform/aws validate
 
       - name: Run a Terraform format check
-        uses: docker://hashicorp/terraform:1.9.0
+        uses: docker://hashicorp/terraform:1.9.0@sha256:03a02bdccc125ccb519f360710be1aaf1264181329b4b0484822fcc23329302a
         with:
           entrypoint: terraform
           args: -chdir=terraform/aws fmt -check=true -diff=true
 
       - name: Run a tfsec check
-        uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+        uses: aquasecurity/tfsec-pr-commenter-action@7a44c5dcde5dfab737363e391800629e27b6376b # v1.3.1
         with:
           github_token: ${{ github.token }}
 
-      - uses: terraform-linters/setup-tflint@v6
+      - uses: terraform-linters/setup-tflint@6ffdbaa3be476b3431f7275c26966ef32ff60337 # v6.3.2
         with:
           tflint_version: v0.46.0
 
