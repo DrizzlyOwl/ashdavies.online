@@ -1,5 +1,43 @@
 @use "./vars" as *;
 
+@keyframes masthead-orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes masthead-orbit-flat {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes masthead-float {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+        transform: translate3d(0, rem(-12), 0) scale(1.03);
+    }
+}
+
+@keyframes masthead-halo {
+    from {
+        opacity: 0.78;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
 .masthead {
     background: var(--clr-surface);
     position: relative;
@@ -45,6 +83,7 @@
                 color-mix(in srgb, var(--clr-peach) 16%, transparent) 0%,
                 transparent 42%
             );
+        animation: masthead-halo 10s ease-in-out infinite alternate;
     }
 }
 
@@ -92,6 +131,7 @@
         border: rem(24) solid color-mix(in srgb, var(--clr-link) 12%, transparent);
         box-shadow: inset 0 0 0 rem(18) color-mix(in srgb, var(--clr-peach) 16%, transparent);
         pointer-events: none;
+        animation: masthead-float 16s ease-in-out infinite alternate;
     }
 }
 
@@ -105,6 +145,7 @@
         border-style: dashed;
         border-color: color-mix(in srgb, var(--clr-link) 32%, transparent);
         box-shadow: inset 0 0 0 rem(28) color-mix(in srgb, var(--clr-peach) 14%, transparent);
+        animation: masthead-orbit-flat 48s linear infinite;
     }
 }
 
@@ -168,9 +209,11 @@
     color: var(--clr-text);
     font-weight: bold;
     text-decoration: none;
+    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 
     &:hover, &:focus {
         text-decoration: none;
+        transform: translateY(rem(-2));
         background: var(--clr-bg);
         border-color: var(--clr-link);
         color: var(--clr-text);
@@ -200,6 +243,7 @@
 
     &:hover, &:focus {
         text-decoration: none;
+        transform: translateY(rem(-2));
         background: #171d25;
         border-color: var(--clr-link);
         color: #f6f8fa;
@@ -242,6 +286,7 @@
     height: clamp(11rem, 36vw, 32rem);
     border-radius: 100%;
     pointer-events: none;
+    animation: masthead-float 14s ease-in-out infinite alternate;
 
     &::before {
         content: "";
@@ -263,18 +308,39 @@
         &::before {
             background: var(--clr-surface);
             border: rem(2) dashed color-mix(in srgb, var(--clr-link) 28%, transparent);
+            animation: masthead-orbit 60s linear infinite;
         }
     }
 
     &--bottom-right {
         bottom: clamp(-14rem, -16vw, -5.5rem);
         right: clamp(-14rem, -16vw, -5.5rem);
+        animation-delay: -7s;
         background: color-mix(in srgb, var(--clr-peach) 20%, var(--clr-surface));
         border: rem(1) solid color-mix(in srgb, var(--clr-peach) 34%, transparent);
 
         &::before {
             background: color-mix(in srgb, var(--clr-green) 12%, var(--clr-surface));
             border: rem(2) solid color-mix(in srgb, var(--clr-green) 26%, transparent);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .masthead--hero::after,
+    .masthead--slim::after,
+    .masthead--404::after,
+    .masthead__shim,
+    .masthead__shim--top-left::before {
+        animation: none;
+    }
+
+    .masthead__connect {
+        transition: none;
+
+        &:hover,
+        &:focus {
+            transform: none;
         }
     }
 }
