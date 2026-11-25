@@ -1,0 +1,57 @@
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .site-header__controls,
+  .theme-toggle,
+  .skiplink,
+  .footer,
+  .crumbs,
+  .comment-respond,
+  .code-copy-btn,
+  .page-anchors,
+  .masthead__actions,
+  .masthead__shim,
+  .masthead::before,
+  .masthead::after,
+  .masthead--slim::after {
+    display: none !important;
+  }
+
+  .masthead,
+  .site-header {
+    border-bottom: 1px solid #cccccc;
+  }
+
+  .content-sidebar-group {
+    display: block;
+  }
+
+  .content-sidebar-group__sidebar {
+    border-left: 0;
+    padding-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .contentarea a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+  }
+
+  pre,
+  blockquote,
+  figure {
+    break-inside: avoid;
+  }
+
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+}

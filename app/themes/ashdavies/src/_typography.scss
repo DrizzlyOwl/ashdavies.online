@@ -165,6 +165,50 @@ hr {
     border-bottom-right-radius: 0.2rem;
     border-bottom-left-radius: 0;
   }
+
+  &.has-copy-btn {
+    padding-right: rem(84);
+  }
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: rem(6);
+  right: rem(6);
+  width: auto;
+  min-height: rem(28);
+  padding: rem(3) rem(10);
+  font-size: rem(12);
+  font-weight: 600;
+  line-height: 1.2;
+  background: #2c3744;
+  color: #eef2f6;
+  border: rem(1) solid #4b5c70;
+  border-radius: rem(4);
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+
+  &:hover {
+    background: var(--clr-blue);
+    border-color: #7cc4f5;
+    color: #ffffff;
+  }
+
+  &[data-copied="true"] {
+    background: var(--clr-green);
+    border-color: var(--clr-green);
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: rem(3) solid var(--clr-peach);
+    outline-offset: rem(2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .code-copy-btn {
+    transition: none;
+  }
 }
 
 .contentarea {

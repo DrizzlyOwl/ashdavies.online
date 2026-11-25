@@ -60,6 +60,17 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+
+  .children {
+    list-style-type: none;
+    margin: rem(16) 0 0 0;
+    padding-left: rem(16);
+    border-left: rem(2) solid var(--clr-border-subtle);
+
+    @include bp($m) {
+      padding-left: rem(24);
+    }
+  }
 }
 
 .vcard .avatar {

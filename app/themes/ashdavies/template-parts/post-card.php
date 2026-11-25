@@ -8,7 +8,7 @@ namespace Ash;
 
 $pid = (int) get_the_ID();
 $post_date = get_post_datetime();
-$reading_time = (int) get_post_meta($pid, '_estimated-reading-time-minutes', true);
+$reading_time = get_reading_time($pid);
 $categories = get_the_category($pid);
 $primary_category = !empty($categories) ? $categories[0] : null;
 ?>
