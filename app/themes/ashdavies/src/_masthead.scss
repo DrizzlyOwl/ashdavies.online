@@ -90,6 +90,11 @@
         box-shadow: 0 rem(2) 0 0 var(--clr-blue);
     }
 
+    &:focus-visible {
+        outline: rem(3) solid var(--clr-focus);
+        outline-offset: rem(2);
+    }
+
     img {
         width: rem(20);
         margin-top: rem(-4);

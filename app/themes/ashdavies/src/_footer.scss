@@ -53,7 +53,7 @@
 .footer__list-item {
   font-size: rem(15);
   margin-bottom: 0;
-  padding: rem(4) 0;
+  padding: 0;
 }
 
 .footer-list-label {
@@ -63,4 +63,5 @@
 
 .footer__list-link {
   display: inline-block;
+  padding: rem(5) 0;
 }

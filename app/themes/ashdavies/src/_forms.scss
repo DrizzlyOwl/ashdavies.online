@@ -6,18 +6,20 @@ label {
 
 input,
 textarea {
+  background-color: #ffffff;
   color: var(--clr-black);
   font-size: rem(16);
   margin: 0;
   width: 100%;
   padding: rem(8);
   font-family: $ff-sans-serif;
-  border: rem(2) solid var(--clr-papyrus);
+  border: rem(2) solid var(--clr-border);
   border-radius: rem(3);
 
   &:focus {
-    outline: none;
-    border-color: var(--clr-red);
+    border-color: var(--clr-focus);
+    outline: rem(3) solid var(--clr-focus);
+    outline-offset: rem(2);
   }
 }
 
@@ -38,8 +40,12 @@ button,
     font-size: rem(18);
   }
 
+  &:focus-visible {
+    outline: rem(3) solid var(--clr-focus);
+    outline-offset: rem(2);
+  }
+
   &:focus {
-    outline: none;
     border-color: var(--clr-black);
     background: var(--clr-black);
     color: white;
@@ -47,14 +53,12 @@ button,
 
   &:hover {
     cursor: pointer;
-    border-color: var(--clr-green);
+    background: var(--clr-blue);
+    border-color: var(--clr-blue);
+    color: white;
   }
 }
 
 textarea {
   resize: vertical;
-}
-
-.comment-form-url {
-  display: none; // not wanted
 }

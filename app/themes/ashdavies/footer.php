@@ -17,42 +17,46 @@ $privacy_url = get_privacy_policy_url() ?: home_url('/privacy/');
 <footer class="footer">
     <div class="wrapper">
         <div class="footer__content">
-            <nav class="footer__nav footer__nav--cats" aria-label="<?php esc_attr_e('Categories and Popular Tags', 'ashdavies'); ?>">
-                <h2 class="footer__heading"><?php esc_html_e('Categories', 'ashdavies'); ?></h2>
-                <?php if (!is_wp_error($categories) && !empty($categories)) : ?>
-                    <ul class="footer__list">
-                        <?php foreach ($categories as $term) :
-                            $term_link = get_term_link($term);
-                            if (is_wp_error($term_link)) {
-                                continue;
-                            }
-                        ?>
-                            <li class="footer__list-item">
-                                <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term_link)); ?>">
-                                    <?php echo esc_html($term->name); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
-                <h2 class="footer__heading"><?php esc_html_e('Popular Tags', 'ashdavies'); ?></h2>
-                <?php if (!is_wp_error($tags) && !empty($tags)) : ?>
-                    <ul class="footer__list">
-                        <?php foreach ($tags as $term) :
-                            $term_link = get_term_link($term);
-                            if (is_wp_error($term_link)) {
-                                continue;
-                            }
-                        ?>
-                            <li class="footer__list-item">
-                                <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term_link)); ?>">
-                                    <?php echo esc_html($term->name); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
-            </nav>
+            <div class="footer__nav footer__nav--cats">
+                <nav aria-labelledby="footer-categories-heading">
+                    <h2 id="footer-categories-heading" class="footer__heading"><?php esc_html_e('Categories', 'ashdavies'); ?></h2>
+                    <?php if (!is_wp_error($categories) && !empty($categories)) : ?>
+                        <ul class="footer__list">
+                            <?php foreach ($categories as $term) :
+                                $term_link = get_term_link($term);
+                                if (is_wp_error($term_link)) {
+                                    continue;
+                                }
+                            ?>
+                                <li class="footer__list-item">
+                                    <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term_link)); ?>">
+                                        <?php echo esc_html($term->name); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </nav>
+                <nav aria-labelledby="footer-tags-heading">
+                    <h2 id="footer-tags-heading" class="footer__heading"><?php esc_html_e('Popular Tags', 'ashdavies'); ?></h2>
+                    <?php if (!is_wp_error($tags) && !empty($tags)) : ?>
+                        <ul class="footer__list">
+                            <?php foreach ($tags as $term) :
+                                $term_link = get_term_link($term);
+                                if (is_wp_error($term_link)) {
+                                    continue;
+                                }
+                            ?>
+                                <li class="footer__list-item">
+                                    <a class="footer__list-link" href="<?php echo esc_url(add_query_arg('ref', '_footer', $term_link)); ?>">
+                                        <?php echo esc_html($term->name); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </nav>
+            </div>
             <nav class="footer__nav footer__nav--posts" aria-labelledby="footer-posts-heading">
                 <h2 id="footer-posts-heading" class="footer__heading"><?php esc_html_e('Posts', 'ashdavies'); ?></h2>
                 <?php if (!empty($recent_posts)) : ?>

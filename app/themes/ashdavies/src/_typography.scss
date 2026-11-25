@@ -80,6 +80,16 @@ a:focus {
   color: white;
 }
 
+a:focus-visible {
+  outline: rem(3) solid var(--clr-focus);
+  outline-offset: rem(2);
+}
+
+h2[id],
+#contentarea {
+  scroll-margin-top: rem(24);
+}
+
 ul,
 ol {
   padding-left: $gutter;
