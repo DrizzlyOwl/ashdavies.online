@@ -26,20 +26,10 @@ get_header();
     <section class="wrapper">
         <?php if (have_posts()) : ?>
             <ul class="cards">
-            <?php while (have_posts()) : ?>
-                <?php the_post(); ?>
-                <li <?php post_class('card__item'); ?>>
-                    <div class="card__inner">
-                        <?php
-                        $post_date = get_post_datetime();
-                        if ($post_date) : ?>
-                            <p class="date card__meta"><?php echo esc_html($post_date->format(get_option('date_format'))); ?></p>
-                        <?php endif; ?>
-                        <h2 class="card__title"><a href="<?php echo esc_url(get_permalink()); ?>"><?php the_title(); ?></a></h2>
-                        <div class="card__readmore"><?php the_excerpt(); ?></div>
-                    </div>
-                </li>
-            <?php endwhile; ?>
+                <?php while (have_posts()) : ?>
+                    <?php the_post(); ?>
+                    <?php get_template_part('template-parts/post-card'); ?>
+                <?php endwhile; ?>
             </ul>
             <?php the_posts_pagination(); ?>
         <?php else : ?>

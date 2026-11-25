@@ -8,8 +8,11 @@ namespace Ash;
 
 get_header();
 
-$is_post_old = is_singular('post') && is_post_older_than('1 year');
-
+$pid = (int) get_the_ID();
+$is_post = is_singular('post');
+$is_post_old = $is_post && is_post_older_than('1 year');
+$post_date = get_post_datetime();
+$reading_time = (int) get_post_meta($pid, '_estimated-reading-time-minutes', true);
 ?>
 <main id="contentarea" tabindex="-1">
     <div class="masthead masthead--slim">
@@ -22,7 +25,33 @@ $is_post_old = is_singular('post') && is_post_older_than('1 year');
                 <?php endif; ?>
             </p>
             <h1 class="masthead__heading"><?php the_title(); ?></h1>
-            <div class="masthead__blurb"><?php the_excerpt(); ?></div>
+            <?php if (has_excerpt()) : ?>
+                <div class="masthead__blurb"><?php the_excerpt(); ?></div>
+            <?php endif; ?>
+            <?php if ($is_post) : ?>
+                <div class="masthead__meta">
+                    <?php if ($post_date) : ?>
+                        <p>
+                            <span class="masthead__meta-label"><?php esc_html_e('Published', 'ashdavies'); ?>:</span>
+                            <time datetime="<?php echo esc_attr($post_date->format('c')); ?>">
+                                <?php echo esc_html($post_date->format(get_option('date_format'))); ?>
+                            </time>
+                        </p>
+                    <?php endif; ?>
+                    <?php if ($reading_time > 0) : ?>
+                        <p>
+                            <span class="masthead__meta-label"><?php esc_html_e('Reading time', 'ashdavies'); ?>:</span>
+                            <?php echo esc_html($reading_time); ?> <?php echo esc_html(_n('minute', 'minutes', $reading_time, 'ashdavies')); ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php if (wp_get_post_categories($pid)) : ?>
+                        <p>
+                            <span class="masthead__meta-label"><?php esc_html_e('Category', 'ashdavies'); ?>:</span>
+                            <?php the_category(', '); ?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
         </header>
     </div>
     <article <?php post_class('contentarea'); ?>>
@@ -37,6 +66,15 @@ $is_post_old = is_singular('post') && is_post_older_than('1 year');
                             <br>
                             <?php esc_html_e('— Thanks, Ash.', 'ashdavies'); ?>
                         </p>
+                    <?php endif; ?>
+                    <?php if (has_post_thumbnail()) : ?>
+                        <figure class="post-featured-figure">
+                            <?php the_post_thumbnail('large', [
+                                'class'         => 'post-featured-image',
+                                'fetchpriority' => 'high',
+                                'decoding'      => 'async',
+                            ]); ?>
+                        </figure>
                     <?php endif; ?>
                     <?php the_content(); ?>
                     <?php wp_link_pages([
@@ -59,7 +97,7 @@ $is_post_old = is_singular('post') && is_post_older_than('1 year');
                 <p class="screen-reader-text"><?php esc_html_e('Breadcrumbs', 'ashdavies'); ?></p>
                 <?php yoast_breadcrumb('&#8647; '); ?>
             <?php endif; ?>
-            <?php if (is_singular('post')) : ?>
+            <?php if ($is_post) : ?>
                 <div class="post-navigation">
                     <p><?php previous_post_link('&larr; ' . esc_html__('Previous post', 'ashdavies') . '<br>%link', '%title', true); ?></p>
                     <p><?php next_post_link(esc_html__('Next post', 'ashdavies') . ' &rarr;<br>%link', '%title', true); ?></p>
