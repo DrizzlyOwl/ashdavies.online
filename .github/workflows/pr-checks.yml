@@ -46,3 +46,24 @@ jobs:
           push: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  theme-css-check:
+    name: Theme CSS Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+
+      - name: Build SCSS with fatal deprecations in node:24-alpine
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace/app/themes/ashdavies \
+            node:24-alpine \
+            sh -eu -c '
+              npm ci --ignore-scripts --no-audit --no-fund
+              npx sass --no-source-map --style=compressed --fatal-deprecation=import --fatal-deprecation=strict-unary ./src/global.scss:./style.css ./src/editor.scss:./editor.css
+            '
+
+      - name: Ensure compiled CSS is up to date
+        run: git diff --exit-code -- app/themes/ashdavies/style.css app/themes/ashdavies/editor.css
