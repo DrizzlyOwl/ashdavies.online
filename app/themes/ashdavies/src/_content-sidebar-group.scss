@@ -8,7 +8,6 @@
 
   @include bp($m) {
     grid-template-columns: minmax(0, 1fr) rem(288);
-    align-items: start;
   }
 }
 

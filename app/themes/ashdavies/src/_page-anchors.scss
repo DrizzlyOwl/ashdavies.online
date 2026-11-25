@@ -4,6 +4,15 @@
   @include bp($m) {
     position: sticky;
     top: rem(24);
+    max-height: calc(100vh - #{rem(48)});
+    overflow-y: auto;
+  }
+}
+
+@include bp($m) {
+  body.admin-bar .page-anchors {
+    top: rem(56);
+    max-height: calc(100vh - #{rem(80)});
   }
 }
 
