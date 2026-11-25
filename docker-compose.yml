@@ -37,6 +37,7 @@ services:
       - ./app/languages/:/usr/src/wordpress/wp-content/languages/
       - ./app/themes/:/usr/src/wordpress/wp-content/themes/
       - ./app/plugins/:/usr/src/wordpress/wp-content/plugins/
+      - ./app/mu-plugins/:/usr/src/wordpress/wp-content/mu-plugins/
       - ./app/object-cache.php:/usr/src/wordpress/wp-content/object-cache.php
     networks:
       - ashdavies

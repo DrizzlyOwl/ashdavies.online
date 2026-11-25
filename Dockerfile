@@ -32,10 +32,10 @@ RUN apt-get -s dist-upgrade | grep "^Inst" | grep -i securi | awk -F " " {'print
 WORKDIR /usr/src/wordpress
 
 # Remove default themes and plugins
-RUN rm -rf ./wp-content/themes/ ./wp-content/plugins/
+RUN rm -rf ./wp-content/themes/ ./wp-content/plugins/ ./wp-content/mu-plugins/
 
 # Install custom themes and sources
-RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ ./wp-content/plugins/
+RUN mkdir -p ./wp-content/uploads/ ./wp-content/languages/ ./wp-content/themes/ ./wp-content/plugins/ ./wp-content/mu-plugins/
 COPY --from=theme-build /build/ ./wp-content/themes/ashdavies/
 COPY ./app/languages/ ./wp-content/languages/
 
@@ -45,8 +45,8 @@ COPY php.ini $PHP_INI_DIR/conf.d/
 # Move vendor plugins to the right places
 COPY --from=php-build /build/app/plugins/ ./wp-content/plugins/
 
-# Install ash-mods
-COPY ./app/plugins/ash-mods.php ./wp-content/plugins/ash-mods.php
+# Install ash-mods mu-plugin
+COPY ./app/mu-plugins/ ./wp-content/mu-plugins/
 
 # Cleanup
 RUN rm -rf ./app/ ./vendor/

@@ -8,31 +8,35 @@ namespace Ash;
 
 use DOMDocument;
 
-$env = "production";
+defined('ABSPATH') || exit;
 
-if (strpos(home_url(), "localhost")) {
-    $env = "development";
-}
-
-define('WP_ENVIRONMENT_TYPE', $env);
-
-add_action('init', function () {
-    // Define the global content width
+/**
+ * Theme setup
+ */
+add_action('after_setup_theme', function () {
+    global $content_width;
     if (!isset($content_width)) {
         $content_width = 960;
     }
 
-    // Theme support registrations
     add_theme_support('title-tag');
-    add_theme_support('automatic-feed-links');
     add_theme_support('html5', [
         'comment-list',
         'comment-form',
+        'search-form',
+        'gallery',
+        'caption',
+        'style',
+        'script',
     ]);
     add_theme_support('post-thumbnails');
     add_theme_support('disable-custom-font-sizes');
     add_theme_support('yoast-seo-breadcrumbs');
 
+    register_nav_menu('primary', __('Primary Menu', 'ashdavies'));
+});
+
+add_action('init', function () {
     // Add missing features to Post Types
     add_post_type_support('page', ['excerpt', 'thumbnail']);
 
@@ -47,29 +51,13 @@ add_action('init', function () {
         get_theme_dir() . '/style.css',
         [],
         filemtime(get_template_directory() . '/style.css'),
-        'screen'
+        'all'
     );
-
-    // wp_register_style(
-    //     '@ash/gutenberg',
-    //     get_theme_dir() . '/gutenberg.css',
-    //     [],
-    //     filemtime(get_template_directory() . '/gutenberg.css'),
-    //     'screen'
-    // );
-
-    // wp_register_script(
-    //     '@ash/main',
-    //     get_theme_dir() . '/dist/scripts.min.js',
-    //     [],
-    //     filemtime(get_template_directory() . '/dist/scripts.min.js'),
-    //     true
-    // );
 });
 
 function theme_dir()
 {
-    echo get_theme_dir();
+    echo esc_url(get_theme_dir());
 }
 
 function get_theme_dir()
@@ -95,13 +83,6 @@ remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
 remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 
 /**
- * Enqueue assets for the Gutenberg editor
- */
-add_action('enqueue_block_editor_assets', function () {
-    wp_enqueue_style('@ash/gutenberg');
-});
-
-/**
  * When Post content is being displayed, update the headings to use ID anchors if they are missing
  *
  * @param string $content
@@ -109,63 +90,79 @@ add_action('enqueue_block_editor_assets', function () {
  */
 function set_heading_anchors(string $content = '')
 {
-    // Abort early if there is no content to parse
-    if (empty($content)) {
+    if (empty($content) || !strlen(trim($content))) {
         return '';
     }
 
-    // If there is any content entered in to this post
-    if (strlen(trim($content))) {
-        // Convert HTML entities to UTF-8 symbols
-        $enforce_utf8 = mb_encode_numericentity(
-            htmlspecialchars_decode(
-                htmlentities($content, ENT_NOQUOTES, 'UTF-8', false),
-                ENT_NOQUOTES
-            ),
-            [0x80, 0x10FFFF, 0, ~0],
-            'UTF-8'
-        );
+    static $cache = [];
+    $cache_key = md5($content);
+    if (isset($cache[$cache_key])) {
+        return $cache[$cache_key];
+    }
 
-        // Instantiate a new DOMDocument HTML parser
-        $dom = new DOMDocument('1.1', 'UTF-8');
+    // Convert HTML entities to UTF-8 symbols
+    $enforce_utf8 = mb_encode_numericentity(
+        htmlspecialchars_decode(
+            htmlentities($content, ENT_NOQUOTES, 'UTF-8', false),
+            ENT_NOQUOTES
+        ),
+        [0x80, 0x10FFFF, 0, ~0],
+        'UTF-8'
+    );
 
-        $dom->loadHTML($enforce_utf8, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR);
+    $dom = new DOMDocument('1.1', 'UTF-8');
+    $dom->loadHTML('<div>' . $enforce_utf8 . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR);
 
-        /**
-         * IMPORTANT
-         * This is required to handle special characters - in this case apostrophes.
-         * It replaces HTML entity number with the right single quotation mark NOT the standard single quotation mark.
-         */
-        $content = str_replace('&#8217;', '’', $content);
+    /**
+     * IMPORTANT
+     * This is required to handle special characters - in this case apostrophes.
+     * It replaces HTML entity number with the right single quotation mark NOT the standard single quotation mark.
+     */
+    $content = str_replace('&#8217;', '’', $content);
 
-        // Iterate through each <h2> Tag
-        foreach ($dom->getElementsByTagName('h2') as $anchor) {
-            /**
-             * @var \DOMElement $anchor
-             */
+    $seen_ids = [];
+    $index = 0;
+    $search_offset = 0;
 
-            // Get the OLD html node
-            $old_html = $dom->saveHTML($anchor);
+    foreach ($dom->getElementsByTagName('h2') as $anchor) {
+        /** @var \DOMElement $anchor */
+        $index++;
+        $old_html = $dom->saveHTML($anchor);
+        $title = $anchor->textContent;
 
-            // Get the title text between the opening and closing tags
-            $title = $anchor->textContent;
-
-            // Determine whether the <h2> is missing an ID attribute
-            if (!$anchor->hasAttribute('id')) {
-                // Create a pseudo-id out of the <h2> text
-                $str = preg_replace('/[^a-z0-9]/i', '-', $title);
-                $id = sanitize_title($str);
-
-                // Set the new attribute
-                $anchor->setAttribute('id', $id);
-
-                // Update the old html with the new html
-                $new_html = $dom->saveHTML($anchor);
-                $content = str_replace($old_html, $new_html, $content);
+        if ($anchor->hasAttribute('id')) {
+            $seen_ids[$anchor->getAttribute('id')] = true;
+            $pos = strpos($content, $old_html, $search_offset);
+            if ($pos !== false) {
+                $search_offset = $pos + strlen($old_html);
             }
+            continue;
+        }
+
+        $str = preg_replace('/[^a-z0-9]/i', '-', $title);
+        $base_id = sanitize_title($str);
+        if (empty($base_id)) {
+            $base_id = 'section-' . $index;
+        }
+
+        $id = $base_id;
+        $suffix = 2;
+        while (isset($seen_ids[$id])) {
+            $id = $base_id . '-' . $suffix;
+            $suffix++;
+        }
+        $seen_ids[$id] = true;
+
+        $anchor->setAttribute('id', $id);
+        $new_html = $dom->saveHTML($anchor);
+        $pos = strpos($content, $old_html, $search_offset);
+        if ($pos !== false) {
+            $content = substr_replace($content, $new_html, $pos, strlen($old_html));
+            $search_offset = $pos + strlen($new_html);
         }
     }
 
+    $cache[$cache_key] = $content;
     return $content;
 }
 
@@ -177,122 +174,70 @@ function set_heading_anchors(string $content = '')
  */
 function get_heading_anchors(int $post_id = 0)
 {
-    $anchors = [];
+    if ($post_id === 0) {
+        $post_id = (int) get_the_ID();
+    }
 
-    if ($post_id == 0) {
-        $post_id = get_the_ID();
+    static $anchors_cache = [];
+    if (isset($anchors_cache[$post_id])) {
+        return $anchors_cache[$post_id];
     }
 
     $post = get_post($post_id);
-
-    // Exit early if the Post cannot be loaded
-    if (!is_a($post, 'WP_Post')) {
+    if (!is_a($post, 'WP_Post') || empty($post->post_content)) {
         return [];
     }
 
-    // Exit early if there is no Post Content
-    if (empty($post->post_content)) {
-        return [];
-    }
-
-    // Format the content to add in missing anchors
     $content = set_heading_anchors($post->post_content);
+    $enforce_utf8 = mb_encode_numericentity(
+        htmlspecialchars_decode(
+            htmlentities($content, ENT_NOQUOTES, 'UTF-8', false),
+            ENT_NOQUOTES
+        ),
+        [0x80, 0x10FFFF, 0, ~0],
+        'UTF-8'
+    );
 
-    // Instantiate a new DOMDocument HTML parser
     $dom = new DOMDocument('1.1', 'UTF-8');
+    $dom->loadHTML('<div>' . $enforce_utf8 . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR);
 
-    $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NOERROR);
-
-    // Iterate through each <h2> Tag
+    $anchors = [];
     foreach ($dom->getElementsByTagName('h2') as $anchor) {
-        // Get the title text between the opening and closing tags
-        $title = $anchor->textContent;
-
-        // Determine whether the <h2> is missing an ID attribute
         if ($anchor->hasAttribute('id')) {
-            // Add this anchor to an array for passing to a component
             $anchors[] = [
                 'id' => $anchor->getAttribute('id'),
-                'title' => $title
+                'title' => $anchor->textContent,
             ];
         }
     }
 
+    $anchors_cache[$post_id] = $anchors;
     return $anchors;
 }
 
 /**
- * Apply an id html attributes to all <h2> tags
+ * Apply an id html attribute to all <h2> tags
  */
 add_filter('the_content', 'Ash\set_heading_anchors', 10, 1);
 
 /**
- * Register the primary nav
- */
-add_action('after_setup_theme', function () {
-    register_nav_menu('primary', __('Primary Menu', 'ashdavies'));
-});
-
-/**
- * Ensure PHPMailer inherits the SMTP credentials we give it
- */
-add_action('phpmailer_init', function ($phpmailer) {
-    $phpmailer->isSMTP();
-    $phpmailer->Host = getenv('SMTP_HOSTNAME');
-    $phpmailer->Port = getenv('SMTP_PORT');
-    $phpmailer->Username = getenv('SMTP_USER');
-    $phpmailer->Password = getenv('SMTP_PASSWORD');
-    $phpmailer->From = getenv('SMTP_FROM');
-    $phpmailer->FromName = getenv('SMTP_FROM_NAME');
-
-    // Local development uses a plain SMTP mail catcher (Mailpit) with no
-    // authentication or TLS. Set SMTP_INSECURE=1 in the local environment to
-    // opt out of auth/TLS. Production leaves this unset and behaves as before.
-    if (getenv('SMTP_INSECURE')) {
-        $phpmailer->SMTPAuth = false;
-        $phpmailer->SMTPSecure = "";
-        $phpmailer->SMTPAutoTLS = false;
-    } else {
-        // Additional settings
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->SMTPSecure = "tls";
-        $phpmailer->SMTPAutoTLS = true;
-    }
-
-    // Filter out client message body and output debug info to the logs
-    // NOTE: Log level must be set to '2' or higher in order for the filter to work
-    $phpmailer->SMTPDebug = 2;
-
-    $phpmailer->Debugoutput = function($str) {
-        static $logging = true;
-        if ($logging === false && strpos($str, 'SERVER -> CLIENT') !== false) {
-            $logging = true;
-        }
-        if ($logging) {
-            error_log("SMTP " . "$str");
-        }
-        if (strpos($str, 'SERVER -> CLIENT: 354') !== false) {
-            $logging = false;
-        }
-    };
-});
-
-// Prevent Wordpress from overriding the SMTP FROM address (Office 365 compatibility)
-add_filter('wp_mail_from', function ($email) {
-    return $_ENV["SMTP_FROM"];
-}, 10, 1);
-
-add_filter( 'wp_mail_content_type', function () {
-    return "text/html";
-});
-
-/**
- * @return bool
+ * Determine whether the current post's last modified date is older than the given range
  */
 function is_post_older_than(string $range): bool
 {
-    $last_updated = date_create_immutable_from_format('Ymd', get_the_modified_time('Ymd'));
-    $last_year = date_sub(date_create('now'), date_interval_create_from_date_string($range));
+    $modified = get_the_modified_time('Ymd');
+    if (empty($modified)) {
+        return false;
+    }
 
-    return $last_year->format('Ymd') >= $last_updated->format('Ymd');
+    $last_updated = date_create_immutable_from_format('Ymd', (string) $modified);
+    $interval = date_interval_create_from_date_string($range);
+
+    if ($last_updated === false || $interval === false) {
+        return false;
+    }
+
+    $cutoff = date_create_immutable('now')->sub($interval);
+
+    return $cutoff->format('Ymd') >= $last_updated->format('Ymd');
 }
