@@ -18,15 +18,6 @@
     }
 }
 
-@keyframes masthead-float {
-    from {
-        transform: translate3d(0, 0, 0) scale(1);
-    }
-    to {
-        transform: translate3d(0, rem(-12), 0) scale(1.03);
-    }
-}
-
 @keyframes masthead-halo {
     from {
         opacity: 0.78;
@@ -131,7 +122,6 @@
         border: rem(24) solid color-mix(in srgb, var(--clr-link) 12%, transparent);
         box-shadow: inset 0 0 0 rem(18) color-mix(in srgb, var(--clr-peach) 16%, transparent);
         pointer-events: none;
-        animation: masthead-float 16s ease-in-out infinite alternate;
     }
 }
 
@@ -286,7 +276,6 @@
     height: clamp(11rem, 36vw, 32rem);
     border-radius: 100%;
     pointer-events: none;
-    animation: masthead-float 14s ease-in-out infinite alternate;
 
     &::before {
         content: "";
@@ -315,7 +304,6 @@
     &--bottom-right {
         bottom: clamp(-14rem, -16vw, -5.5rem);
         right: clamp(-14rem, -16vw, -5.5rem);
-        animation-delay: -7s;
         background: color-mix(in srgb, var(--clr-peach) 20%, var(--clr-surface));
         border: rem(1) solid color-mix(in srgb, var(--clr-peach) 34%, transparent);
 
@@ -328,9 +316,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .masthead--hero::after,
-    .masthead--slim::after,
     .masthead--404::after,
-    .masthead__shim,
     .masthead__shim--top-left::before {
         animation: none;
     }
