@@ -1,11 +1,11 @@
 services:
   redis:
-    image: redis:latest
+    image: redis:8.12.0-alpine@sha256:5af80107c1eeecb484a2269b80a26d12bfa6521787da4663bd9f19f60a163483
     restart: always
     networks:
      - ashdavies
   mailhog:
-    image: axllent/mailpit:latest
+    image: axllent/mailpit:v1.34.0@sha256:23a2ef85bc50853ab3093645d1d64679afd8887e89da5e48a88940c172591a4e
     restart: always
     ports:
       - 8025:8025
@@ -15,7 +15,7 @@ services:
     networks:
       - ashdavies
   phpmyadmin:
-    image: phpmyadmin
+    image: phpmyadmin:5.2.3-apache@sha256:64293e1f91d6509e9530d51059b1d45a31d3e4b38ead27cc9648b915b061ba2c
     restart: always
     ports:
       - 8880:80
@@ -43,7 +43,7 @@ services:
       - ashdavies
   mysql:
     platform: linux/amd64
-    image: mysql:8.0
+    image: mysql:8.0.46@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
     env_file:
       - .env.mysql
     ports:

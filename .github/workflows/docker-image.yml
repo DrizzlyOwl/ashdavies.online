@@ -7,10 +7,15 @@ on:
       - 'app/**'
       - 'composer*'
       - 'Dockerfile'
+      - '.dockerignore'
+      - 'php.ini'
+  schedule:
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   id-token: write
@@ -21,31 +26,79 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v4
+      - name: Audit PHP dependencies (Composer)
+        run: |
+          COMPOSER_IMAGE=$(awk '/^FROM composer:/ {print $2; exit}' Dockerfile)
+          docker run --rm -v "$PWD":/app -w /app "$COMPOSER_IMAGE" \
+            audit --locked --no-interaction --no-dev
 
-    - name: Login to ghcr.io
-      uses: docker/login-action@v4
-      with:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: ghcr.io
+      - name: Audit theme build dependencies (npm)
+        run: |
+          NODE_IMAGE=$(awk '/^FROM node:/ {print $2; exit}' Dockerfile)
+          docker run --rm -v "$PWD/app/themes/ashdavies":/app -w /app "$NODE_IMAGE" \
+            npm audit --audit-level=high
 
-    - name: Docker meta
-      uses: docker/metadata-action@v6
-      id: meta
-      with:
-        images: ghcr.io/drizzlyowl/ashdavies.online
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
 
-    - name: Build and push
-      uses: docker/build-push-action@v7
-      with:
-        push: ${{ github.event_name != 'pull_request' }}
-        tags: |
-          ghcr.io/drizzlyowl/ashdavies.online:latest
-          ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha
+      - name: Login to ghcr.io
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        id: meta
+        with:
+          images: ghcr.io/drizzlyowl/ashdavies.online
+
+      - name: Build image for vulnerability scan
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          load: true
+          push: false
+          tags: ghcr.io/drizzlyowl/ashdavies.online:scan
+          build-args: |
+            CACHE_BUST=${{ github.run_id }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ghcr.io/drizzlyowl/ashdavies.online:scan
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
+      - name: Push image with SBOM and provenance
+        id: build
+        if: github.event_name != 'pull_request'
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: |
+            ghcr.io/drizzlyowl/ashdavies.online:latest
+            ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            CACHE_BUST=${{ github.run_id }}
+          cache-from: type=gha
+
+      - name: Install Cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@881c63bd87e38389154debd8331404ce7ca8a3ab # v4.1.4
+
+      - name: Sign image with Cosign
+        if: github.event_name != 'pull_request'
+        run: |
+          cosign sign --yes \
+            "ghcr.io/drizzlyowl/ashdavies.online@${{ steps.build.outputs.digest }}"
