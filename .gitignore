@@ -22,7 +22,9 @@ app/themes/twenty*
 
 # Never include plugins
 app/plugins/*
-!app/plugins/ash-mods.php
+
+# Always retain mu-plugins
+!app/mu-plugins
 
 # Never retain config files
 .env*

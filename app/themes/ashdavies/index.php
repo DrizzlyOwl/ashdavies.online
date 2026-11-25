@@ -8,11 +8,11 @@ namespace Ash;
 
 get_header();
 ?>
-<main id="contentarea">
+<main id="contentarea" tabindex="-1">
     <div class="masthead masthead--slim">
         <header class="masthead__inner">
-            <p class="masthead__back"><a href="/">&larr; <?php _e("Back to Homepage", 'ashdavies'); ?></a></p>
-            <h1 class="masthead__heading"><?php _e("Archive", 'ashdavies'); ?></h1>
+            <p class="masthead__back"><a href="<?php echo esc_url(home_url('/')); ?>">&larr; <?php esc_html_e('Back to Homepage', 'ashdavies'); ?></a></p>
+            <h1 class="masthead__heading"><?php esc_html_e('Archive', 'ashdavies'); ?></h1>
         </header>
     </div>
     <section class="wrapper">
@@ -21,17 +21,25 @@ get_header();
             <?php while (have_posts()) : ?>
                 <?php the_post(); ?>
                 <li>
-                    <div <?php post_class("contentarea"); ?>>
+                    <div <?php post_class('contentarea'); ?>>
                         <header>
-                            <h2><?php the_title(); ?></h2>
-                            <p class="date"><?php echo get_post_datetime()->format(get_option('date_format')); ?></p>
+                            <h2><a href="<?php echo esc_url(get_permalink()); ?>"><?php the_title(); ?></a></h2>
+                            <?php
+                            $post_date = get_post_datetime();
+                            if ($post_date) : ?>
+                                <p class="date"><?php echo esc_html($post_date->format(get_option('date_format'))); ?></p>
+                            <?php endif; ?>
                             <?php the_excerpt(); ?>
-                            <?php the_content(__("Read more&mldr;", 'ashdavies')); ?>
                         </header>
                     </div>
                 </li>
             <?php endwhile; ?>
             </ul>
+            <?php the_posts_pagination(); ?>
+        <?php else : ?>
+            <div class="contentarea">
+                <p><?php esc_html_e('No posts found.', 'ashdavies'); ?></p>
+            </div>
         <?php endif; ?>
     </section>
 </main>
