@@ -24,11 +24,11 @@ $tag-arrow-size: rem(8);
   line-height: rem(16);
   padding: rem(5) rem(12) rem(5) rem(8);
   margin: 0 rem(14) rem(6) 0;
-  background-color: var(--clr-papyrus);
+  background-color: var(--clr-surface-warm);
   border-radius: rem(2) 0 0 rem(2);
   font-size: rem(14);
   position: relative;
-  color: var(--clr-black);
+  color: var(--clr-text);
   text-decoration: none;
 
   &:before {
@@ -41,7 +41,7 @@ $tag-arrow-size: rem(8);
     height: 0;
     border-width: rem(13);
     border-style: solid;
-    border-color: transparent transparent transparent var(--clr-papyrus);
+    border-color: transparent transparent transparent var(--clr-surface-warm);
   }
 
   &:after {
@@ -55,6 +55,6 @@ $tag-arrow-size: rem(8);
 
   &:hover:before,
   &:focus:before {
-    border-color: transparent transparent transparent var(--clr-blue);
+    border-color: transparent transparent transparent var(--clr-link-hover-bg);
   }
 }

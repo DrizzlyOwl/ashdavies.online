@@ -1,10 +1,10 @@
 @use "./vars" as *;
 
 .masthead {
-    background: var(--clr-grey);
+    background: var(--clr-surface);
     position: relative;
     padding: 0 $gutter;
-    color: var(--clr-black);
+    color: var(--clr-text);
     overflow: hidden;
 }
 
@@ -21,11 +21,7 @@
     align-items: center;
 
     @include bp($m) {
-        padding: rem(100);
-    }
-
-    @include bp($l) {
-        padding: rem(100);
+        padding: rem(80) 0;
     }
 
     .avatar-group {
@@ -33,9 +29,26 @@
     }
 }
 
-.masthead--slim .masthead__inner {
-    padding: rem(60) 0;
-    display: block;
+.masthead--slim {
+    border-bottom: rem(1) solid var(--clr-border-subtle);
+
+    .masthead__inner {
+        padding: rem(48) 0;
+        display: block;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: rem(-120);
+        right: rem(-120);
+        width: rem(280);
+        height: rem(280);
+        border-radius: 100%;
+        border: rem(28) solid var(--clr-bg);
+        opacity: 0.7;
+        pointer-events: none;
+    }
 }
 
 .masthead__copy {
@@ -55,7 +68,13 @@
     margin-top: $gutter;
 
     @include bp($m) {
-        font-size: rem(68);
+        font-size: rem(56);
+    }
+}
+
+.masthead--slim .masthead__heading {
+    @include bp($m) {
+        font-size: rem(44);
     }
 }
 
@@ -71,7 +90,7 @@
     }
 
     @include bp($l) {
-        font-size: rem(28);
+        font-size: rem(26);
     }
 }
 
@@ -86,19 +105,19 @@
     font-size: rem(16);
     padding: rem(8) $gutter;
     margin: 0;
-    background: var(--clr-grey);
+    background: var(--clr-surface-card);
     border-radius: rem(8);
-    border: rem(2) solid var(--clr-black);
-    color: var(--clr-black);
+    border: rem(2) solid var(--clr-border);
+    color: var(--clr-text);
     font-weight: bold;
     text-decoration: none;
 
     &:hover, &:focus {
         text-decoration: none;
-        background: white;
-        border-color: var(--clr-blue);
-        color: var(--clr-black);
-        box-shadow: 0 rem(2) 0 0 var(--clr-blue);
+        background: var(--clr-bg);
+        border-color: var(--clr-link);
+        color: var(--clr-text);
+        box-shadow: 0 rem(2) 0 0 var(--clr-link);
     }
 
     &:focus-visible {
@@ -119,25 +138,35 @@
 
 .masthead__connect--steam {
     background: #171d25;
-    color: var(--clr-grey);
+    border-color: #171d25;
+    color: #f6f8fa;
 
     &:hover, &:focus {
         text-decoration: none;
         background: #171d25;
-        border-color: var(--clr-blue);
-        color: var(--clr-grey);
-        box-shadow: 0 rem(2) 0 0 var(--clr-blue);
+        border-color: var(--clr-link);
+        color: #f6f8fa;
+        box-shadow: 0 rem(2) 0 0 var(--clr-link);
     }
 }
 
 .masthead__meta {
     display: flex;
-    margin-bottom: $gutter;
-    margin-left: -$gutter;
+    flex-wrap: wrap;
+    gap: rem(8) rem(20);
+    margin-top: $gutter;
+    font-size: rem(15);
+    color: var(--clr-text-muted);
 
     p {
-        padding-left: $gutter;
+        margin-bottom: 0;
+        font-size: inherit;
     }
+}
+
+.masthead__meta-label {
+    font-weight: 600;
+    color: var(--clr-text);
 }
 
 .masthead__tags {
@@ -153,9 +182,10 @@
     display: none;
     width: clamp(16rem, 42vw, 34rem);
     height: clamp(16rem, 42vw, 34rem);
-    background: white;
+    background: var(--clr-bg);
     position: absolute;
     border-radius: 100%;
+    pointer-events: none;
 
     &--top-left {
         top: clamp(-14rem, -18vw, -7rem);
@@ -178,7 +208,7 @@
         left: 50%;
         width: 75%;
         height: 75%;
-        background: var(--clr-grey);
+        background: var(--clr-surface);
         border-radius: 100%;
     }
 }

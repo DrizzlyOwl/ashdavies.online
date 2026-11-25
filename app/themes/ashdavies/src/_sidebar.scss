@@ -2,7 +2,7 @@
 
 .sidebar {
   padding: 2vh;
-  color: white;
+  color: var(--clr-text);
   flex: 1 1 0;
 }
 
@@ -11,7 +11,7 @@
   height: 200px;
   border-radius: 100%;
   overflow: hidden;
-  border: 5px solid var(--clr-grey);
+  border: 5px solid var(--clr-surface);
 }
 
 .sidebar__list {
@@ -26,7 +26,19 @@
 }
 
 .sidebar__item {
-  margin-bottom: rem(32);
+  background: var(--clr-surface);
+  border: rem(1) solid var(--clr-border-subtle);
+  border-radius: $radii;
+  padding: rem(20);
+  margin-bottom: rem(24);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .sidebar__title {
@@ -34,5 +46,6 @@
   letter-spacing: rem(4);
   line-height: 1;
   font-weight: bold;
-  font-size: rem(18);
+  font-size: rem(16);
+  margin-bottom: $gutter;
 }

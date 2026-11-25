@@ -6,8 +6,8 @@ label {
 
 input,
 textarea {
-  background-color: #ffffff;
-  color: var(--clr-black);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
   font-size: rem(16);
   margin: 0;
   width: 100%;
@@ -29,7 +29,9 @@ button,
   background: var(--clr-peach);
   color: var(--clr-black);
   border: rem(2) solid var(--clr-peach);
+  border-radius: rem(3);
   font-size: rem(16);
+  font-weight: 600;
   width: 100%;
 
   @media only screen and (min-width: 420px) {
@@ -46,16 +48,16 @@ button,
   }
 
   &:focus {
-    border-color: var(--clr-black);
-    background: var(--clr-black);
-    color: white;
+    border-color: var(--clr-text);
+    background: var(--clr-text);
+    color: var(--clr-bg);
   }
 
   &:hover {
     cursor: pointer;
-    background: var(--clr-blue);
-    border-color: var(--clr-blue);
-    color: white;
+    background: var(--clr-link);
+    border-color: var(--clr-link);
+    color: var(--clr-link-hover-fg);
   }
 }
 

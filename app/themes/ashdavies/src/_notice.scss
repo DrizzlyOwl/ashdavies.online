@@ -11,9 +11,9 @@ $default-clr-accent: white;
   color: $default-clr-accent;
 
   &--warning {
-    background: var(--clr-papyrus);
+    background: var(--clr-surface-warm);
     border-color: var(--clr-orange);
     border-left-width: rem(6);
-    color: var(--clr-black);
+    color: var(--clr-text);
   }
 }

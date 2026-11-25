@@ -35,11 +35,11 @@
 .wp-caption-text,
 .gallery-caption {
   font-size: rem(14);
-  color: var(--clr-black);
+  color: var(--clr-text-muted);
 }
 
 .sticky {
-  border-left: rem(4) solid var(--clr-blue);
+  border-left: rem(4) solid var(--clr-link);
   padding-left: $gutter;
 }
 
@@ -62,9 +62,9 @@
     text-decoration: none;
 
     &.current {
-      background: var(--clr-blue);
-      border-color: var(--clr-blue);
-      color: white;
+      background: var(--clr-link);
+      border-color: var(--clr-link);
+      color: var(--clr-link-hover-fg);
     }
   }
 }
@@ -72,6 +72,10 @@
 .pagination {
   margin: rem(32) 0;
   padding: 0 $gutter;
+
+  @include bp($m) {
+    padding: 0;
+  }
 
   .nav-links {
     display: flex;
@@ -88,9 +92,9 @@
     text-decoration: none;
 
     &.current {
-      background: var(--clr-blue);
-      border-color: var(--clr-blue);
-      color: white;
+      background: var(--clr-link);
+      border-color: var(--clr-link);
+      color: var(--clr-link-hover-fg);
     }
   }
 }

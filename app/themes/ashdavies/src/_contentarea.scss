@@ -1,7 +1,7 @@
 @use "./vars" as *;
 
 .contentarea {
-    padding: rem(80) $gutter;
+    padding: rem(56) $gutter;
     margin: 0 auto;
     display: block;
     overflow-wrap: break-word;
@@ -15,6 +15,18 @@
         height: auto;
         margin-bottom: $gutter;
     }
+}
+
+.post-featured-figure {
+    margin: 0 0 rem(24);
+}
+
+.post-featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: $radii;
+    display: block;
+    margin-bottom: 0;
 }
 
 .contentarea--list-item {

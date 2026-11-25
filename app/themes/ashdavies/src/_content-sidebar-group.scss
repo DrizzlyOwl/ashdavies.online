@@ -22,7 +22,7 @@
 
   @include bp($m) {
     order: 0;
-    border-left: rem(2) solid var(--clr-grey);
+    border-left: rem(2) solid var(--clr-border-subtle);
     padding-left: rem(24);
   }
 }

@@ -50,6 +50,7 @@ body {
   font-family: $ff-sans-serif;
   font-weight: 400;
   line-height: 1.5;
+  background-color: var(--clr-bg);
   color: var(--clr-text);
 }
 
@@ -60,7 +61,7 @@ img {
 
 .divider {
   height: 2px;
-  background: var(--clr-grey);
+  background: var(--clr-border-subtle);
 }
 
 .post-navigation {

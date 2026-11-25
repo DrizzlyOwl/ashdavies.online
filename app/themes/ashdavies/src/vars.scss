@@ -19,7 +19,9 @@ $ff-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
 $ff-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
 
 :root {
-  // Colours
+  color-scheme: light dark;
+
+  // Brand palette
   --clr-blue: #175073;
   --clr-yellow: #f2ea79;
   --clr-orange: #f2c12e;
@@ -28,11 +30,43 @@ $ff-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
   --clr-green: #2e6e62;
   --clr-papyrus: #f1edd9;
   --clr-grey: #f6f8fa;
+
+  // Semantic light tokens
+  --clr-bg: #ffffff;
+  --clr-surface: #f6f8fa;
+  --clr-surface-warm: #f1edd9;
+  --clr-surface-card: #ffffff;
+  --clr-surface-code: #1d2327;
+  --clr-surface-skill: #ffffff;
+  --clr-text: #1d2327;
+  --clr-text-muted: #4b5563;
+  --clr-link: #175073;
+  --clr-link-hover-bg: #175073;
+  --clr-link-hover-fg: #ffffff;
   --clr-border: #5c6470;
-  --clr-focus: var(--clr-blue);
-  --clr-text: var(--clr-black);
+  --clr-border-subtle: #e5e7eb;
+  --clr-focus: #175073;
 
   // Variables
   --content_width: #{$content_width};
   --radii: #{$radii};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-bg: #0f1419;
+    --clr-surface: #182028;
+    --clr-surface-warm: #24211a;
+    --clr-surface-card: #182028;
+    --clr-surface-code: #0b0f13;
+    --clr-surface-skill: #f6f8fa;
+    --clr-text: #eef2f6;
+    --clr-text-muted: #b8c2cc;
+    --clr-link: #7cc4f5;
+    --clr-link-hover-bg: #7cc4f5;
+    --clr-link-hover-fg: #0f1419;
+    --clr-border: #8b96a3;
+    --clr-border-subtle: #27323d;
+    --clr-focus: #f2c063;
+  }
 }

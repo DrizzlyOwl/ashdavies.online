@@ -16,7 +16,7 @@
 
 .nav .menu-item a {
   display: inline-block;
-  color: var(--clr-black);
+  color: var(--clr-text);
   text-decoration: none;
   position: relative;
   font-size: rem(16);
@@ -24,6 +24,7 @@
 
   &:hover {
     background: inherit;
+    color: var(--clr-link);
   }
 
   &:hover:after {
@@ -31,8 +32,8 @@
   }
 
   &:focus {
-    background-color: var(--clr-black);
-    color: white;
+    background-color: var(--clr-text);
+    color: var(--clr-bg);
   }
 
   &:focus-visible {
@@ -49,7 +50,7 @@
     left: 0;
     width: 100%;
     height: rem(1);
-    background: var(--clr-black);
+    background: currentColor;
     transform: scaleX(0) skew(45deg);
   }
 }

@@ -15,7 +15,7 @@
 }
 
 .skiplink:focus {
-    background-color: #eee;
+    background-color: var(--clr-surface);
     border: rem(2) solid var(--clr-focus);
     outline: rem(3) solid var(--clr-focus);
     outline-offset: rem(2);

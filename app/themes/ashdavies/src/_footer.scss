@@ -26,7 +26,7 @@
   flex: 1;
 
   @include bp($m) {
-    border-right: rem(2) solid var(--clr-grey);
+    border-right: rem(2) solid var(--clr-border-subtle);
 
     &:last-child {
       border-right: 0;

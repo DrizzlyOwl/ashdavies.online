@@ -1,7 +1,7 @@
 @use "./vars" as *;
 
-$anchor-color: var(--clr-blue);
-$anchor-color-focus-bg: var(--clr-blue);
+$anchor-color: var(--clr-link);
+$anchor-color-focus-bg: var(--clr-link-hover-bg);
 
 p,
 ul,
@@ -77,7 +77,7 @@ a {
 a:hover,
 a:focus {
   background-color: $anchor-color-focus-bg;
-  color: white;
+  color: var(--clr-link-hover-fg);
 }
 
 a:focus-visible {
@@ -97,6 +97,25 @@ ol {
   margin-bottom: $gutter;
 }
 
+blockquote {
+  margin: rem(24) 0;
+  padding: rem(16) rem(20);
+  border-left: rem(4) solid var(--clr-link);
+  background: var(--clr-surface);
+  border-radius: 0 rem(6) rem(6) 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+hr {
+  border: 0;
+  height: rem(2);
+  background: var(--clr-border-subtle);
+  margin: rem(32) 0;
+}
+
 .date,
 .comment-count {
   margin-bottom: 0;
@@ -106,7 +125,8 @@ ol {
 .wp-block-code {
   margin: $gutter 0;
   display: block;
-  background: var(--clr-black);
+  background: var(--clr-surface-code);
+  color: #eef2f6;
   border-radius: 0.2em;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
@@ -147,19 +167,32 @@ ol {
   }
 }
 
-.contentarea code {
-  color: white;
-  background: var(--clr-black);
-  word-wrap: break-word;
-  box-decoration-break: clone;
+.contentarea {
+  code {
+    color: #eef2f6;
+    background: var(--clr-surface-code);
+    word-wrap: break-word;
+    box-decoration-break: clone;
 
-  a {
-    color: inherit;
+    a {
+      color: inherit;
+    }
+
+    a:focus,
+    a:hover {
+      color: var(--clr-yellow);
+      background-color: transparent;
+    }
   }
 
-  a:focus,
-  a:hover {
-    color: yellow;
+  figure {
+    margin: rem(24) 0;
+  }
+
+  figcaption {
+    font-size: rem(14);
+    color: var(--clr-text-muted);
+    margin-top: rem(8);
   }
 }
 
