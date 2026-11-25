@@ -1,0 +1,48 @@
+name: PR Checks
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  php-validate:
+    name: PHP Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+
+      - name: Lint PHP files in wordpress:7-apache
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace:ro" \
+            -w /workspace \
+            wordpress:7-apache \
+            bash -euo pipefail -c '
+              php -l app/mu-plugins/ash-mods.php
+              find app/themes/ashdavies -type f -name "*.php" -not -path "*/node_modules/*" -print0 | xargs -0 -r -n 1 php -l
+            '
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
