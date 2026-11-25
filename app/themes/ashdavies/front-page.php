@@ -17,8 +17,22 @@ if (have_posts()) {
         <header class="masthead__inner">
             <div class="avatar">
                 <div class="avatar__wrap">
-                    <img class="avatar__image" src="<?php echo esc_url(get_theme_dir() . '/dist/profile.jpg'); ?>" alt="<?php esc_attr_e('Picture of Ash Davies', 'ashdavies'); ?>"
-                        width="500" height="500">
+                    <picture>
+                        <source
+                            type="image/webp"
+                            srcset="<?php echo esc_url(get_theme_dir() . '/dist/profile-300.webp'); ?> 1x, <?php echo esc_url(get_theme_dir() . '/dist/profile-600.webp'); ?> 2x"
+                        >
+                        <img
+                            class="avatar__image"
+                            src="<?php echo esc_url(get_theme_dir() . '/dist/profile-300.jpg'); ?>"
+                            srcset="<?php echo esc_url(get_theme_dir() . '/dist/profile-300.jpg'); ?> 1x, <?php echo esc_url(get_theme_dir() . '/dist/profile-600.jpg'); ?> 2x"
+                            alt="<?php esc_attr_e('Picture of Ash Davies', 'ashdavies'); ?>"
+                            width="300"
+                            height="300"
+                            fetchpriority="high"
+                            decoding="async"
+                        >
+                    </picture>
                 </div>
             </div>
             <div class="masthead__copy">
@@ -58,25 +72,25 @@ if (have_posts()) {
         <div class="skillbox__wrap">
             <div class="skill">
                 <figure class="skill__icon skill__icon--azure">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/azure.svg'); ?>" alt="">
+                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/azure.svg'); ?>" alt="" width="85" height="85" decoding="async">
                     <figcaption class="screen-reader-text"><?php esc_html_e('Azure', 'ashdavies'); ?></figcaption>
                 </figure>
             </div>
             <div class="skill">
                 <figure class="skill__icon skill__icon--sys">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/ubuntu.svg'); ?>" alt="">
+                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/ubuntu.svg'); ?>" alt="" width="200" height="99" decoding="async">
                     <figcaption class="screen-reader-text"><?php esc_html_e('Ubuntu', 'ashdavies'); ?></figcaption>
                 </figure>
             </div>
             <div class="skill">
                 <figure class="skill__icon skill__icon--terraform">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/terraform.svg'); ?>" alt="">
+                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/terraform.svg'); ?>" alt="" width="200" height="56" decoding="async">
                     <figcaption class="screen-reader-text"><?php esc_html_e('Terraform', 'ashdavies'); ?></figcaption>
                 </figure>
             </div>
             <div class="skill">
                 <figure class="skill__icon skill__icon--docker">
-                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/docker.svg'); ?>" alt="">
+                    <img src="<?php echo esc_url(get_theme_dir() . '/dist/docker.svg'); ?>" alt="" width="100" height="100" decoding="async">
                     <figcaption class="screen-reader-text"><?php esc_html_e('Docker', 'ashdavies'); ?></figcaption>
                 </figure>
             </div>
@@ -91,7 +105,10 @@ if (have_posts()) {
                 <aside class="content-sidebar-group__sidebar">
                     <div class="avatar avatar--centered">
                         <div class="avatar__wrap">
-                            <img class="avatar__image" src="<?php echo esc_url(get_theme_dir() . '/dist/drizzlyowl.jpeg'); ?>" alt="<?php esc_attr_e('An illustration of a wet owl', 'ashdavies'); ?>" width="200" height="200">
+                            <picture>
+                                <source type="image/webp" srcset="<?php echo esc_url(get_theme_dir() . '/dist/drizzlyowl.webp'); ?>">
+                                <img class="avatar__image" src="<?php echo esc_url(get_theme_dir() . '/dist/drizzlyowl.jpeg'); ?>" alt="<?php esc_attr_e('An illustration of a wet owl', 'ashdavies'); ?>" width="200" height="200" loading="lazy" decoding="async">
+                            </picture>
                         </div>
                     </div>
                 </aside>
