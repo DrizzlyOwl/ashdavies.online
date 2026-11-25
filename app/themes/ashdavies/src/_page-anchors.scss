@@ -28,6 +28,26 @@
 
 .page-anchors__link {
   display: inline-block;
-  padding: rem(4) 0;
+  padding: rem(4) 0 rem(4) rem(8);
+  margin-left: rem(-10);
+  border-left: rem(2) solid transparent;
   font-size: rem(16);
+  transition: color 150ms ease, border-color 150ms ease;
+
+  &.is-active {
+    border-left-color: var(--clr-link);
+    font-weight: 700;
+    color: var(--clr-link);
+
+    &:hover,
+    &:focus {
+      color: var(--clr-link-hover-fg);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-anchors__link {
+    transition: none;
+  }
 }
